@@ -7,6 +7,7 @@
     </div>
   </div>
 
-  <a href="{{ url('/gallery') }}" class="px-18 text-l mx-auto bg-gray-900 py-3 font-bold text-gray-200">LIHAT LEBIH
+  <a href="{{ url('/gallery') }}" target="_blank"
+    class="px-18 text-l mx-auto bg-gray-900 py-3 font-bold text-gray-200">LIHAT LEBIH
     BANYAK</a>
 </div>

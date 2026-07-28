@@ -12,12 +12,12 @@
       <header>
         <nav>
           <ul class="flex items-center gap-12">
-            <a href="{{ url('/') }}" class="class= text-xl font-bold"z-10"">TASTY FOOD</a>
-            <a href="{{ url('/') }}" class="z-10">HOME</a>
-            <a href="{{ url('/about') }}" class="z-10">TENTANG</a>
-            <a href="{{ url('/news') }}" class="z-10">BERITA</a>
-            <a href="{{ url('/gallery') }}" class="z-10">GALERI</a>
-            <a href="{{ url('/contact') }}" class="z-10">KONTAK</a>
+            <a href="{{ url('/') }}" class="z-10 text-xl font-bold" target="_blank">TASTY FOOD</a>
+            <a href="{{ url('/') }}" class="z-10" target="_blank">HOME</a>
+            <a href="{{ url('/about') }}" class="z-10" target="_blank">TENTANG</a>
+            <a href="{{ url('/news') }}" class="z-10" target="_blank">BERITA</a>
+            <a href="{{ url('/gallery') }}" class="z-10" target="_blank">GALERI</a>
+            <a href="{{ url('/contact') }}" class="z-10" target="_blank">KONTAK</a>
           </ul>
         </nav>
       </header>
