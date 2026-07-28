@@ -1,3 +1,2 @@
-<div>
-    <!-- Order your soul. Reduce your wants. - Augustine -->
-</div>
+<x-header></x-header>
+<x-hero--news></x-hero--news>
