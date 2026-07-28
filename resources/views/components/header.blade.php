@@ -7,12 +7,12 @@
     @vite('resources/css/app.css')
   </head>
 
-  <body class="font-montserrat text-gray-900">
-    <div class="relative overflow-hidden bg-gray-200 px-24 py-20">
+  <body class="font-montserrat bg-gray-50 text-sm text-gray-900">
+    <div class="py-18 relative overflow-hidden bg-gray-200 px-20">
       <header>
         <nav>
-          <ul class="flex items-center gap-16 text-xl">
-            <a href="{{ url('/') }}" class="class= text-4xl font-bold"z-10"">TASTY FOOD</a>
+          <ul class="flex items-center gap-12">
+            <a href="{{ url('/') }}" class="class= text-xl font-bold"z-10"">TASTY FOOD</a>
             <a href="{{ url('/') }}" class="z-10">HOME</a>
             <a href="{{ url('/about') }}" class="z-10">TENTANG</a>
             <a href="{{ url('/news') }}" class="z-10">BERITA</a>
@@ -22,4 +22,4 @@
         </nav>
       </header>
       <img src="{{ asset('images/food_png/img-4-2000x2000.png') }}" alt="bg-image"
-        class="size-250 -right-65 absolute bottom-5 z-0">
+        class="size-200 translate-x-50 -translate-y-35 absolute right-0 top-0 z-0">
