@@ -11,6 +11,7 @@
       voluptates?
       Aspernatur, cumque.
     </p>
-    <a href="{{ url('/about') }}" class="px-18 text-l w-fit bg-gray-900 py-3 font-bold text-gray-200">TENTANG KAMI</a>
+    <a href="{{ url('/about') }}" target="_blank"
+      class="px-18 text-l w-fit bg-gray-900 py-3 font-bold text-gray-200">TENTANG KAMI</a>
   </div>
   </div>
