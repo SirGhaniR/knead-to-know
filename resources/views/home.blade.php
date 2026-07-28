@@ -2,7 +2,6 @@
 <x-hero--home></x-hero--home>
 <x-about--home></x-about--home>
 <x-news--home></x-news--home>
-
-
+<x-gallery--home></x-gallery--home>
 
 <x-footer></x-footer>
