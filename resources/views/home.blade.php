@@ -1,6 +1,6 @@
-<x-header></x-header>
-<x-hero--home></x-hero--home>
-<x-about--home></x-about--home>
-<x-news--home></x-news--home>
-<x-gallery--home></x-gallery--home>
-<x-footer></x-footer>
+<x-layout.app title="Home - TASTY FOOD">
+  <x-section.hero-home />
+  <x-section.about-home />
+  <x-section.news-home />
+  <x-section.gallery-home />
+</x-layout.app>

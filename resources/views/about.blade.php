@@ -1,5 +1,5 @@
-<x-header></x-header>
-<x-hero--universal></x-hero--universal>
-<x-about--about></x-about--about>
-<x-vision-mission--about></x-vision-mission--about>
-<x-footer></x-footer>
+<x-layout.app title="About - TASTY FOOD">
+  <x-section.hero />
+  <x-section.about-about />
+  <x-section.vision-mission />
+</x-layout.app>

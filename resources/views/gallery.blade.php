@@ -1,5 +1,5 @@
-<x-header></x-header>
-<x-hero--universal></x-hero--universal>
-<x-carousel--gallery></x-carousel--gallery>
-<x-gallery--gallery></x-gallery--gallery>
-<x-footer></x-footer>
+<x-layout.app title="Gallery - TASTY FOOD">
+  <x-section.hero />
+  <x-section.carousel />
+  <x-section.gallery-gallery />
+</x-layout.app>

@@ -1,5 +1,5 @@
-<x-header></x-header>
-<x-hero--universal></x-hero--universal>
-<x-featured-news--news></x-featured-news--news>
-<x-news-card--news></x-news-card--news>
-<x-footer></x-footer>
+<x-layout.app title="News - TASTY FOOD">
+  <x-section.hero />
+  <x-section.featured-news />
+  <x-section.news-card />
+</x-layout.app>
