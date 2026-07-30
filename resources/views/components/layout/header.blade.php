@@ -23,7 +23,15 @@
           <a href="{{ url('/news') }}" class="z-10">BERITA</a>
           <a href="{{ url('/gallery') }}" class="z-10">GALERI</a>
           <a href="{{ url('/contact') }}" class="z-10">KONTAK</a>
-          <x-ui.button :href="url('/auth')" class="px-5! py-2!">LOGIN</x-ui.button>
+          @auth
+            <form action="{{ url('/logout') }}" method="post">
+              @csrf
+              <button type="submit"
+                class="bg-gray-900 px-5 py-2 font-bold text-gray-200 transition-colors hover:opacity-90">LOGOUT</button>
+            </form>
+          @else
+            <x-ui.button :href="url('/auth')" class="px-5! py-2!">LOGIN</x-ui.button>
+          @endauth
         </div>
       </nav>
     </header>
@@ -42,7 +50,15 @@
               <a href="{{ url('/news') }}" class="z-10">BERITA</a>
               <a href="{{ url('/gallery') }}" class="z-10">GALERI</a>
               <a href="{{ url('/contact') }}" class="z-10">KONTAK</a>
-              <x-ui.button :href="url('/auth')" :variant="'light'" class="px-5! py-2!">LOGIN</x-ui.button>
+              @auth
+                <form action="{{ url('/logout') }}" method="post">
+                  @csrf
+                  <button type="submit"
+                    class="bg-gray-900 px-5 py-2 font-bold text-gray-200 transition-colors hover:opacity-90">LOGOUT</button>
+                </form>
+              @else
+                <x-ui.button :href="url('/auth')" :variant="'light'" class="px-5! py-2!">LOGIN</x-ui.button>
+              @endauth
             </div>
           </div>
         </nav>

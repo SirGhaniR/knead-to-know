@@ -4,12 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\Gallery;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Attributes\Controllers\Middleware;
+use Illuminate\Routing\Attributes\Controllers\WithoutMiddleware;
 
+#[Middleware('auth')]
 class galleryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+    #[WithoutMiddleware('auth')]
     public function index()
     {
         $galleries = Gallery::all();

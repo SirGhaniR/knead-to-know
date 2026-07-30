@@ -4,12 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\News;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Attributes\Controllers\Middleware;
+use Illuminate\Routing\Attributes\Controllers\WithoutMiddleware;
 
+#[Middleware('auth')]
 class newsController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+    #[WithoutMiddleware('auth')]
     public function index()
     {
         $news = News::latest()->get();
@@ -46,6 +50,7 @@ class newsController extends Controller
     /**
      * Display the specified resource.
      */
+    #[WithoutMiddleware('auth')]
     public function show(string $id)
     {
         $news = News::find($id);
