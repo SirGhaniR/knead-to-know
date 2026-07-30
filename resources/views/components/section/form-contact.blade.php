@@ -1,6 +1,6 @@
 <div class="flex flex-col gap-10 px-20 py-24">
   <p class="text-xl font-bold">KONTAK KAMI</p>
-  <form action="/message" method="post" class="flex flex-col gap-6">
+  <form action="{{ url('contact.store') }}" method="post" class="flex flex-col gap-6">
     @csrf
     <div class="flex gap-2">
       <div class="flex flex-1 flex-col gap-2">
