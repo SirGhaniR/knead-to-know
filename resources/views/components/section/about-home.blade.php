@@ -12,9 +12,9 @@
   </div>
   <div class="px-22 pt-46 flex justify-center gap-3 py-24"
     style="background-image: url({{ asset('images/foods/Group70@2x.png') }}); background-size: cover;">
-    <x-ui.image-description-card />
-    <x-ui.image-description-card />
-    <x-ui.image-description-card />
-    <x-ui.image-description-card />
+    <x-ui.image-description-card :image="'one.png'" />
+    <x-ui.image-description-card :image="'two.png'" />
+    <x-ui.image-description-card :image="'three.png'" />
+    <x-ui.image-description-card :image="'four.png'" />
   </div>
 </div>

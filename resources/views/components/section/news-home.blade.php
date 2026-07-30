@@ -17,10 +17,10 @@
 <div class="py-22 bg-gray-200 px-20">
   <x-ui.section-title title="BERITA KAMI" centered class="mb-12 mt-1" />
   <div class="grid h-screen grid-cols-4 gap-4">
-    <x-ui.card :image="$featuredNews['image']" :title="$featuredNews['title']" :excerpt="$featuredNews['content']" :link="url('/news')" featured="true" />
+    <x-ui.card :image="$featuredNews['image']" :title="$featuredNews['title']" :content="$featuredNews['content']" :link="url('news.index')" featured="true" />
 
     @foreach ($newsItems as $item)
-      <x-ui.card :image="$item['image']" :title="$item['title']" :excerpt="$item['content']" :link="url('/news')" />
+      <x-ui.card :image="$item['image']" :title="$item['title']" :content="$item['content']" :link="url('news.index')" />
     @endforeach
   </div>
 </div>

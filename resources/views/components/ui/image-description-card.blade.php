@@ -1,5 +1,5 @@
 @props([
-    'image' => 'img-1.png',
+    'image' => 'one.png',
     'imageAlt' => 'food_png',
     'title' => 'LOREM IPSUM',
     'description' =>

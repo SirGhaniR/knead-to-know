@@ -1,17 +1,15 @@
-@php
-  $newsItems = array_fill(0, 8, [
-      'title' => 'Lorem, ipsum dolor.',
-      'content' =>
-          'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae sint facilis repellat sequi ad autem!',
-      'image' => 'fathul-abrar-T-qI_MI2EMA-unsplash.jpg',
-  ]);
-@endphp
+@props([
+    'news' => [],
+])
 
 <div class="px-20 py-14">
   <p class="mb-12 mt-1 text-xl font-bold">BERITA LAINNYA</p>
-  <div class="grid grid-cols-4 gap-4">
-    @foreach ($newsItems as $item)
-      <x-ui.card :image="$item['image']" :title="$item['title']" :excerpt="$item['content']" :link="url('/news')" height="h-130" />
-    @endforeach
-  </div>
+  @if ($news)
+    <div class="grid grid-cols-4 gap-4">
+      @foreach ($news as $item)
+        <x-ui.card :image="$item['image']" :title="$item['title']" :content="$item['content']" :link="url('/news/' . $item['id'])" height="h-130" />
+      @endforeach
+    </div>
+  @endif
+  <x-ui.hero-title :title="'404 Not Found'" centered />
 </div>

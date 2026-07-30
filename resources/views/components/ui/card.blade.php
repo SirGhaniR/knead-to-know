@@ -2,7 +2,7 @@
     'image' => null,
     'imageAlt' => 'cover-image',
     'title' => null,
-    'excerpt' => null,
+    'content' => null,
     'link' => null,
     'linkText' => 'Baca selengkapnya',
     'featured' => false,
@@ -25,8 +25,8 @@
     @if ($title)
       <p class="mb-6 text-xl font-bold uppercase">{{ $title }}</p>
     @endif
-    @if ($excerpt)
-      <p>{{ $excerpt }}</p>
+    @if ($content)
+      <p>{{ $content }}</p>
     @endif
     @if ($link)
       <div class="mt-auto flex justify-between">

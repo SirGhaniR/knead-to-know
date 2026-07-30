@@ -5,9 +5,9 @@
   $navItems = [
       'home' => ['label' => 'HOME', 'url' => route('home')],
       'about' => ['label' => 'TENTANG', 'url' => route('about')],
-      'news' => ['label' => 'BERITA', 'url' => route('news')],
-      'gallery' => ['label' => 'GALERI', 'url' => route('gallery')],
-      'contact' => ['label' => 'KONTAK', 'url' => route('contact')],
+      'news' => ['label' => 'BERITA', 'url' => route('news.index')],
+      'gallery' => ['label' => 'GALERI', 'url' => route('gallery.index')],
+      'contact' => ['label' => 'KONTAK', 'url' => route('contact.index')],
   ];
 @endphp
 
