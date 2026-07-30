@@ -1,5 +1,5 @@
 <x-layout.app title="Gallery - TASTY FOOD">
   <x-section.hero />
-  <x-section.carousel />
-  <x-section.gallery-gallery />
+  <x-section.carousel :galleries="$galleries" />
+  <x-section.gallery-gallery :galleries="$galleries" />
 </x-layout.app>
