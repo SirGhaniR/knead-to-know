@@ -1,9 +1,14 @@
 <?php
 
+use App\Http\Controllers\authController;
 use App\Http\Controllers\newsController;
 use App\Http\Controllers\galleryController;
 use App\Http\Controllers\contactController;
 use Illuminate\Support\Facades\Route;
+
+Route::get('/auth', [authController::class, 'index'])->name('auth');
+Route::post('/login', [authController::class, 'login'])->name('login');
+Route::post('/logout', [authController::class, 'logout'])->name('logout');
 
 Route::view('/', 'home')->name('home');
 Route::view('/about', 'about')->name('about');

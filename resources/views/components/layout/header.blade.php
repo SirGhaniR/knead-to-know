@@ -8,6 +8,7 @@
       'news' => ['label' => 'BERITA', 'url' => route('news.index')],
       'gallery' => ['label' => 'GALERI', 'url' => route('gallery.index')],
       'contact' => ['label' => 'KONTAK', 'url' => route('contact.index')],
+      'login' => ['label' => 'LOGIN', 'url' => route('login')],
   ];
 @endphp
 
@@ -15,14 +16,15 @@
   <div class="py-18 relative overflow-hidden bg-gray-200 px-20">
     <header>
       <nav>
-        <ul class="flex items-center gap-12">
+        <div class="flex items-center gap-12">
           <a href="#" class="z-10 text-xl font-bold">TASTY FOOD</a>
           <a href="#" class="z-10">HOME</a>
           <a href="{{ url('/about') }}" class="z-10">TENTANG</a>
           <a href="{{ url('/news') }}" class="z-10">BERITA</a>
           <a href="{{ url('/gallery') }}" class="z-10">GALERI</a>
           <a href="{{ url('/contact') }}" class="z-10">KONTAK</a>
-        </ul>
+          <x-ui.button :href="url('/auth')" class="px-5! py-2!">LOGIN</x-ui.button>
+        </div>
       </nav>
     </header>
     <img src="{{ asset('images/food_png/img-4-2000x2000.png') }}" alt="bg-image"
@@ -32,16 +34,17 @@
       style="background-image: url({{ asset('images/foods/Group70@2x.png') }}); background-size: cover;">
       <header>
         <nav>
-          <ul class="flex items-center justify-between">
+          <div class="flex items-center justify-between">
             <a href="{{ url('/') }}" class="z-10 text-xl font-bold">TASTY FOOD</a>
-            <div class="flex gap-12">
+            <div class="flex items-center gap-12">
               <a href="{{ url('/') }}" class="z-10">HOME</a>
               <a href="{{ url('#') }}" class="z-10">TENTANG</a>
               <a href="{{ url('/news') }}" class="z-10">BERITA</a>
               <a href="{{ url('/gallery') }}" class="z-10">GALERI</a>
               <a href="{{ url('/contact') }}" class="z-10">KONTAK</a>
+              <x-ui.button :href="url('/auth')" :variant="'light'" class="px-5! py-2!">LOGIN</x-ui.button>
             </div>
-          </ul>
+          </div>
         </nav>
       </header>
 @endif
