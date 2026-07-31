@@ -25,12 +25,13 @@ class authController extends Controller
             "password" => "required|string|min:6",
         ]);
 
-        if (!Auth::attempt($validated)) {
-            return back();
+        if (Auth::attempt($validated)) {
+            $request->session()->regenerate();
+            return redirect()->route('admin.dashboard');
         }
-
-        $request->session()->regenerate();
-        return redirect()->intended(route('home'));
+        return back()->withErrors([
+            'email' => 'Kredensial tidak cocok dengan record kami.'
+        ])->onlyInput('email');
     }
 
     /**
@@ -43,6 +44,6 @@ class authController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->intended(route('home'));
+        return redirect()->route('home');
     }
 }
