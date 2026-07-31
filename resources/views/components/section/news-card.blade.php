@@ -6,8 +6,8 @@
   <p class="mb-12 mt-1 text-xl font-bold">BERITA LAINNYA</p>
   @if ($news)
     <div class="grid grid-cols-4 gap-4">
-      @foreach ($news as $item)
-        <x-ui.card :image="$item['image']" :title="$item['title']" :content="$item['content']" :link="url('/news/' . $item['id'])" height="h-130" />
+      @foreach ($news as $newsItem)
+        <x-ui.card :image="$newsItem['image']" :title="$newsItem['title']" :content="$newsItem['content']" :link="url('/news/' . $item['id'])" height="h-130" />
       @endforeach
     </div>
   @endif

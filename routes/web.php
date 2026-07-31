@@ -8,13 +8,14 @@ use App\Http\Controllers\Admin\adminGalleryController;
 use App\Http\Controllers\contactController;
 use App\Http\Controllers\Admin\adminContactController;
 use App\Http\Controllers\Admin\adminController;
+use App\Http\Controllers\homeController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/auth', [authController::class, 'index'])->name('login');
 Route::post('/login', [authController::class, 'login']);
 Route::post('/logout', [authController::class, 'logout'])->name('logout');
 
-Route::view('/', 'home')->name('home');
+Route::get('/', [homeController::class, 'index'])->name('home');
 Route::view('/about', 'about')->name('about');
 Route::get('/news', [newsController::class, 'index'])->name('news.index');
 Route::get('/news/{id}', [newsController::class, 'show'])->name('news.show');
