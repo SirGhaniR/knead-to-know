@@ -1,0 +1,61 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Models\Contact;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Attributes\Controllers\Middleware;
+use App\Http\Controllers\Controller;
+
+#[Middleware('auth')]
+class adminContactController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        $contacts = Contact::latest()->get();
+
+        return view('admins.contact.index', compact("contacts"));
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        $contact = Contact::findOrfail($id);
+
+        return view('admins.contact.edit', compact("contact"));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        $validated = $request->validate([
+            "is_read" => "required",
+        ]);
+
+        $contact = Contact::findOrFail($id);
+
+        $contact->is_read = $validated["is_read"];
+        $contact->save();
+
+        return redirect()->route("admin.contact.index");
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        $contact = Contact::findOrFail($id);
+
+        $contact->delete();
+
+        return redirect()->route("admin.contact.index");
+    }
+}

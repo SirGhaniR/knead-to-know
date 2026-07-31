@@ -4,10 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Contact;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Attributes\Controllers\Middleware;
-use Illuminate\Routing\Attributes\Controllers\WithoutMiddleware;
 
-#[Middleware('auth')]
 class contactController extends Controller
 {
     /**
@@ -23,7 +20,6 @@ class contactController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    #[WithoutMiddleware('auth')]
     public function store(Request $request)
     {
         $validated = $request->validate([
