@@ -1,11 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Gallery;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Attributes\Controllers\Middleware;
+use App\Http\Controllers\Controller;
 
-class galleryController extends Controller
+#[Middleware('auth')]
+class adminGalleryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,9 +16,8 @@ class galleryController extends Controller
     public function index()
     {
         $galleries = Gallery::all();
-        $carousel = Gallery::latest()->take(8)->get();
 
-        return view('gallery', compact('galleries', 'carousel'));
+        return view('admins.gallery.index', compact('galleries'));
     }
 
     /**
@@ -35,7 +37,7 @@ class galleryController extends Controller
 
         Gallery::create($validated);
 
-        return redirect()->route('gallery.index');
+        return redirect()->route('admin.gallery.index');
     }
 
     /**
@@ -45,7 +47,7 @@ class galleryController extends Controller
     {
         $gallery = Gallery::find($id);
 
-        return view('gallery', compact("gallery"));
+        return view('admins.gallery.edit', compact("gallery"));
     }
 
     /**
@@ -78,7 +80,7 @@ class galleryController extends Controller
             }
         }
 
-        return redirect()->route('gallery.index');
+        return redirect()->route('admin.gallery.index');
     }
 
     /**
@@ -99,6 +101,6 @@ class galleryController extends Controller
             }
         }
 
-        return redirect()->route('gallery.index');
+        return redirect()->route('admin.gallery.index');
     }
 }
