@@ -15,7 +15,7 @@ class adminGalleryController extends Controller
      */
     public function index()
     {
-        $galleries = Gallery::all();
+        $galleries = Gallery::latest()->paginate(20);
 
         return view('admins.gallery.index', compact('galleries'));
     }
@@ -26,15 +26,11 @@ class adminGalleryController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            "image" => "required|image|mimes:jpeg,png,jpg|max:2048",
-            "title" => "required",
+            "image" => "required|image|mimes:jpeg,png,jpg|max:4096",
+            "title" => "required|string",
         ]);
 
-        $image = $request->file('image');
-        $filename = time() . '_' . $image->getClientOriginalName();
-        $image->move(public_path('uploaded_images/'), $filename);
-        $validated['image'] = $filename;
-
+        $validated['image'] = $this->uploadImage($request->file('image'));
         Gallery::create($validated);
 
         return redirect()->route('admin.gallery.index');
@@ -45,7 +41,7 @@ class adminGalleryController extends Controller
      */
     public function show(string $id)
     {
-        $gallery = Gallery::find($id);
+        $gallery = Gallery::findOrFail($id);
 
         return view('admins.gallery.edit', compact("gallery"));
     }
@@ -56,29 +52,18 @@ class adminGalleryController extends Controller
     public function update(Request $request, string $id)
     {
         $validated = $request->validate([
-            "image" => "required|image|mimes:jpeg,png,jpg|max:2048",
-            "title" => "required",
+            "image" => "nullable|image|mimes:jpeg,png,jpg|max:4096",
+            "title" => "required|string",
         ]);
 
-        $gallery = Gallery::find($id);
+        $gallery = Gallery::findOrFail($id);
 
-        $oldImage = $gallery->image;
-
-        $image = $request->file('image');
-        $filename = time() . '_' . $image->getClientOriginalName();
-        $image->move(public_path('uploaded_images/'), $filename);
-        $validated['image'] = $filename;
-
-        $gallery->image = $validated['image'];
-        $gallery->title = $validated['title'];
-        $gallery->save();
-
-        if ($oldImage && $oldImage === $filename) {
-            $oldImagePath = public_path('uploaded_images/' . $oldImage);
-            if (file_exists($oldImagePath)) {
-                unlink($oldImagePath);
-            }
+        if ($request->hasFile('image')) {
+            $this->deleteImage($gallery->image);
+            $validated['image'] = $this->uploadImage($request->file('image'));
         }
+
+        $gallery->update($validated);
 
         return redirect()->route('admin.gallery.index');
     }
@@ -88,19 +73,31 @@ class adminGalleryController extends Controller
      */
     public function destroy(string $id)
     {
-        $gallery = Gallery::find($id);
-
-        $oldImage = $gallery->image;
-
+        $gallery = Gallery::findOrFail($id);
+        $this->deleteImage($gallery->image);
         $gallery->delete();
 
-        if ($oldImage) {
-            $oldImagePath = public_path('uploaded_images/' . $oldImage);
-            if (file_exists($oldImagePath)) {
-                unlink($oldImagePath);
-            }
+        return redirect()->route('admin.gallery.index');
+    }
+
+
+    private function uploadImage($image)
+    {
+        $filename = time() . '_' . $image->getClientOriginalName();
+        $image->move(public_path('uploaded_images/'), $filename);
+        return $filename;
+    }
+
+    private function deleteImage($imagePath)
+    {
+        if (empty($imagePath)) {
+            return;
         }
 
-        return redirect()->route('admin.gallery.index');
+        $fullPath = public_path('uploaded_images/' . $imagePath);
+
+        if (file_exists($fullPath)) {
+            unlink($fullPath);
+        }
     }
 }

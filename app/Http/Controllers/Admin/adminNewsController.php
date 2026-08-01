@@ -15,8 +15,7 @@ class adminNewsController extends Controller
      */
     public function index()
     {
-        $news = News::latest()->take(5)->paginate(20);
-
+        $news = News::latest()->paginate(20);
         return view('admins.news.index', compact('news'));
     }
 
@@ -26,29 +25,24 @@ class adminNewsController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'title' => 'required',
-            'content' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'title' => 'required|string',
+            'content' => 'required|string',
+            'image' => 'required|image|mimes:jpeg,png,jpg|max:4096',
             'is_featured' => 'nullable|boolean'
         ]);
 
-        $image = $request->file('image');
-        $filename = time() . '_' . $image->getClientOriginalName();
-        $image->move(public_path('uploaded_images/'), $filename);
-        $validated['image'] = $filename;
-
+        $validated['image'] = $this->uploadImage($request->file('image'));
         News::create($validated);
 
-        return redirect()->route('admin.news.index');
+        return redirect()->route('admin.news.index')->with('success', 'News created successfully!');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function edit(string $id)
     {
         $news = News::findOrFail($id);
-
         return view('admins.news.edit', compact('news'));
     }
 
@@ -58,35 +52,22 @@ class adminNewsController extends Controller
     public function update(Request $request, string $id)
     {
         $validated = $request->validate([
-            'title' => 'required',
-            'content' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'title' => 'required|string',
+            'content' => 'required|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:4096',
             'is_featured' => 'nullable|boolean'
         ]);
 
-        $news = News::find($id);
+        $news = News::findOrFail($id);
 
-        $oldImage = $news->image;
-
-        $image = $request->file('image');
-        $filename = time() . '_' . $image->getClientOriginalName();
-        $image->move(public_path('uploaded_images/'), $filename);
-        $validated['image'] = $filename;
-
-        $news->title = $validated['title'];
-        $news->content = $validated['content'];
-        $news->image = $validated['image'];
-        $news->is_featured = $validated['is_featured'];
-        $news->save();
-
-        if ($oldImage && $oldImage !== $filename) {
-            $oldImagePath = public_path('uploaded_images/' . $oldImage);
-            if (file_exists($oldImagePath)) {
-                unlink($oldImagePath);
-            }
+        if ($request->hasFile('image')) {
+            $this->deleteImage($news->image);
+            $validated['image'] = $this->uploadImage($request->file('image'));
         }
 
-        return redirect()->route('admin.news.index');
+        $news->update($validated);
+
+        return redirect()->route('admin.news.index')->with('success', 'News updated successfully!');
     }
 
     /**
@@ -94,19 +75,30 @@ class adminNewsController extends Controller
      */
     public function destroy(string $id)
     {
-        $news = News::find($id);
-
-        $oldImage = $news->image;
-
+        $news = News::findOrFail($id);
+        $this->deleteImage($news->image);
         $news->delete();
 
-        if ($oldImage) {
-            $oldImagePath = public_path('uploaded_images/' . $oldImage);
-            if (file_exists($oldImagePath)) {
-                unlink($oldImagePath);
-            }
+        return redirect()->route('admin.news.index')->with('success', 'News deleted successfully!');
+    }
+
+    private function uploadImage($image)
+    {
+        $filename = time() . '_' . $image->getClientOriginalName();
+        $image->move(public_path('uploaded_images/'), $filename);
+        return $filename;
+    }
+
+    private function deleteImage($imagePath)
+    {
+        if (empty($imagePath)) {
+            return;
         }
 
-        return redirect()->route('admin.news.index');
+        $fullPath = public_path('uploaded_images/' . $imagePath);
+
+        if (file_exists($fullPath)) {
+            unlink($fullPath);
+        }
     }
 }
