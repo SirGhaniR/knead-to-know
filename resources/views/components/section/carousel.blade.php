@@ -6,10 +6,10 @@
 
 <div class="relative w-full bg-gray-200 px-24 py-20" data-carousel="static">
   @if ($galleries)
-    <div class="h-135 relative overflow-hidden rounded-3xl shadow-md">
+    <div class="h-150 relative overflow-hidden rounded-3xl shadow-md">
       @foreach ($galleries as $gallery)
         <div class="hidden duration-700 ease-in-out" data-carousel-item>
-          <img src="{{ $gallery['image'] }}"
+          <img src="{{ asset('uploaded_images/' . $gallery['image']) }}"
             class="absolute left-1/2 top-1/2 block w-full -translate-x-1/2 -translate-y-1/2"
             alt="{{ $gallery['title'] }}">
         </div>

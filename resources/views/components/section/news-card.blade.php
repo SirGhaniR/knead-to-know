@@ -7,9 +7,11 @@
   @if ($news)
     <div class="grid grid-cols-4 gap-4">
       @foreach ($news as $newsItem)
-        <x-ui.card :image="$newsItem['image']" :title="$newsItem['title']" :content="$newsItem['content']" :link="url('/news/' . $item['id'])" height="h-130" />
+        <x-ui.card :image="$newsItem['image']" :title="$newsItem['title']" content="{{ Str::limit($newsItem->content, 150) }}"
+          :link="url('/news/' . $newsItem['id'])" height="h-130" />
       @endforeach
     </div>
+  @else
+    <x-ui.hero-title :title="'404 Not Found'" centered />
   @endif
-  <x-ui.hero-title :title="'404 Not Found'" centered />
 </div>

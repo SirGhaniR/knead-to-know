@@ -10,13 +10,18 @@ class homeController extends Controller
 {
     public function index()
     {
-        $news = News::latest()->get();
         $featuredNews = News::where('is_featured', true)->latest()->first();
-        $galleries = Gallery::all();
+
+        $news = News::where('is_featured', false)
+            ->latest()
+            ->take(4)
+            ->get();
 
         if (!$featuredNews && $news) {
             $featuredNews = $news->first();
         }
+
+        $galleries = Gallery::all();
 
         return view('home', compact('news', 'featuredNews', 'galleries'));
     }

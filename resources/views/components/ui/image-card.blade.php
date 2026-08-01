@@ -8,5 +8,5 @@
   ];
 @endphp
 
-<img src="{{ asset('images/foods/' . $image) }}" alt="{{ $alt }}"
+<img src="{{ asset('uploaded_images/' . $image) }}" alt="{{ $alt }}"
   {{ $attributes->merge(['class' => 'rounded-xl shadow-sm outline-1 outline-gray-300 object-cover ' . ($aspectClasses[$aspect] ?? 'aspect-square')]) }}>

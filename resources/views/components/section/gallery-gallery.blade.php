@@ -9,6 +9,7 @@
         <x-ui.image-card :image="$gallery['image']" :alt="$gallery['title']" />
       @endforeach
     </div>
+  @else
+    <x-ui.hero-title :title="'404 Not Found'" centered />
   @endif
-  <x-ui.hero-title :title="'404 Not Found'" centered />
 </div>

@@ -7,10 +7,11 @@
   @if ($galleries)
     <div class="grid grid-cols-3 gap-2">
       @foreach ($galleries as $gallery)
-        <x-ui.image-card :image="$gallery" />
+        <x-ui.image-card :image="$gallery['image']" :alt="$gallery['title']" />
       @endforeach
     </div>
+  @else
+    <x-ui.hero-title title="404 Not Found" centered />
   @endif
-  <x-ui.hero-title title="404 Not Found" centered />
-  <x-ui.button href="{{ asset('gallery.index') }}" class="mx-auto">LIHAT LEBIH BANYAK</x-ui.button>
+  <x-ui.button href="{{ route('gallery.index') }}" class="mx-auto">LIHAT LEBIH BANYAK</x-ui.button>
 </div>
