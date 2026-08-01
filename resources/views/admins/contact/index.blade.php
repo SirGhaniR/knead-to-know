@@ -1,3 +1,5 @@
-<div>
-    <!-- Life is available only in the present moment. - Thich Nhat Hanh -->
-</div>
+<x-layout.admin title="Kontak Management - TASTY FOOD">
+  <x-section.table :contacts="$contacts">
+    <x-section.creation-form type="contact" />
+  </x-section.table>
+</x-layout.admin>
