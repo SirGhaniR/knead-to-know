@@ -11,11 +11,9 @@ class News extends Model
         'content',
         'image',
         'is_featured',
-        'published_at',
     ];
 
     protected $casts = [
         'is_featured' => 'boolean',
-        'published_at' => 'datetime',
     ];
 }

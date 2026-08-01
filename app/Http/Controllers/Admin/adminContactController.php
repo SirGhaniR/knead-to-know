@@ -21,16 +21,6 @@ class adminContactController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        $contact = Contact::findOrfail($id);
-
-        return view('admins.contact.edit', compact("contact"));
-    }
-
-    /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)

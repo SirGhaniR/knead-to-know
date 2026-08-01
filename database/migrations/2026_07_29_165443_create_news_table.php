@@ -17,7 +17,6 @@ return new class extends Migration
             $table->text('content');
             $table->string('image');
             $table->boolean('is_featured')->default(false);
-            $table->timestamp('published_at');
             $table->timestamps();
         });
     }
