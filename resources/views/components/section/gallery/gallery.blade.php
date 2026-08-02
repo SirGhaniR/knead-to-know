@@ -1,9 +1,8 @@
-{{-- Modified template from flowbite --}}
-
 @props([
     'galleries' => [],
 ])
 
+{{-- Carousel --}}
 <div class="relative w-full bg-gray-200 px-24 py-20" data-carousel="static">
   @if ($galleries)
     <div class="h-150 relative overflow-hidden rounded-3xl shadow-md">
@@ -41,5 +40,20 @@
         <span class="sr-only">Next</span>
       </span>
     </button>
+  @endif
+</div>
+
+{{-- Gallery Gallery --}}
+<div class="py-22 flex flex-col gap-20 px-20">
+  @if ($galleries)
+    <div class="grid grid-cols-4 gap-2">
+      @foreach ($galleries as $gallery)
+        <x-ui.image-card :image="$gallery['image']" :alt="$gallery['title']" />
+      @endforeach
+    </div>
+  @else
+    <div class="my-45 flex items-center">
+      <p class="text-5xl font-extrabold uppercase">404 Not Found</p>
+    </div>
   @endif
 </div>

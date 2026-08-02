@@ -8,26 +8,48 @@
         consequuntur repellat labore asperiores inventore, ipsam beatae exercitationem, consectetur fugiat eius!
       </p>
       <div class="flex gap-2">
-        <x-footer.social-link href="https://facebook.com/" icon="001-facebook@2x.png" alt="facebook" />
-        <x-footer.social-link href="https://x.com/" icon="002-twitter@2x.png" alt="twitter" />
+        <a href="https://facebook.com/" target="_blank">
+          <img src="{{ asset('images/icons/001-facebook@2x.png') }}" alt="facebook" class="size-10">
+        </a>
+        <a href="https://x.com/" target="_blank">
+          <img src="{{ asset('images/icons/002-twitter@2x.png') }}" alt="twitter" class="size-10">
+        </a>
       </div>
     </div>
 
-    <x-footer.column title="Useful links">
-      <x-footer.link href="/blog">Blog</x-footer.link>
-      <x-footer.link href="/animal">Animal</x-footer.link>
-      <x-footer.link href="/gallery">Gallery</x-footer.link>
-      <x-footer.link href="/testimonial">Testimonial</x-footer.link>
-    </x-footer.column>
+    <div class="flex flex-1 flex-col gap-6">
+      <p class="text-lg font-semibold">Useful links</p>
+      <a href="#" target="_blank">Blog</a>
+      <a href="#" target="_blank">Hewan</a>
+      <a href="{{ route('gallery.index') }}" target="_blank">Galeri</a>
+      <a href="#" target="_blank">Testimonial</a>
+    </div>
 
-    <x-footer.column title="Privacy">
-      <x-footer.link href="/career">Karir</x-footer.link>
-      <x-footer.link href="/about">Tentang Kami</x-footer.link>
-      <x-footer.link href="/contact">Contact Us</x-footer.link>
-      <x-footer.link href="/service">Servis</x-footer.link>
-    </x-footer.column>
+    <div class="flex flex-1 flex-col gap-6">
+      <p class="text-lg font-semibold">Privacy</p>
+      <a href="#" target="_blank">Karir</a>
+      <a href="{{ route('about') }}" target="_blank">Tentang Kami</a>
+      <a href="{{ route('contact.index') }}" target="_blank">Kontak Kami</a>
+      <a href="#" target="_blank">Servis</a>
+    </div>
 
-    <x-footer.contact-info />
+    <div class="flex-2 flex flex-col gap-6">
+      <p class="text-lg font-semibold">
+        Contact Info
+      </p>
+      <a href="mailto:tastyfood@gmail.com" class="align-center flex gap-4" target="_blank">
+        <img src="{{ asset('images/icons/mail.png') }}" alt="mail-icon" class="h-4">
+        tastyfood@gmail.com
+      </a>
+      <a href="tel:+6281234567890" class="align-center flex gap-4" target="_blank">
+        <img src="{{ asset('images/icons/phone.png') }}" alt="phone-icon" class="h-4">
+        +62 812 3456 7890
+      </a>
+      <a href="https://www.google.com/maps/search/Kota%20Bandung" class="align-center flex gap-4" target="_blank">
+        <img src="{{ asset('images/icons/location.png') }}" alt="location-icon" class="h-6">
+        Kota Bandung, Jawa barat
+      </a>
+    </div>
   </div>
 
   <p class="mt-20 text-center">Copyright ©2026 All right reserved</p>

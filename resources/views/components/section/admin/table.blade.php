@@ -164,5 +164,7 @@
     </div>
   </div>
 @else
-  <x-ui.hero-title title="500 Internal Server Error" />
+  <div class="my-45 flex items-center">
+    <p class="text-5xl font-extrabold uppercase">500 Internal Server Error</p>
+  </div>
 @endif

@@ -30,7 +30,7 @@
     @endif
     @if ($link)
       <div class="mt-auto flex justify-between">
-        <x-ui.link :href="$link">{{ $linkText }}</x-ui.link>
+        <a href="{{ $link }}" class="font-semibold text-yellow-500 hover:underline">{{ $linkText }}</a>
       </div>
     @endif
   </div>

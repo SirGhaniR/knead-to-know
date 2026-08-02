@@ -4,7 +4,7 @@
 
 <div
   class="relative mx-auto my-24 h-fit w-2/5 bg-gray-50 px-10 py-14 text-gray-900 opacity-85 shadow-md outline-1 outline-gray-300">
-  <x-ui.section-title :title="'LOGIN'" :centered="'true'" class="text-3xl! mb-4" />
+  <p class="text-3xl! mb-4 text-center font-bold">LOGIN</p>
   <p class="mb-18 text-center">Welcome! Login di sini untuk membuktikan kamu admin.</p>
   <x-ui.error />
   <form action="{{ url('/login') }}" method="post">

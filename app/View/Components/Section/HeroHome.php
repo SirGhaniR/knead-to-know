@@ -21,6 +21,6 @@ class HeroHome extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.section.home.hero-home');
+        return view('components.section.home.home');
     }
 }
