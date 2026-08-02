@@ -7,7 +7,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Contact;
 use App\Models\Gallery;
 use App\Models\News;
+use Illuminate\Routing\Attributes\Controllers\Middleware;
 
+#[Middleware('auth')]
 class adminController extends Controller
 {
     /**
@@ -20,6 +22,18 @@ class adminController extends Controller
         $contacts = Contact::count();
         $unreadContacts = Contact::where('is_read', false)->count();
 
-        return view('admins.dashboard', compact('news', 'galleries', 'contacts', 'unreadContacts'));
+        $recentNews = News::latest()->take(5)->get();
+        $recentContacts = Contact::latest()->take(5)->get();
+        $featuredNews = News::where('is_featured', true)->latest()->take(3)->get();
+
+        return view('admins.dashboard', compact(
+            'news',
+            'galleries',
+            'contacts',
+            'unreadContacts',
+            'recentNews',
+            'recentContacts',
+            'featuredNews'
+        ));
     }
 }

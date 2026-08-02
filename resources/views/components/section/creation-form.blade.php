@@ -5,7 +5,7 @@
 @if ($type == 'news')
   <div class="my-10">
     <div class="bg-neutral-primary-soft border-default shadow-xs border p-6">
-      <p class="mb-6 text-2xl font-bold">Create New News</p>
+      <p class="mb-6 text-2xl font-bold">Buat Berita Baru</p>
       <x-ui.error />
       <form action="{{ route('admin.news.create') }}" method="POST" enctype="multipart/form-data">
         @csrf
@@ -51,7 +51,7 @@
 @elseif($type == 'gallery')
   <div class="my-10">
     <div class="bg-neutral-primary-soft border-default shadow-xs border p-6">
-      <p class="mb-6 text-2xl font-bold">Upload New Image</p>
+      <p class="mb-6 text-2xl font-bold">Upload Foto Baru</p>
       <x-ui.error />
       <form action="{{ route('admin.gallery.create') }}" method="POST" enctype="multipart/form-data">
         @csrf
@@ -83,10 +83,10 @@
 @elseif($type == 'contact')
   <div class="my-10">
     <div class="bg-neutral-primary-soft border-default shadow-xs border p-6">
-      <p class="mb-6 text-2xl font-bold">Contacts</p>
+      <p class="mb-6 text-2xl font-bold">Kontak</p>
       <x-ui.error />
-      <div class="bg-yellow-50 p-4 text-yellow-800">
-        <p>Contacts are received from the website's contact form and cannot be created manually.</p>
+      <div class="border border-yellow-200 bg-yellow-50 p-4 text-yellow-800">
+        <p>Kontak dibuat melalui form dalam website sehingga tidak bisa dibuat secara manual.</p>
       </div>
     </div>
   </div>
