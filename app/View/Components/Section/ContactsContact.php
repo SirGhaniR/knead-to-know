@@ -21,6 +21,6 @@ class ContactsContact extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.section.contacts-contact');
+        return view('components.section.contact.contacts-contact');
     }
 }

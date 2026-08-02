@@ -1,5 +1,5 @@
 <x-layout.app title="{{ $news->title }} - TASTY FOOD">
-  <x-section.hero newsTitle="{{ $news->title }}" />
+  <x-section.shared.hero newsTitle="{{ $news->title }}" />
   <div class="px-20 pt-24">
     @if ($news->image)
       <img src="{{ asset('uploaded_images/' . $news->image) }}" alt="{{ $news->title }}"

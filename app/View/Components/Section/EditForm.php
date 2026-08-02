@@ -21,6 +21,6 @@ class EditForm extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.section.edit-form');
+        return view('components.section.admin.edit-form');
     }
 }

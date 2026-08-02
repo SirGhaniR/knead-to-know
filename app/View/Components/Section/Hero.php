@@ -21,6 +21,6 @@ class Hero extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.section.hero');
+        return view('components.section.shared.hero');
     }
 }

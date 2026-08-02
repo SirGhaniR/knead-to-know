@@ -21,6 +21,6 @@ class Stats extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.section.stats');
+        return view('components.section.admin.stats');
     }
 }

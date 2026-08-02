@@ -21,6 +21,6 @@ class RecentFeaturedNews extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.section.recent-featured-news');
+        return view('components.section.admin.recent-featured-news');
     }
 }

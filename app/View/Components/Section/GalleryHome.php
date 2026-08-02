@@ -21,6 +21,6 @@ class GalleryHome extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.section.gallery-home');
+        return view('components.section.home.gallery-home');
     }
 }

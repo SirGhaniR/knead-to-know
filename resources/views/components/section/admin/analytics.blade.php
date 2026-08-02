@@ -23,9 +23,9 @@
     </div>
   </div>
 
-  <x-section.stats :news="$news" :galleries="$galleries" :contacts="$contacts" :unreadContacts="$unreadContacts" />
-  <x-section.quick-actions :unreadContacts="$unreadContacts" />
-  <x-section.recent-news :recentNews="$recentNews" />
-  <x-section.recent-contacts :recentContacts="$recentContacts" />
-  <x-section.recent-featured-news :featuredNews="$featuredNews" />
+  <x-section.admin.stats :news="$news" :galleries="$galleries" :contacts="$contacts" :unreadContacts="$unreadContacts" />
+  <x-section.admin.quick-actions :unreadContacts="$unreadContacts" />
+  <x-section.admin.recent-news :recentNews="$recentNews" />
+  <x-section.admin.recent-contacts :recentContacts="$recentContacts" />
+  <x-section.admin.recent-featured-news :featuredNews="$featuredNews" />
 </div>

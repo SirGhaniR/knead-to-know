@@ -21,6 +21,6 @@ class VisionMission extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.section.vision-mission');
+        return view('components.section.about.vision-mission');
     }
 }

@@ -21,6 +21,6 @@ class AboutHome extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.section.about-home');
+        return view('components.section.home.about-home');
     }
 }

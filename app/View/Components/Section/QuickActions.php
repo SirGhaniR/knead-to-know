@@ -21,6 +21,6 @@ class QuickActions extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.section.quick-actions');
+        return view('components.section.admin.quick-actions');
     }
 }

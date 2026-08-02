@@ -21,6 +21,6 @@ class GalleryGallery extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.section.gallery-gallery');
+        return view('components.section.gallery.gallery-gallery');
     }
 }

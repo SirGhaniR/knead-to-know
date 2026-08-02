@@ -21,6 +21,6 @@ class MapsContact extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.section.maps-contact');
+        return view('components.section.contact.maps-contact');
     }
 }

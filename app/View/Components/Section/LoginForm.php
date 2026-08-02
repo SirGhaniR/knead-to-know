@@ -21,6 +21,6 @@ class LoginForm extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.section.login-form');
+        return view('components.section.auth.login-form');
     }
 }

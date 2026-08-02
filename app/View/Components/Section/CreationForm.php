@@ -21,6 +21,6 @@ class CreationForm extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.section.creation-form');
+        return view('components.section.admin.creation-form');
     }
 }

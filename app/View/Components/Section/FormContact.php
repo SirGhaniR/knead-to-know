@@ -21,6 +21,6 @@ class FormContact extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.section.form-contact');
+        return view('components.section.contact.form-contact');
     }
 }

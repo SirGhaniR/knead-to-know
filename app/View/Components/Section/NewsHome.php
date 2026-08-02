@@ -21,6 +21,6 @@ class NewsHome extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.section.news-home');
+        return view('components.section.home.news-home');
     }
 }

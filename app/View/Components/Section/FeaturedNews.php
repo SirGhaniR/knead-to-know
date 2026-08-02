@@ -21,6 +21,6 @@ class FeaturedNews extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.section.featured-news');
+        return view('components.section.news.featured-news');
     }
 }

@@ -21,6 +21,6 @@ class RecentContacts extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.section.recent-contacts');
+        return view('components.section.admin.recent-contacts');
     }
 }

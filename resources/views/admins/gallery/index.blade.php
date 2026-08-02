@@ -1,5 +1,5 @@
 <x-layout.admin title="Galeri Management - TASTY FOOD">
-  <x-section.table :galleries="$galleries">
-    <x-section.creation-form type="gallery" />
-  </x-section.table>
+  <x-section.admin.table :galleries="$galleries">
+    <x-section.admin.creation-form type="gallery" />
+  </x-section.admin.table>
 </x-layout.admin>
