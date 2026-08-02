@@ -40,7 +40,7 @@ class adminNewsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function edit(string $id)
+    public function show(string $id)
     {
         $news = News::findOrFail($id);
         return view('admins.news.edit', compact('news'));
