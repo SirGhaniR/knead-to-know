@@ -1,4 +1,4 @@
-<x-layout.app title="Contact - TASTY FOOD">
+<x-layout.app title="Kontak - TASTY FOOD">
   <x-section.hero />
   <x-section.form-contact />
   <x-section.contacts-contact />

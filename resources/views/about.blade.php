@@ -1,4 +1,4 @@
-<x-layout.app title="About - TASTY FOOD">
+<x-layout.app title="Tentang - TASTY FOOD">
   <x-section.hero />
   <x-section.about-about />
   <x-section.vision-mission />

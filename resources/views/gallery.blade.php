@@ -1,4 +1,4 @@
-<x-layout.app title="Gallery - TASTY FOOD">
+<x-layout.app title="Galeri - TASTY FOOD">
   <x-section.hero />
   <x-section.carousel :galleries="$galleries" />
   <x-section.gallery-gallery :galleries="$galleries" />

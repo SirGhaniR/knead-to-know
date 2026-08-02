@@ -1,4 +1,4 @@
-<x-layout.app title="News - TASTY FOOD">
+<x-layout.app title="Berita - TASTY FOOD">
   <x-section.hero />
   <x-section.featured-news :featuredNews="$featuredNews" />
   <x-section.news-card :news="$news" />
