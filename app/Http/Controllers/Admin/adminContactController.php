@@ -26,7 +26,7 @@ class adminContactController extends Controller
     public function update(Request $request, string $id)
     {
         $validated = $request->validate([
-            "is_read" => "required",
+            "is_read" => "required|boolean",
         ]);
 
         $contact = Contact::findOrFail($id);
@@ -34,7 +34,7 @@ class adminContactController extends Controller
         $contact->is_read = $validated["is_read"];
         $contact->save();
 
-        return redirect()->route("admin.contact.index");
+        return redirect()->route("admin.contact.index")->with('success', 'Contact marked as read!');
     }
 
     /**
@@ -46,6 +46,6 @@ class adminContactController extends Controller
 
         $contact->delete();
 
-        return redirect()->route("admin.contact.index");
+        return redirect()->route("admin.contact.index")->with('success', 'Contact deleted successfully!');
     }
 }
