@@ -1,3 +1,5 @@
+@props(['newsTitle' => 'WELCOME'])
+
 @php
   $currentPath = request()->path();
   $title = match ($currentPath) {
@@ -5,7 +7,7 @@
       'news' => 'BERITA KAMI',
       'gallery' => 'GALERI KAMI',
       'contact' => 'KONTAK KAMI',
-      default => 'WELCOME',
+      default => $newsTitle,
   };
 @endphp
 

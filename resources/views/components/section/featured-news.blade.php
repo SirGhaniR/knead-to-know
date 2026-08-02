@@ -10,7 +10,7 @@
       <p class="text-sm">
         {!! nl2br(e(Str::limit($featuredNews->content, 500))) !!}
       </p>
-      <x-ui.button :href="url('/news/' . $featuredNews['id'])">BACA SELENGKAPNYA</x-ui.button>
+      <x-ui.button :href="route('news.show', $featuredNews['id'])">BACA SELENGKAPNYA</x-ui.button>
     </div>
   @else
     <x-ui.hero-title :title="'404 Not Found'" />

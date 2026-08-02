@@ -1,21 +1,21 @@
 <x-layout.app title="{{ $news->title }} - TASTY FOOD">
-  <x-section.hero />
-  <div class="container mx-auto px-20 py-24">
-    <div class="mx-auto">
-      @if ($news->image)
-        <img src="{{ asset('uploaded_images/' . $news->image) }}" alt="{{ $news->title }}"
-          class="mb-6 h-96 w-full rounded-lg object-cover">
-      @endif
+  <x-section.hero newsTitle="{{ $news->title }}" />
+  <div class="px-20 pt-24">
+    @if ($news->image)
+      <img src="{{ asset('uploaded_images/' . $news->image) }}" alt="{{ $news->title }}"
+        class="h-140 w-full rounded-lg object-cover">
+    @endif
+  </div>
+  <div class="px-100 py-24">
+    <div class="mx-auto flex flex-col gap-10">
 
-      <p class="mb-4 text-3xl font-bold">{{ $news->title }}</p>
+      <p class="text-3xl font-bold">{{ $news->title }}</p>
 
       <div class="prose">
-        {{ $news->content }}
+        {!! nl2br(e($news->content)) !!}
       </div>
 
-      <div class="mt-8">
-        <x-ui.button :href="{{ route('news.index') }}">BACK TO NEWS</x-ui.button>
-      </div>
+      <x-ui.button :href="route('news.index')" class="mt-20">BACK TO NEWS</x-ui.button>
     </div>
   </div>
 </x-layout.app>
