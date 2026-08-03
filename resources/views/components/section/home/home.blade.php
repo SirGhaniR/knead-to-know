@@ -22,26 +22,27 @@
 </div>
 
 {{-- About Home --}}
-<div>
-  <div class="flex items-center justify-center">
-    <div class="relative flex w-2/5 flex-col gap-10 py-20 pb-40 text-center">
-      <p class="text-xl font-bold">TENTANG KAMI</p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim amet at laudantium ipsa nisi veniam provident
-        dignissimos iure, molestias ipsam reprehenderit minima recusandae
-        itaque alias. Temporibus porro rem facere optio!
-      </p>
-      <div class="bottom-25 w-30 absolute left-0 right-0 mx-auto h-1 bg-gray-900"></div>
-    </div>
-  </div>
-  <div class="px-22 pt-46 flex justify-center gap-3 py-24"
-    style="background-image: url({{ asset('images/foods/Group70@2x.png') }}); background-size: cover;">
-    <x-ui.image-description-card :image="'one.png'" />
-    <x-ui.image-description-card :image="'two.png'" />
-    <x-ui.image-description-card :image="'three.png'" />
-    <x-ui.image-description-card :image="'four.png'" />
+<div class="flex items-center justify-center">
+  <div class="relative flex w-2/5 flex-col gap-10 py-20 pb-40 text-center">
+    <p class="text-xl font-bold">TENTANG KAMI</p>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim amet at laudantium ipsa nisi veniam provident
+      dignissimos iure, molestias ipsam reprehenderit minima recusandae
+      itaque alias. Temporibus porro rem facere optio!
+    </p>
+    <div class="bottom-25 w-30 absolute left-0 right-0 mx-auto h-1 bg-gray-900"></div>
   </div>
 </div>
+
+{{-- Carousel Home --}}
+@if ($galleries)
+  <div class="px-22 pt-46 flex justify-center gap-3 py-24"
+    style="background-image: url({{ asset('images/foods/background.jpg') }}); background-size: cover;">
+    @foreach ($galleries as $gallery)
+      <x-ui.image-description-card :image="$gallery['image']" :title="$gallery['title']" :description="$gallery['description']" />
+    @endforeach
+  </div>
+@endif
 
 {{-- News Home --}}
 <div class="py-22 bg-gray-200 px-20">

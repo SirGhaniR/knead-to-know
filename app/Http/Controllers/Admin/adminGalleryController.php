@@ -28,6 +28,7 @@ class adminGalleryController extends Controller
         $validated = $request->validate([
             "image" => "required|image|mimes:jpeg,png,jpg|max:4096",
             "title" => "required|string",
+            "description" => "nullable|string",
         ]);
 
         $validated['image'] = $this->uploadImage($request->file('image'));
@@ -54,6 +55,7 @@ class adminGalleryController extends Controller
         $validated = $request->validate([
             "image" => "nullable|image|mimes:jpeg,png,jpg|max:4096",
             "title" => "required|string",
+            "description" => "nullable|string",
         ]);
 
         $gallery = Gallery::findOrFail($id);

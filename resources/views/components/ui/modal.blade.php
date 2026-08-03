@@ -58,6 +58,14 @@
             <p class="text-sm text-gray-500">Title</p>
             <p class="font-bold">{{ $item->title ?? 'Untitled' }}</p>
           </div>
+          @if ($item->description)
+            <div>
+              <p class="text-sm text-gray-500">Description</p>
+              <div class="mt-1 max-h-60 overflow-y-auto p-3 text-sm outline-1 outline-gray-300">
+                {{ $item->description }}
+              </div>
+            </div>
+          @endif
         @endif
 
         @if ($type == 'contact')

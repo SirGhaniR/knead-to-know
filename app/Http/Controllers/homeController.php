@@ -21,7 +21,7 @@ class homeController extends Controller
             $featuredNews = $news->first();
         }
 
-        $galleries = Gallery::all();
+        $galleries = Gallery::latest()->take(9)->get();
 
         return view('home', compact('news', 'featuredNews', 'galleries'));
     }
