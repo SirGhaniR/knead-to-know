@@ -12,5 +12,5 @@
   <p class="flex-1 text-xl font-bold">{{ $title }}</p>
   <p class="flex-1">{{ Str::limit($description, 100) }}</p>
   <img src="{{ asset('uploaded_images/' . $image) }}" alt="{{ $imageAlt }}"
-    class="{{ $imageSize }} absolute left-0 right-0 top-0 mx-auto aspect-square -translate-y-1/2 rounded-full object-cover outline-1 outline-gray-300">
+    class="{{ $imageSize }} absolute left-0 right-0 top-0 mx-auto aspect-square -translate-y-1/2 rounded-full object-cover">
 </div>

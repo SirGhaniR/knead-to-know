@@ -11,15 +11,13 @@
 
 @php
   $cardClasses = 'flex flex-col overflow-hidden rounded-2xl bg-gray-50 shadow-md';
-  $cardClasses .= $featured ? ' col-span-2 row-span-2' : '';
+  $cardClasses .= $featured ? ' lg:col-span-2 lg:row-span-2 md:col-span-2' : '';
   $cardClasses .= $height ? ' ' . $height : '';
-  $imageClasses = $featured ? 'h-1/2' : 'h-1/2';
 @endphp
 
 <div {{ $attributes->merge(['class' => $cardClasses]) }}>
   @if ($image)
-    <img src="{{ asset('uploaded_images/' . $image) }}" alt="{{ $imageAlt }}"
-      class="{{ $imageClasses }} w-full object-cover">
+    <img src="{{ asset('uploaded_images/' . $image) }}" alt="{{ $imageAlt }}" class="h-1/2 object-cover">
   @endif
   <div class="flex flex-1 flex-col justify-between p-4">
     @if ($title)

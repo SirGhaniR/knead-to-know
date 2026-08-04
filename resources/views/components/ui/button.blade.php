@@ -7,7 +7,7 @@
       'yellow' => 'bg-yellow-500 text-gray-900',
   ];
 
-  $classes = 'px-18 py-3 font-bold transition-colors hover:opacity-90';
+  $classes = 'px-18 py-3 font-bold transition-colors hover:opacity-90 cursor-pointer';
   $classes .= ' ' . ($variants[$variant] ?? $variants['dark']);
   $classes .= $full ? ' w-full text-center' : ' w-fit';
 @endphp
