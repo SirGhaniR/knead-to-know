@@ -8,7 +8,7 @@
 ])
 
 <div
-  {{ $attributes->merge(['class' => 'flex flex-col gap-5 pt-30 relative max-w-70 rounded-2xl bg-gray-50 px-10 py-12 text-center']) }}>
+  {{ $attributes->merge(['class' => 'flex flex-col gap-5 pt-30 relative max-w-70 rounded-2xl bg-gray-50 px-10 py-12 text-center h-fit']) }}>
   <p class="flex-1 text-xl font-bold">{{ $title }}</p>
   <p class="flex-1">{{ Str::limit($description, 100) }}</p>
   <img src="{{ asset('uploaded_images/' . $image) }}" alt="{{ $imageAlt }}"

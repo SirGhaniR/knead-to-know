@@ -35,12 +35,62 @@
 </div>
 
 {{-- Carousel Home --}}
-@if ($galleries)
+{{-- @if ($galleries)
   <div class="px-22 pt-46 flex justify-center gap-3 py-24"
     style="background-image: url({{ asset('images/foods/background.jpg') }}); background-size: cover;">
     @foreach ($galleries as $gallery)
       <x-ui.image-description-card :image="$gallery['image']" :title="$gallery['title']" :description="$gallery['description']" />
     @endforeach
+  </div>
+@endif --}}
+
+{{-- Carousel Home --}}
+@if ($galleries)
+  <div class="px-22 relative py-48 pb-52"
+    style="background-image: url({{ asset('images/foods/background.jpg') }}); background-size: cover;">
+
+    <div id="controls-carousel" class="relative w-full" data-carousel="static">
+      <div class="relative flex justify-center py-24">
+        @php
+          $chunks = $galleries->chunk(4);
+        @endphp
+
+        @foreach ($chunks as $chunkIndex => $chunk)
+          <div class="{{ $chunkIndex === 0 ? '' : 'hidden' }} flex justify-center gap-3" data-carousel-item>
+            @foreach ($chunk as $gallery)
+              <x-ui.image-description-card :image="$gallery['image']" :title="$gallery['title']" :description="$gallery['description']" />
+            @endforeach
+          </div>
+        @endforeach
+      </div>
+
+      <button type="button"
+        class="absolute left-0 top-1/2 z-30 flex -translate-y-1/2 cursor-pointer items-center justify-center px-4"
+        data-carousel-prev>
+        <span
+          class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-gray-50 shadow-lg outline-1 outline-gray-300">
+          <svg class="h-5 w-5 text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+            width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
+              d="m15 19-7-7 7-7" />
+          </svg>
+          <span class="sr-only">Previous</span>
+        </span>
+      </button>
+      <button type="button"
+        class="absolute right-0 top-1/2 z-30 flex -translate-y-1/2 cursor-pointer items-center justify-center px-4"
+        data-carousel-next>
+        <span
+          class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-gray-50 shadow-lg outline-1 outline-gray-300">
+          <svg class="h-5 w-5 text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+            width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
+              d="m9 5 7 7-7 7" />
+          </svg>
+          <span class="sr-only">Next</span>
+        </span>
+      </button>
+    </div>
   </div>
 @endif
 
