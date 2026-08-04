@@ -63,6 +63,12 @@
               placeholder="Enter image title" required value="{{ old('title') }}">
           </div>
           <div>
+            <label for="description" class="mb-2 block text-sm font-medium">Description</label>
+            <textarea name="description" id="description" rows="4"
+              class="border-default bg-neutral-secondary-medium w-full border px-4 py-2.5 text-sm focus:outline-none"
+              placeholder="Enter image description" required>{{ old('description') }}</textarea>
+          </div>
+          <div>
             <label for="image" class="mb-2 block text-sm font-medium">Image File</label>
             <input type="file" name="image" id="image" accept="image/*" required
               class="border-default bg-neutral-secondary-medium w-full border px-4 text-sm focus:outline-none">
@@ -88,6 +94,44 @@
       <div class="border border-yellow-200 bg-yellow-50 p-4 text-yellow-800">
         <p>Kontak dibuat melalui form dalam website sehingga tidak bisa dibuat secara manual.</p>
       </div>
+    </div>
+  </div>
+@elseif($type == 'contact-info')
+  <div class="my-10">
+    <div class="bg-neutral-primary-soft border-default shadow-xs border p-6">
+      <p class="mb-6 text-2xl font-bold">Info Kontak</p>
+      <x-ui.error />
+      <form action="{{ route('admin.contact-info.create') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <div class="grid grid-cols-1 gap-6">
+          <div>
+            <label for="email" class="mb-2 block text-sm font-medium">Email</label>
+            <input type="text" name="email" id="email"
+              class="border-default bg-neutral-secondary-medium w-full border px-4 py-2.5 text-sm focus:outline-none"
+              placeholder="Enter email" required value="{{ old('email') }}">
+          </div>
+          <div>
+            <label for="phone" class="mb-2 block text-sm font-medium">Phone</label>
+            <input type="tel" name="phone" id="phone"
+              class="border-default bg-neutral-secondary-medium w-full border px-4 py-2.5 text-sm focus:outline-none"
+              placeholder="Enter phone" required value="{{ old('phone') }}">
+          </div>
+          <div>
+            <label for="address" class="mb-2 block text-sm font-medium">Address</label>
+            <textarea name="address" id="address" rows="4"
+              class="border-default bg-neutral-secondary-medium w-full border px-4 py-2.5 text-sm focus:outline-none"
+              placeholder="Enter address" required>{{ old('address') }}</textarea>
+          </div>
+        </div>
+        <div class="mt-6 flex justify-end gap-3">
+          <button type="reset" class="border px-6 py-2.5 text-sm font-medium hover:bg-gray-50">
+            Cancel
+          </button>
+          <button type="submit" class="bg-gray-900 px-6 py-2.5 text-sm font-semibold text-gray-50 hover:bg-gray-600">
+            Update Info Kontak
+          </button>
+        </div>
+      </form>
     </div>
   </div>
 @endif

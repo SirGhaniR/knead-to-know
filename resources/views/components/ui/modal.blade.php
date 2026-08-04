@@ -100,6 +100,25 @@
           </div>
         @endif
 
+        @if ($type == 'contact-info')
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <p class="text-sm text-gray-500">Email</p>
+              <p class="font-bold">{{ $item->email }}</p>
+            </div>
+          </div>
+          <div>
+            <p class="text-sm text-gray-500">Phone</p>
+            <p class="font-bold">{{ $item->phone }}</p>
+          </div>
+          <div>
+            <p class="text-sm text-gray-500">Address</p>
+            <div class="mt-1 max-h-60 overflow-y-auto p-3 text-sm outline-1 outline-gray-300">
+              {{ $item->address }}
+            </div>
+          </div>
+        @endif
+
         <div class="grid grid-cols-2 gap-4 text-sm">
           <div>
             <p class="text-gray-500">Created</p>

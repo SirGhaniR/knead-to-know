@@ -4,6 +4,7 @@
     'news' => [],
     'galleries' => [],
     'contacts' => [],
+    'contactInfo' => [],
 ])
 
 @if ($news)
@@ -71,7 +72,7 @@
   <div class="w-8/10 h-min-screen ml-auto px-20 py-24">
     <p class="text-4xl font-bold">Galeri - Management</p>
     {{ $slot }}
-    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
       @foreach ($galleries as $gallery)
         <div class="bg-neutral-primary-soft cursor-pointer overflow-hidden outline-1 outline-gray-300"
           data-modal-target="modal-{{ $gallery->id }}" data-modal-toggle="modal-{{ $gallery->id }}">
@@ -85,6 +86,7 @@
           </div>
           <div class="p-4">
             <h3 class="mb-2 font-medium text-gray-900">{{ $gallery->title ?? 'Untitled' }}</h3>
+            <p class="mb-2 text-gray-500">{{ Str::limit($gallery->description, 150) }}</p>
             <div class="mt-4 flex items-center justify-between border-t pt-3">
               <span class="text-xs text-gray-500">{{ $gallery->created_at->format('d M Y') }}</span>
               <div class="flex items-center gap-4">
@@ -163,8 +165,34 @@
       </table>
     </div>
   </div>
+@elseif($contactInfo)
+  <div class="w-8/10 h-min-screen ml-auto px-20 py-24">
+    <p class="text-4xl font-bold">Info Kontak - Management</p>
+    {{ $slot }}
+    <div class="bg-neutral-primary-soft border-default relative overflow-x-auto border">
+      <table class="w-full table-auto text-left text-sm rtl:text-right">
+        <thead class="bg-neutral-secondary-medium border-default-medium border-b text-sm">
+          <tr>
+            <th scope="col" class="px-6 py-3">Email</th>
+            <th scope="col" class="px-6 py-3">Phone</th>
+            <th scope="col" class="px-6 py-3">Address</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="bg-neutral-primary-soft border-default hover:bg-neutral-secondary-medium cursor-pointer border-b"
+            data-modal-target="modal-{{ $contactInfo->id }}" data-modal-toggle="modal-{{ $contactInfo->id }}">
+            <td class="px-6 py-4">{{ $contactInfo->email }}</td>
+            <td class="px-6 py-4">{{ $contactInfo->phone }}</td>
+            <td class="px-6 py-4">{{ Str::limit($contactInfo->address, 50) }}</td>
+          </tr>
+
+          <x-ui.modal id="{{ $contactInfo->id }}" title="Detail Alamat" :item="$contactInfo" type="contact-info" />
+        </tbody>
+      </table>
+    </div>
+  </div>
 @else
-  <div class="my-45 flex items-center">
+  <div class="w-8/10 h-min-screen ml-auto px-20 py-24">
     <p class="text-5xl font-extrabold uppercase">500 Internal Server Error</p>
   </div>
 @endif

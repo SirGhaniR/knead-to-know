@@ -7,6 +7,7 @@ use App\Http\Controllers\galleryController;
 use App\Http\Controllers\Admin\adminGalleryController;
 use App\Http\Controllers\contactController;
 use App\Http\Controllers\Admin\adminContactController;
+use App\Http\Controllers\Admin\adminContactInfoController;
 use App\Http\Controllers\Admin\adminController;
 use App\Http\Controllers\homeController;
 use Illuminate\Support\Facades\Route;
@@ -43,5 +44,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/contact/{id}', [adminContactController::class, 'show'])->name('admin.contact.edit');
     Route::put('/contact/{id}', [adminContactController::class, 'update'])->name('admin.contact.update');
     Route::delete('/contact/{id}', [adminContactController::class, 'destroy'])->name('admin.contact.delete');
+
+    Route::get('/contact-info', [adminContactInfoController::class, 'index'])->name('admin.contact-info.index');
+    Route::get('/contact-info/{id}', [adminContactInfoController::class, 'show'])->name('admin.contact-info.edit');
+    Route::post('/contact-info', [adminContactInfoController::class, 'store'])->name('admin.contact-info.create');
+    Route::put('/contact-info/{id}', [adminContactInfoController::class, 'update'])->name('admin.contact-info.update');
+    Route::delete('/contact-info/{id}', [adminContactInfoController::class, 'destroy'])->name('admin.contact-info.delete');
   });
 });

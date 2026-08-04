@@ -3,5 +3,8 @@
   <a href="{{ route('admin.news.index') }}" class="w-full py-4 text-center uppercase hover:bg-gray-800">Berita</a>
   <a href="{{ route('admin.gallery.index') }}" class="w-full py-4 text-center uppercase hover:bg-gray-800">Galeri</a>
   <a href="{{ route('admin.contact.index') }}" class="w-full py-4 text-center uppercase hover:bg-gray-800">Kontak</a>
-  <a href="{{ route('home') }}" class="w-full py-4 text-center uppercase hover:bg-gray-800">Kembali ke website</a>
+  <a href="{{ route('admin.contact-info.index') }}" class="w-full py-4 text-center uppercase hover:bg-gray-800">Info
+    Kontak</a>
+  <a href="{{ route('home') }}" target="_blank" class="w-full py-4 text-center uppercase hover:bg-gray-800">Kembali ke
+    website</a>
 </nav>

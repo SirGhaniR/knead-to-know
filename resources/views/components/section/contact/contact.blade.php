@@ -1,5 +1,5 @@
 @props([
-    'errors' => [],
+    'contactInfo' => [],
 ])
 
 {{-- Form Contact --}}
@@ -24,10 +24,10 @@
 </div>
 
 {{-- Contacts Contact --}}
-<div class="pb-30 mx-auto flex justify-center gap-40 pt-10">
-  <x-ui.contact-icon icon="mail_bg.png" title="EMAIL" description="tastyfood@gmail.com" />
-  <x-ui.contact-icon icon="phone_bg.png" title="PHONE" description="+62 812 3456 7890" />
-  <x-ui.contact-icon icon="location_bg.png" title="LOCATION" description="Kota Bandung, Jawa Barat" />
+<div class="pb-30 flex justify-center gap-40 pt-10">
+  <x-ui.contact-icon icon="mail_bg.png" title="EMAIL" description="{{ $contactInfo->email }}" />
+  <x-ui.contact-icon icon="phone_bg.png" title="PHONE" description="{{ $contactInfo->phone }}" />
+  <x-ui.contact-icon icon="location_bg.png" title="LOCATION" description="{{ $contactInfo->address }}" />
 </div>
 
 {{-- Maps Contact --}}
@@ -36,7 +36,7 @@
     src="https://maps.google.com/maps?width=650&height=400&hl=en&q=Kota%20Bandung&t=&z=14&ie=UTF8&iwloc=B&output=embed"
     allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
   <div style="font-size: 10px;opacity:.75;line-height: 10px;">
-    <a href="https://www.embedgooglemap.net/?utm_source=embed&utm_medium=referral&utm_campaign=map_embed" target="_blank"
-      rel="noopener">Embed Google Map</a>
+    <a href="https://www.embedgooglemap.net/?utm_source=embed&utm_medium=referral&utm_campaign=map_embed"
+      target="_blank" rel="noopener">Embed Google Map</a>
   </div>
 </div>

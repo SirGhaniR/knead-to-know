@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contact;
+use App\Models\ContactInfo;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Attributes\Controllers\WithoutMiddleware;
 
@@ -14,9 +15,9 @@ class contactController extends Controller
      */
     public function index()
     {
-        $contacts = Contact::latest()->get();
+        $contactInfo = ContactInfo::latest()->first();
 
-        return view('contact', compact("contacts"));
+        return view('contact', compact("contactInfo"));
     }
 
     /**
