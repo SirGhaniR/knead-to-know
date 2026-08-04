@@ -3,9 +3,10 @@
     <div class="flex-3 flex flex-col gap-14">
       <p class="text-xl font-bold">Tasty Food</p>
       <p class="text-gray-400">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab consequatur nulla nihil molestiae id enim dolores
-        alias! Consequuntur, temporibus corporis! Iste perspiciatis unde id nam ex necessitatibus neque reprehenderit
-        consequuntur repellat labore asperiores inventore, ipsam beatae exercitationem, consectetur fugiat eius!
+        Thank you for looking through our website! We hope you had a great experience here. If you encounter ANY problem
+        during your visit, feel free to hit me up on the contact page or just email me with the provided mail address on
+        your right! Make sure you come here often to read our articles alright? We pay a
+        LOT of money to make this website soooo please come to our store :D
       </p>
       <div class="flex gap-2">
         <a href="https://facebook.com/" target="_blank">

@@ -8,7 +8,7 @@
     <header>
       <nav>
         <div class="flex items-center gap-12">
-          <a href="#" class="z-10 text-xl font-bold">TASTY FOOD</a>
+          <a href="#" class="z-10 text-3xl font-bold">KTK</a>
           <a href="#" class="z-10">HOME</a>
           <a href="{{ url('/about') }}" class="z-10">TENTANG</a>
           <a href="{{ url('/news') }}" class="z-10">BERITA</a>
@@ -26,15 +26,15 @@
         </div>
       </nav>
     </header>
-    <img src="{{ asset('images/food_png/sourdough_loaf.png') }}" alt="bg-image"
-      class="size-270 absolute right-0 top-0 z-0 -translate-y-80 translate-x-80">
+    <img src="{{ asset('images/food_png/sourdough_loaf_2.png') }}" alt="bg-image"
+      class="h-200 -translate-y-30 translate-x-90 absolute right-0 top-0 z-0 object-contain">
   @else
     <div class="py-18 bg-gray-200 px-20 text-gray-50"
       style="background-image: url({{ asset('images/foods/background.jpg') }}); background-size: cover;">
       <header>
         <nav>
           <div class="flex items-center justify-between">
-            <a href="{{ url('/') }}" class="z-10 text-xl font-bold">TASTY FOOD</a>
+            <a href="{{ url('/') }}" class="z-10 text-3xl font-bold">KTK</a>
             <div class="flex items-center gap-12">
               <a href="{{ url('/') }}" class="z-10">HOME</a>
               <a href="{{ url('/about') }}" class="z-10">TENTANG</a>

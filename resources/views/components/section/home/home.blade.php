@@ -7,15 +7,14 @@
 <div class="my-32 flex w-1/2 flex-col gap-6">
   <div class="relative">
     <div class="w-30 absolute -top-10 h-1 bg-gray-900"></div>
-    <p class="leading-14 text-5xl">HEALTHY <br>
-      <span class="font-extrabold">TASTY FOOD</span>
+    <p class="leading-14 text-5xl uppercase">Knead <br>
+      <span class="font-extrabold uppercase">to Know</span>
     </p>
   </div>
   <p class="text-sm">
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste nesciunt sed eius, quis, enim possimus explicabo,
-    sapiente animi nam saepe tenetur odio obcaecati ad harum eum asperiores ipsum quos. Cumque amet mollitia
-    voluptates?
-    Aspernatur, cumque.
+    Guess who's rising before the sun even rises? Yes WE! We will make sure that you guys can have the best
+    heart-warming bread (both figuratively AND literally) ever made in this town every morning to start your day. Click
+    the button below to learn a little bit more about us!
   </p>
   <x-ui.button :href="url('/about')">TENTANG KAMI</x-ui.button>
 </div>
@@ -26,27 +25,17 @@
   <div class="relative flex w-2/5 flex-col gap-10 py-20 pb-40 text-center">
     <p class="text-xl font-bold">TENTANG KAMI</p>
     <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim amet at laudantium ipsa nisi veniam provident
-      dignissimos iure, molestias ipsam reprehenderit minima recusandae
-      itaque alias. Temporibus porro rem facere optio!
+      We (well me, since I'm alone lol) are a bakery that has been operating for <strong>30+</strong> YEARS. Our starter
+      has been cultivating for at least <strong>4</strong> decades now. So fear not! You will have the best experience
+      ever if you buy bread and all kinds of pastry in our store.
     </p>
     <div class="bottom-25 w-30 absolute left-0 right-0 mx-auto h-1 bg-gray-900"></div>
   </div>
 </div>
 
 {{-- Carousel Home --}}
-{{-- @if ($galleries)
-  <div class="px-22 pt-46 flex justify-center gap-3 py-24"
-    style="background-image: url({{ asset('images/foods/background.jpg') }}); background-size: cover;">
-    @foreach ($galleries as $gallery)
-      <x-ui.image-description-card :image="$gallery['image']" :title="$gallery['title']" :description="$gallery['description']" />
-    @endforeach
-  </div>
-@endif --}}
-
-{{-- Carousel Home --}}
 @if ($galleries)
-  <div class="px-22 relative py-48 pb-52"
+  <div class="px-22 relative overflow-hidden py-48 pb-52"
     style="background-image: url({{ asset('images/foods/background.jpg') }}); background-size: cover;">
 
     <div id="controls-carousel" class="relative w-full" data-carousel="static">
