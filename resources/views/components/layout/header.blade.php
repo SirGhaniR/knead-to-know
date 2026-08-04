@@ -4,7 +4,7 @@
 @endphp
 
 @if ($isHome)
-  <div class="lg:py-18 relative overflow-hidden bg-gray-200 px-4 py-12 sm:px-8 md:px-12 lg:px-20">
+  <div class="lg:py-18 lg:px-22 relative overflow-hidden bg-gray-200 px-4 py-12 sm:px-8 md:px-12">
     <header>
       <nav>
         <div class="flex flex-wrap items-center gap-4 md:gap-6 lg:gap-12">

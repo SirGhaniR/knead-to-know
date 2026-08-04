@@ -61,7 +61,8 @@
       <a href="{{ 'https://www.google.com/maps/search/' . $contactInfo->address }}"
         class="align-center flex items-center gap-3 text-sm text-gray-400 transition-colors hover:text-gray-200 sm:gap-4 sm:text-base"
         target="_blank">
-        <img src="{{ asset('images/icons/location.png') }}" alt="location-icon" class="h-4 w-4 sm:h-6 sm:w-6">
+        <img src="{{ asset('images/icons/location.png') }}" alt="location-icon"
+          class="aspect-square h-3 w-3 object-contain sm:h-4 sm:w-4">
         <span class="flex-1">{{ $contactInfo->address }}</span>
       </a>
     </div>

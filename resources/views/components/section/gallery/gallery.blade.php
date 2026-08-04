@@ -8,9 +8,9 @@
     <div class="lg:h-150 relative h-64 overflow-hidden rounded-3xl shadow-md sm:h-80 md:h-96">
       @foreach ($galleries as $gallery)
         <div class="hidden duration-700 ease-in-out" data-carousel-item>
-          <img src="{{ asset('uploaded_images/' . $gallery['image']) }}"
+          <img src="{{ asset('uploaded_images/' . $gallery->image) }}"
             class="absolute left-1/2 top-1/2 block h-full w-full -translate-x-1/2 -translate-y-1/2 object-cover"
-            alt="{{ $gallery['title'] }}">
+            alt="{{ $gallery->title }}">
         </div>
       @endforeach
     </div>
@@ -48,7 +48,7 @@
   @if ($galleries)
     <div class="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-4">
       @foreach ($galleries as $gallery)
-        <x-ui.image-card :image="$gallery['image']" :alt="$gallery['title']" />
+        <x-ui.image-card :image="$gallery->image" :alt="$gallery->title" />
       @endforeach
     </div>
   @else

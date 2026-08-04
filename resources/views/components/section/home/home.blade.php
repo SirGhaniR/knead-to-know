@@ -54,7 +54,7 @@
         @foreach ($chunks as $chunkIndex => $chunk)
           <div class="{{ $chunkIndex === 0 ? '' : 'hidden' }} flex justify-center gap-2 sm:gap-3" data-carousel-item>
             @foreach ($chunk as $gallery)
-              <x-ui.image-description-card :image="$gallery['image']" :title="$gallery['title']" :description="$gallery['description']" />
+              <x-ui.image-description-card :image="$gallery->image" :title="$gallery->title" :description="$gallery->description" />
             @endforeach
           </div>
         @endforeach
@@ -95,13 +95,13 @@
   <p class="mb-8 mt-1 text-center text-lg font-bold sm:mb-10 sm:text-xl md:mb-12">BERITA KAMI</p>
   <div class="grid grid-cols-1 gap-y-4 sm:grid-cols-2 md:gap-4 lg:grid-cols-4 lg:gap-4">
     @if ($featuredNews)
-      <x-ui.card :image="$featuredNews['image']" :title="$featuredNews['title']" content="{{ Str::limit($featuredNews['content'], 500) }}"
-        :link="route('news.show', $featuredNews['id'])" featured="true" />
+      <x-ui.card :image="$featuredNews->image" :title="$featuredNews->title" content="{{ Str::limit($featuredNews->content, 500) }}"
+        :link="route('news.show', $featuredNews->id)" featured="true" />
     @endif
     @if ($news)
       @foreach ($news as $newsItem)
-        <x-ui.card :image="$newsItem['image']" :title="$newsItem['title']" content="{{ Str::limit($newsItem['content'], 100) }}"
-          :link="route('news.show', $newsItem['id'])" />
+        <x-ui.card :image="$newsItem->image" :title="$newsItem->title" content="{{ Str::limit($newsItem->content, 100) }}"
+          :link="route('news.show', $newsItem->id)" />
       @endforeach
     @else
       <div class="md:my-45 col-span-full my-24 flex items-center justify-center sm:my-32">
@@ -117,7 +117,7 @@
   @if ($galleries)
     <div class="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
       @foreach ($galleries as $gallery)
-        <x-ui.image-card :image="$gallery['image']" :alt="$gallery['title']" />
+        <x-ui.image-card :image="$gallery->image" :alt="$gallery->title" />
       @endforeach
     </div>
   @else
