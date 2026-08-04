@@ -1,7 +1,7 @@
 <div class="bg-gray-950 px-36 pb-8 pt-40 text-gray-200">
   <div class="gap-30 flex">
     <div class="flex-3 flex flex-col gap-14">
-      <p class="text-xl font-bold">Tasty Food</p>
+      <p class="text-xl font-bold">Knead To Know</p>
       <p class="text-gray-400">
         Thank you for looking through our website! We hope you had a great experience here. If you encounter ANY problem
         during your visit, feel free to hit me up on the contact page or just email me with the provided mail address on
