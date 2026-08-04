@@ -46,7 +46,8 @@
         <img src="{{ asset('images/icons/phone.png') }}" alt="phone-icon" class="h-4">
         {{ $contactInfo->phone }}
       </a>
-      <a href="https://www.google.com/maps/search/Kota%20Bandung" class="align-center flex gap-4" target="_blank">
+      <a href="{{ 'https://www.google.com/maps/search/' . $contactInfo->address }}" class="align-center flex gap-4"
+        target="_blank">
         <img src="{{ asset('images/icons/location.png') }}" alt="location-icon" class="h-6">
         {{ $contactInfo->address }}
       </a>
