@@ -11,7 +11,7 @@
       class="rounded-2xl! md:h-120 w-full shrink-0 lg:w-auto" />
     <div class="flex flex-1 flex-col justify-center gap-4 sm:gap-6 lg:gap-10">
       <p class="text-2xl font-bold uppercase sm:text-3xl">{{ $featuredNews->title }}</p>
-      <p class="text-sm sm:text-base">
+      <p class="text-sm">
         {!! nl2br(e(Str::limit($featuredNews->content, 500))) !!}
       </p>
       <x-ui.button :href="route('news.show', $featuredNews->id)" class="w-full sm:w-auto md:w-fit lg:w-fit">BACA SELENGKAPNYA</x-ui.button>

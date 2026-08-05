@@ -8,7 +8,7 @@
     <header>
       <nav>
         <div class="flex flex-wrap items-center gap-4 md:gap-6 lg:gap-12">
-          <a href="#" class="z-10 text-2xl font-bold sm:text-3xl">KTK</a>
+          <a href="#" class="z-10 text-3xl font-bold">KTK</a>
 
           <button data-collapse-toggle="navbar-home" type="button"
             class="inline-flex cursor-pointer items-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 lg:hidden"
@@ -24,16 +24,16 @@
 
           <div class="my-8 hidden w-full lg:flex lg:w-auto lg:items-center" id="navbar-home">
             <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:gap-6 xl:gap-12">
-              <a href="#" class="z-10 text-sm sm:text-base">HOME</a>
-              <a href="{{ url('/about') }}" class="z-10 text-sm sm:text-base">TENTANG</a>
-              <a href="{{ url('/news') }}" class="z-10 text-sm sm:text-base">BERITA</a>
-              <a href="{{ url('/gallery') }}" class="z-10 text-sm sm:text-base">GALERI</a>
-              <a href="{{ url('/contact') }}" class="z-10 text-sm sm:text-base">KONTAK</a>
+              <a href="#" class="z-10 text-sm">HOME</a>
+              <a href="{{ url('/about') }}" class="z-10 text-sm">TENTANG</a>
+              <a href="{{ url('/news') }}" class="z-10 text-sm">BERITA</a>
+              <a href="{{ url('/gallery') }}" class="z-10 text-sm">GALERI</a>
+              <a href="{{ url('/contact') }}" class="z-10 text-sm">KONTAK</a>
               @auth
                 <form action="{{ url('/logout') }}" method="post" class="z-10">
                   @csrf
                   <button type="submit"
-                    class="w-full cursor-pointer bg-gray-900 px-4 py-2 text-sm font-bold text-gray-200 transition-colors hover:opacity-90 sm:px-5 sm:text-base lg:w-auto">LOGOUT</button>
+                    class="w-full cursor-pointer bg-gray-900 px-4 py-2 text-sm font-bold text-gray-200 transition-colors hover:opacity-90 sm:px-5 lg:w-auto">LOGOUT</button>
                 </form>
               @else
                 <x-ui.button :href="url('/auth')" class="px-4! py-2! sm:px-5! z-10 w-full lg:w-auto">LOGIN</x-ui.button>
@@ -51,7 +51,7 @@
       <header>
         <nav>
           <div class="flex flex-wrap items-center justify-between">
-            <a href="{{ url('/') }}" class="z-10 text-2xl font-bold sm:text-3xl">KTK</a>
+            <a href="{{ url('/') }}" class="z-10 text-3xl font-bold">KTK</a>
 
             <button data-collapse-toggle="navbar-other" type="button"
               class="inline-flex cursor-pointer items-center rounded-lg p-2 text-sm text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-200 lg:hidden"
@@ -67,16 +67,16 @@
 
             <div class="my-8 hidden w-full lg:flex lg:w-auto lg:items-center" id="navbar-other">
               <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:gap-6 xl:gap-12">
-                <a href="{{ url('/') }}" class="z-10 text-sm sm:text-base">HOME</a>
-                <a href="{{ url('/about') }}" class="z-10 text-sm sm:text-base">TENTANG</a>
-                <a href="{{ url('/news') }}" class="z-10 text-sm sm:text-base">BERITA</a>
-                <a href="{{ url('/gallery') }}" class="z-10 text-sm sm:text-base">GALERI</a>
-                <a href="{{ url('/contact') }}" class="z-10 text-sm sm:text-base">KONTAK</a>
+                <a href="{{ url('/') }}" class="z-10 text-sm">HOME</a>
+                <a href="{{ url('/about') }}" class="z-10 text-sm">TENTANG</a>
+                <a href="{{ url('/news') }}" class="z-10 text-sm">BERITA</a>
+                <a href="{{ url('/gallery') }}" class="z-10 text-sm">GALERI</a>
+                <a href="{{ url('/contact') }}" class="z-10 text-sm">KONTAK</a>
                 @auth
                   <form action="{{ url('/logout') }}" method="post" class="z-10">
                     @csrf
                     <button type="submit"
-                      class="w-full cursor-pointer bg-gray-900 px-4 py-2 text-sm font-bold text-gray-200 transition-colors hover:opacity-90 sm:px-5 sm:text-base lg:w-auto">LOGOUT</button>
+                      class="w-full cursor-pointer bg-gray-900 px-4 py-2 text-sm font-bold text-gray-200 transition-colors hover:opacity-90 sm:px-5 lg:w-auto">LOGOUT</button>
                   </form>
                 @else
                   <x-ui.button :href="url('/auth')" :variant="'light'"

@@ -7,13 +7,13 @@
 {{-- Hero Section --}}
 <div class="flex flex-col items-center gap-8 py-12 lg:my-20 lg:w-1/2 lg:items-start lg:gap-6 xl:px-0">
   <div class="w-full">
-    <div class="lg:w-30 -top-6 mb-8 h-1 w-16 bg-gray-900 sm:-top-8 sm:w-20 md:-top-10 md:w-24"></div>
+    <div class="lg:w-30 -top-6 mb-8 h-0.5 w-16 bg-gray-900 sm:-top-8 sm:w-20 md:-top-10 md:w-24"></div>
     <p class="lg:leading-14 text-3xl uppercase leading-tight sm:text-4xl md:text-5xl">
       Knead <br>
       <span class="font-extrabold uppercase">to Know</span>
     </p>
   </div>
-  <p class="text-sm sm:text-base">
+  <p class="text-sm">
     Guess who's rising before the sun even rises? Yes WE! We will make sure that you guys can have the best
     heart-warming bread (both figuratively AND literally) ever made in this town every morning to start your day. Click
     the button below to learn a little bit more about us!
@@ -24,16 +24,15 @@
 
 {{-- About Home --}}
 <div class="flex items-center justify-center px-4 py-12 sm:px-6 md:px-8">
-  <div
-    class="flex w-full flex-col gap-6 py-12 text-center sm:gap-8 sm:py-16 md:w-3/4 md:gap-10 md:py-20 lg:w-2/5 lg:pb-40">
+  <div class="flex w-full flex-col gap-6 py-12 text-center sm:gap-8 sm:py-16 md:w-3/4 md:gap-10 md:py-20 lg:w-2/5">
     <p class="text-lg font-bold sm:text-xl">TENTANG KAMI</p>
-    <p class="text-sm sm:text-base">
+    <p class="text-sm">
       We (well me, since I'm alone lol) are a bakery that has been operating for <strong>30+</strong> YEARS. Our starter
       has been cultivating for at least <strong>4</strong> decades now. So fear not! You will have the best experience
       ever if you buy bread and all kinds of pastry in our store.
     </p>
     <div
-      class="lg:bottom-25 lg:w-30 bottom-12 left-0 right-0 mx-auto h-1 w-16 bg-gray-900 sm:bottom-16 sm:w-20 md:bottom-20 md:w-24">
+      class="lg:bottom-25 lg:w-30 bottom-12 left-0 right-0 mx-auto h-0.5 w-16 bg-gray-900 sm:bottom-16 sm:w-20 md:bottom-20 md:w-24">
     </div>
   </div>
 </div>
