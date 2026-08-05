@@ -155,7 +155,7 @@
         @endif
 
         <button data-modal-hide="modal-{{ $id }}" type="button"
-          class="border px-6 py-2.5 text-sm font-medium hover:bg-gray-50">Close</button>
+          class="border px-6 py-2 text-sm font-medium hover:bg-gray-50">Close</button>
       </div>
     </div>
   </div>
