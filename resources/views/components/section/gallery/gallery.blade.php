@@ -17,8 +17,7 @@
     <button type="button"
       class="lg:left-15 group absolute left-2 top-0 z-30 flex h-full cursor-pointer items-center justify-center px-2 sm:left-4 md:left-8 lg:px-4"
       data-carousel-prev>
-      <span
-        class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-gray-50 shadow-lg outline-1 outline-gray-300 sm:h-10 sm:w-10">
+      <span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-gray-50 shadow-lg sm:h-10 sm:w-10">
         <svg class="h-4 w-4 text-gray-800 sm:h-5 sm:w-5 rtl:rotate-180" aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
           <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
@@ -30,8 +29,7 @@
     <button type="button"
       class="lg:right-15 group absolute right-2 top-0 z-30 flex h-full cursor-pointer items-center justify-center px-2 sm:right-4 md:right-8 lg:px-4"
       data-carousel-next>
-      <span
-        class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-gray-50 shadow-lg outline-1 outline-gray-300 sm:h-10 sm:w-10">
+      <span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-gray-50 shadow-lg sm:h-10 sm:w-10">
         <svg class="h-4 w-4 text-gray-800 sm:h-5 sm:w-5 rtl:rotate-180" aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
           <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
