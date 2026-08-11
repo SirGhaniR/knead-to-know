@@ -32,19 +32,37 @@ jobs:
         npm install
         npm run build
     
-    - name: Create .env file
+    - name: Create production .env file
       run: |
+        echo "APP_NAME=YourAppName" >> .env
         echo "APP_ENV=production" >> .env
+        echo "APP_KEY=${{ secrets.APP_KEY }}" >> .env
         echo "APP_DEBUG=false" >> .env
         echo "APP_URL=${{ secrets.APP_URL }}" >> .env
+        echo "" >> .env
         echo "DB_CONNECTION=mysql" >> .env
         echo "DB_HOST=${{ secrets.DB_HOST }}" >> .env
         echo "DB_PORT=3306" >> .env
         echo "DB_DATABASE=${{ secrets.DB_DATABASE }}" >> .env
         echo "DB_USERNAME=${{ secrets.DB_USERNAME }}" >> .env
         echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> .env
+        echo "" >> .env
+        echo "BROADCAST_DRIVER=log" >> .env
+        echo "CACHE_DRIVER=file" >> .env
+        echo "QUEUE_CONNECTION=sync" >> .env
+        echo "SESSION_DRIVER=file" >> .env
+        echo "SESSION_LIFETIME=120" >> .env
+        echo "" >> .env
+        echo "MAIL_MAILER=smtp" >> .env
+        echo "MAIL_HOST=smtp.gmail.com" >> .env  # or your mail provider
+        echo "MAIL_PORT=587" >> .env
+        echo "MAIL_USERNAME=null" >> .env
+        echo "MAIL_PASSWORD=null" >> .env
+        echo "MAIL_ENCRYPTION=tls" >> .env
+        echo "MAIL_FROM_ADDRESS=null" >> .env
+        echo "MAIL_FROM_NAME='${APP_NAME}'" >> .env
     
-    - name: Run migrations (before deployment)
+    - name: Run migrations
       run: php artisan migrate --force
     
     - name: Optimize Laravel
@@ -66,6 +84,7 @@ jobs:
           .github/
           node_modules/
           .env.example
+          .env
           tests/
           .gitattributes
           .gitignore
