@@ -37,18 +37,40 @@ jobs:
     
     - name: Create production .env file
       run: |
-        echo "APP_NAME=KneadToKnow" >> .env
-        echo "APP_ENV=production" >> .env
-        echo "APP_KEY=${{ secrets.APP_KEY }}" >> .env
-        echo "APP_DEBUG=false" >> .env
-        echo "APP_URL=${{ secrets.APP_URL }}" >> .env
-        echo "" >> .env
-        echo "DB_CONNECTION=mysql" >> .env
-        echo "DB_HOST=${{ secrets.DB_HOST }}" >> .env
-        echo "DB_PORT=3306" >> .env
-        echo "DB_DATABASE=${{ secrets.DB_DATABASE }}" >> .env
-        echo "DB_USERNAME=${{ secrets.DB_USERNAME }}" >> .env
-        echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> .env
+        cat > .env << 'EOF'
+        APP_NAME=KneadToKnow
+        APP_ENV=production
+        APP_KEY=${{ secrets.APP_KEY }}
+        APP_DEBUG=false
+        APP_URL=${{ secrets.APP_URL }}
+        
+        DB_CONNECTION=mysql
+        DB_HOST=${{ secrets.DB_HOST }}
+        DB_PORT=3306
+        DB_DATABASE=${{ secrets.DB_DATABASE }}
+        DB_USERNAME=${{ secrets.DB_USERNAME }}
+        DB_PASSWORD=${{ secrets.DB_PASSWORD }}
+        
+        BROADCAST_DRIVER=log
+        CACHE_DRIVER=file
+        QUEUE_CONNECTION=sync
+        SESSION_DRIVER=file
+        SESSION_LIFETIME=120
+        EOF
+    
+    - name: Debug database credentials
+      run: |
+        echo "DB_HOST: ${{ secrets.DB_HOST }}"
+        echo "DB_DATABASE: ${{ secrets.DB_DATABASE }}"
+        echo "DB_USERNAME: ${{ secrets.DB_USERNAME }}"
+        # Check if .env was created correctly
+        grep DB_HOST .env
+        grep DB_DATABASE .env
+    
+    - name: Test database connection
+      run: |
+        php artisan config:clear
+        php artisan db:show || echo "Connection failed"
     
     - name: Run migrations
       run: php artisan migrate --force
