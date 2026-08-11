@@ -1,16 +1,75 @@
-on: push
-name: 🚀 Deploy website on push
+name: Deploy Laravel to InfinityFree
+
+on:
+  push:
+    branches: [ main ]
+
 jobs:
-  web-deploy:
-    name: 🎉 Deploy
+  deploy:
     runs-on: ubuntu-latest
-    steps:
-    - name: 🚚 Get latest code
-      uses: actions/checkout@v6
     
-    - name: 📂 Sync files
-      uses: SamKirkland/FTP-Deploy-Action@v4.4.0
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
       with:
-        server: fif0_42626318tp.samkirkland.com
-        username: if0_42626318
-        password: ${{ secrets.ftp_password }}
+        php-version: '8.3'
+        extensions: mbstring, bcmath, ctype, fileinfo, json, pdo_mysql, tokenizer, xml
+        tools: composer
+    
+    - name: Install Composer dependencies
+      run: composer install --no-dev --optimize-autoloader --no-interaction
+    
+    - name: Install NPM dependencies
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+    
+    - name: Build assets
+      run: |
+        npm install
+        npm run build
+    
+    - name: Create .env file
+      run: |
+        echo "APP_ENV=production" >> .env
+        echo "APP_DEBUG=false" >> .env
+        echo "APP_URL=${{ secrets.APP_URL }}" >> .env
+        echo "DB_CONNECTION=mysql" >> .env
+        echo "DB_HOST=${{ secrets.DB_HOST }}" >> .env
+        echo "DB_PORT=3306" >> .env
+        echo "DB_DATABASE=${{ secrets.DB_DATABASE }}" >> .env
+        echo "DB_USERNAME=${{ secrets.DB_USERNAME }}" >> .env
+        echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> .env
+    
+    - name: Run migrations (before deployment)
+      run: php artisan migrate --force
+    
+    - name: Optimize Laravel
+      run: |
+        php artisan config:cache
+        php artisan route:cache
+        php artisan view:cache
+    
+    - name: Deploy to InfinityFree
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        local-dir: ./
+        server-dir: ./
+        exclude: |
+          .git/
+          .github/
+          node_modules/
+          .env.example
+          tests/
+          .gitattributes
+          .gitignore
+          phpunit.xml
+          README.md
+          .ftp-deploy-sync-state.json
+        state-name: .ftp-deploy-sync-state.json
