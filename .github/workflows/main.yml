@@ -20,21 +20,24 @@ jobs:
         tools: composer
     
     - name: Install Composer dependencies
-      run: composer install --no-dev --optimize-autoloader --no-interaction
+      run: |
+        composer install --no-interaction --ignore-platform-req=php
+        composer dump-autoload --optimize
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
     
     - name: Install NPM dependencies
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'
+      run: npm install
     
     - name: Build assets
-      run: |
-        npm install
-        npm run build
+      run: npm run build
     
     - name: Create production .env file
       run: |
-        echo "APP_NAME=YourAppName" >> .env
+        echo "APP_NAME=KneadToKnow" >> .env
         echo "APP_ENV=production" >> .env
         echo "APP_KEY=${{ secrets.APP_KEY }}" >> .env
         echo "APP_DEBUG=false" >> .env
@@ -46,21 +49,6 @@ jobs:
         echo "DB_DATABASE=${{ secrets.DB_DATABASE }}" >> .env
         echo "DB_USERNAME=${{ secrets.DB_USERNAME }}" >> .env
         echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> .env
-        echo "" >> .env
-        echo "BROADCAST_DRIVER=log" >> .env
-        echo "CACHE_DRIVER=file" >> .env
-        echo "QUEUE_CONNECTION=sync" >> .env
-        echo "SESSION_DRIVER=file" >> .env
-        echo "SESSION_LIFETIME=120" >> .env
-        echo "" >> .env
-        echo "MAIL_MAILER=smtp" >> .env
-        echo "MAIL_HOST=smtp.gmail.com" >> .env  # or your mail provider
-        echo "MAIL_PORT=587" >> .env
-        echo "MAIL_USERNAME=null" >> .env
-        echo "MAIL_PASSWORD=null" >> .env
-        echo "MAIL_ENCRYPTION=tls" >> .env
-        echo "MAIL_FROM_ADDRESS=null" >> .env
-        echo "MAIL_FROM_NAME='${APP_NAME}'" >> .env
     
     - name: Run migrations
       run: php artisan migrate --force
@@ -84,7 +72,6 @@ jobs:
           .github/
           node_modules/
           .env.example
-          .env
           tests/
           .gitattributes
           .gitignore
