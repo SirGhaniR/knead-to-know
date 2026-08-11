@@ -39,29 +39,18 @@
 
 {{-- Carousel Home --}}
 @if ($galleries)
-  <div class="lg:px-22 md:px-22 pb-76 overflow-hidden bg-gray-900 px-4 pt-48 sm:px-6 md:pb-60 lg:pb-60"
-    style="background-image: url({{ asset('images/foods/background.jpg') }}); background-size: cover; background-position: center;">
+  <div class="lg:px-22 md:px-22 overflow-hidden bg-gray-900 px-4 pb-24 pt-48 sm:px-6"
+    style="background-image: url({{ asset('images/foods/background.jpg') }}); background-size: cover; background-position: center;"
+    x-data="carousel()" x-init="init()" @resize.window="handleResize()">
 
-    <div id="controls-carousel" class="relative w-full" data-carousel="static">
-      <div class="relative py-12 sm:py-16 md:py-20 lg:py-24">
-        @php
-          $chunks = $galleries->chunk(1);
-          $chunksTablet = $galleries->chunk(2);
-          $chunksDesktop = $galleries->chunk(4);
-        @endphp
-
-        @foreach ($chunks as $chunkIndex => $chunk)
-          <div class="{{ $chunkIndex === 0 ? '' : 'hidden' }} flex justify-center gap-2 sm:gap-3" data-carousel-item>
-            @foreach ($chunk as $gallery)
-              <x-ui.image-description-card :image="$gallery->image" :title="$gallery->title" :description="$gallery->description" />
-            @endforeach
-          </div>
-        @endforeach
+    <div class="relative w-full" x-data="{ currentSlide: 0 }">
+      <div class="relative" id="carousel-container">
+        <div id="carousel-slides" class="flex justify-center gap-2 sm:gap-3"></div>
       </div>
 
       <button type="button"
         class="absolute left-0 top-1/2 z-30 flex -translate-y-1/2 cursor-pointer items-center justify-center px-2 sm:px-4"
-        data-carousel-prev>
+        @click="currentSlide = (currentSlide - 1 + chunks.length) % chunks.length; renderSlides();">
         <span
           class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-gray-50 shadow-lg outline-1 outline-gray-300 sm:h-10 sm:w-10">
           <svg class="h-4 w-4 text-gray-800 sm:h-5 sm:w-5 rtl:rotate-180" aria-hidden="true"
@@ -72,9 +61,10 @@
           <span class="sr-only">Previous</span>
         </span>
       </button>
+
       <button type="button"
         class="absolute right-0 top-1/2 z-30 flex -translate-y-1/2 cursor-pointer items-center justify-center px-2 sm:px-4"
-        data-carousel-next>
+        @click="currentSlide = (currentSlide + 1) % chunks.length; renderSlides();">
         <span
           class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-gray-50 shadow-lg outline-1 outline-gray-300 sm:h-10 sm:w-10">
           <svg class="h-4 w-4 text-gray-800 sm:h-5 sm:w-5 rtl:rotate-180" aria-hidden="true"
@@ -87,6 +77,89 @@
       </button>
     </div>
   </div>
+
+  @php
+    $baseUrl = rtrim(asset(''), '/');
+  @endphp
+
+  <script>
+    function carousel() {
+      return {
+        galleries: @json($galleries),
+        chunks: [],
+        currentChunkSize: 1,
+        currentSlide: 0,
+        baseUrl: '{{ $baseUrl }}',
+
+        init() {
+          this.updateChunks();
+          this.renderSlides();
+        },
+
+        handleResize() {
+          this.updateChunks();
+          this.renderSlides();
+        },
+
+        updateChunks() {
+          const width = window.innerWidth;
+          let itemsPerSlide;
+
+          if (width >= 1024) {
+            itemsPerSlide = 4;
+          } else if (width >= 768) {
+            itemsPerSlide = 2;
+          } else {
+            itemsPerSlide = 1;
+          }
+
+          if (this.currentChunkSize !== itemsPerSlide) {
+            this.currentChunkSize = itemsPerSlide;
+            this.chunks = this.chunkArray(this.galleries, itemsPerSlide);
+            this.currentSlide = 0;
+          }
+        },
+
+        chunkArray(array, size) {
+          const chunks = [];
+          for (let i = 0; i < array.length; i += size) {
+            chunks.push(array.slice(i, i + size));
+          }
+          return chunks;
+        },
+
+        renderSlides() {
+          const container = document.getElementById('carousel-slides');
+          if (!container || this.chunks.length === 0) return;
+
+          const currentChunk = this.chunks[this.currentSlide] || [];
+
+          container.innerHTML = '';
+
+          currentChunk.forEach(gallery => {
+            const cardWrapper = document.createElement('div');
+
+            let imageUrl = gallery.image;
+
+            if (!imageUrl.startsWith('http') && !imageUrl.startsWith('https') && !imageUrl.startsWith('/')) {
+              imageUrl = this.baseUrl + '/uploaded_images/' + imageUrl;
+            } else if (imageUrl.startsWith('/')) {
+              imageUrl = this.baseUrl + imageUrl;
+            }
+
+            cardWrapper.innerHTML = `
+              <div class="flex flex-col gap-5 pt-30 relative max-w-70 rounded-2xl bg-gray-50 px-10 py-12 text-center">
+                <p class="flex-1 text-xl font-bold">${gallery.title}</p>
+                <p class="flex-1">${gallery.description ? gallery.description.substring(0, 100) : ''}</p>
+                <img src="${imageUrl}" alt="${gallery.title || 'food_png'}" class="size-50 absolute left-0 right-0 top-0 mx-auto aspect-square -translate-y-1/2 rounded-full object-cover">
+              </div>
+            `;
+            container.appendChild(cardWrapper.firstElementChild);
+          });
+        }
+      }
+    }
+  </script>
 @endif
 
 {{-- News Home --}}
