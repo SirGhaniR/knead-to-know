@@ -58,24 +58,7 @@ jobs:
         SESSION_LIFETIME=120
         EOF
     
-    - name: Debug database credentials
-      run: |
-        echo "DB_HOST: ${{ secrets.DB_HOST }}"
-        echo "DB_DATABASE: ${{ secrets.DB_DATABASE }}"
-        echo "DB_USERNAME: ${{ secrets.DB_USERNAME }}"
-        # Check if .env was created correctly
-        grep DB_HOST .env
-        grep DB_DATABASE .env
-    
-    - name: Test database connection
-      run: |
-        php artisan config:clear
-        php artisan db:show || echo "Connection failed"
-    
-    - name: Run migrations
-      run: php artisan migrate --force
-    
-    - name: Optimize Laravel
+    - name: Optimize Laravel (skip migrations for now)
       run: |
         php artisan config:cache
         php artisan route:cache
