@@ -1,4 +1,4 @@
-<x-layout.app title="{{ $news->title }} - TASTY FOOD">
+<x-layout.app title="{{ $news->title }} - KNEAD TO EAT">
   <x-section.shared.hero newsTitle="{{ $news->title }}" />
   <div class="px-20 pt-24">
     @if ($news->image)

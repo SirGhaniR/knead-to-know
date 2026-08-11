@@ -1,4 +1,4 @@
-<x-layout.app title="Tentang - TASTY FOOD">
+<x-layout.app title="Tentang - KNEAD TO EAT">
   <x-section.shared.hero />
   <x-section.about.about />
 </x-layout.app>

@@ -1,4 +1,4 @@
-@props(['title' => 'TASTY FOOD'])
+@props(['title' => 'KNEAD TO EAT'])
 
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
