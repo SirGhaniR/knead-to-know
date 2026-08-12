@@ -19,10 +19,26 @@ jobs:
         extensions: mbstring, bcmath, ctype, fileinfo, json, pdo_mysql, tokenizer, xml
         tools: composer
     
+    - name: Cache Composer dependencies
+      uses: actions/cache@v3
+      with:
+        path: vendor/
+        key: ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-composer-
+    
     - name: Install Composer dependencies
       run: |
         composer install --no-interaction --ignore-platform-req=php
         composer dump-autoload --optimize
+    
+    - name: Cache NPM dependencies
+      uses: actions/cache@v3
+      with:
+        path: node_modules/
+        key: ${{ runner.os }}-npm-${{ hashFiles('package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-npm-
     
     - name: Setup Node.js
       uses: actions/setup-node@v4
@@ -57,12 +73,34 @@ jobs:
         SESSION_DRIVER=file
         SESSION_LIFETIME=120
         EOF
+        
+        # Verify .env was created
+        echo "✅ .env file created"
     
-    - name: Optimize Laravel (skip migrations for now)
+    - name: Set permissions
+      run: |
+        chmod -R 755 storage
+        chmod -R 755 bootstrap/cache
+    
+    - name: Optimize Laravel
       run: |
         php artisan config:cache
         php artisan route:cache
         php artisan view:cache
+    
+    - name: Debug - Check files before upload
+      run: |
+        echo "=== Files in current directory ==="
+        ls -la
+        echo ""
+        echo "=== Check .env exists ==="
+        test -f .env && echo "✅ .env exists!" || echo "❌ .env is missing!"
+        echo ""
+        echo "=== Check public folder ==="
+        test -d public && echo "✅ public folder exists!" || echo "❌ public folder missing!"
+        echo ""
+        echo "=== Check index.php in public ==="
+        test -f public/index.php && echo "✅ public/index.php exists!" || echo "❌ public/index.php missing!"
     
     - name: Deploy to InfinityFree
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
@@ -71,7 +109,7 @@ jobs:
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
         local-dir: ./
-        server-dir: ./
+        server-dir: /htdocs
         exclude: |
           .git/
           .github/
@@ -83,4 +121,10 @@ jobs:
           phpunit.xml
           README.md
           .ftp-deploy-sync-state.json
+          .env.local
+          .env.testing
+          .phpunit.cache
+          .vscode/
+          .idea/
+          # .env is NOT excluded - it will be uploaded
         state-name: .ftp-deploy-sync-state.json
