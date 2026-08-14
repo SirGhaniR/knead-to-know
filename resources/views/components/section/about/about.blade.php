@@ -3,8 +3,8 @@
   class="flex flex-col items-center gap-6 bg-gray-200 px-4 py-12 sm:gap-8 sm:px-6 md:px-8 lg:flex-row lg:gap-4 lg:px-20 lg:py-24"
   data-aos="fade-up" data-aos-duration="400">
   <div class="flex flex-1 flex-col gap-6 sm:gap-8 lg:gap-10">
-    <p class="text-lg font-bold transition duration-150 hover:scale-105 sm:text-xl" data-aos="fade-right"
-      data-aos-delay="100" data-aos-duration="400">KNEAD TO KNOW</p>
+    <p class="text-lg font-bold sm:text-xl" data-aos="fade-right" data-aos-delay="100" data-aos-duration="400">KNEAD TO EAT
+    </p>
     <p class="text-sm font-bold" data-aos="fade-right" data-aos-delay="150" data-aos-duration="400">
       We believe that great food starts with great ingredients. Every pastry, bread, and cake we create is crafted with
       love and the finest quality materials we can source. Our passion for baking shines through in every bite.
@@ -33,8 +33,7 @@
         class="w-1/2 transition duration-150 hover:scale-105" />
     </div>
     <div class="flex flex-1 flex-col gap-4 sm:gap-6" data-aos="fade-left" data-aos-delay="150" data-aos-duration="400">
-      <p class="text-lg font-bold transition duration-150 hover:scale-105 sm:text-xl" data-aos="fade-down"
-        data-aos-delay="100" data-aos-duration="300">VISI</p>
+      <p class="text-lg font-bold sm:text-xl" data-aos="fade-down" data-aos-delay="100" data-aos-duration="300">VISI</p>
       <p class="text-sm" data-aos="fade-up" data-aos-delay="150" data-aos-duration="400">
         To be the heart of every morning and the warmth in every home across our community. We envision a world where
         freshly baked bread is not just food, but a daily ritual that brings people together. Through our craft, we aim
@@ -47,8 +46,7 @@
     data-aos-offset="60" data-aos-duration="400">
     <div class="flex flex-1 flex-col gap-4 sm:gap-6 lg:order-first" data-aos="fade-right" data-aos-delay="150"
       data-aos-duration="400">
-      <p class="text-lg font-bold transition duration-150 hover:scale-105 sm:text-xl" data-aos="fade-down"
-        data-aos-delay="100" data-aos-duration="300">MISI</p>
+      <p class="text-lg font-bold sm:text-xl" data-aos="fade-down" data-aos-delay="100" data-aos-duration="300">MISI</p>
       <p class="text-sm" data-aos="fade-up" data-aos-delay="150" data-aos-duration="400">
         We are committed to delivering the highest quality baked goods using time-honored techniques passed down through
         decades. Every day, we wake before dawn to ensure our bread is fresh and ready for our beloved customers. We

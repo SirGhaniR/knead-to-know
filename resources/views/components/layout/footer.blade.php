@@ -84,6 +84,5 @@
     </div>
   </div>
 
-  <p class="mt-12 text-center text-sm transition duration-150 hover:scale-105 sm:mt-16 lg:mt-20 lg:text-base"
-    data-aos="fade-up" data-aos-delay="200" data-aos-duration="400">Copyright ©2026 All right reserved</p>
+  <p class="mt-12 text-center text-sm sm:mt-16 lg:mt-20 lg:text-base">Copyright ©2026 All right reserved</p>
 </div>

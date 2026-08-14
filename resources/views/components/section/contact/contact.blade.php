@@ -5,8 +5,7 @@
 {{-- Form Contact --}}
 <div class="flex flex-col gap-6 px-4 py-12 sm:gap-8 sm:px-6 md:px-8 lg:gap-10 lg:px-20 lg:py-24" data-aos="fade-up"
   data-aos-offset="60" data-aos-duration="400">
-  <p class="text-lg font-bold transition duration-150 hover:scale-105 sm:text-xl" data-aos="fade-down" data-aos-delay="80"
-    data-aos-duration="300">KONTAK KAMI</p>
+  <p class="text-lg font-bold sm:text-xl" data-aos="fade-down" data-aos-delay="80" data-aos-duration="300">KONTAK KAMI</p>
   <x-ui.error />
   <form action="{{ route('contact.store') }}" method="post" class="flex flex-col gap-4 sm:gap-6">
     @csrf
@@ -25,7 +24,7 @@
       </div>
     </div>
     <button type="submit"
-      class="lg:px-18 w-full rounded-lg bg-gray-900 px-4 py-3 text-center font-bold text-gray-200 transition duration-150 hover:scale-105 hover:opacity-90 sm:px-8 sm:py-4 lg:py-6"
+      class="lg:px-18 w-full rounded-lg bg-gray-900 px-4 py-3 text-center font-bold text-gray-200 hover:opacity-90 sm:px-8 sm:py-4 lg:py-6"
       data-aos="fade-up" data-aos-delay="200" data-aos-duration="400">KIRIM</button>
   </form>
 </div>
