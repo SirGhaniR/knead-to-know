@@ -4,10 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Gallery;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Attributes\Controllers\Middleware;
 use App\Http\Controllers\Controller;
 
-#[Middleware('auth')]
 class adminGalleryController extends Controller
 {
     /**

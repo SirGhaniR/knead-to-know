@@ -4,10 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Contact;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Attributes\Controllers\Middleware;
 use App\Http\Controllers\Controller;
 
-#[Middleware('auth')]
 class adminContactController extends Controller
 {
     /**

@@ -7,9 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Contact;
 use App\Models\Gallery;
 use App\Models\News;
-use Illuminate\Routing\Attributes\Controllers\Middleware;
 
-#[Middleware('auth')]
 class adminController extends Controller
 {
     /**
