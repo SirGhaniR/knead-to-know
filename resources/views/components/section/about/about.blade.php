@@ -3,7 +3,7 @@
   class="flex flex-col items-center gap-6 bg-gray-200 px-4 py-12 sm:gap-8 sm:px-6 md:px-8 lg:flex-row lg:gap-4 lg:px-20 lg:py-24"
   data-aos="fade-up" data-aos-duration="400">
   <div class="flex flex-1 flex-col gap-6 sm:gap-8 lg:gap-10">
-    <p class="text-lg font-bold sm:text-xl" data-aos="fade-right" data-aos-delay="100" data-aos-duration="400">KNEAD TO EAT
+    <p class="text-lg font-bold sm:text-xl" data-aos="fade-right" data-aos-delay="100" data-aos-duration="400">KNEAD TO KNOW
     </p>
     <p class="text-sm font-bold" data-aos="fade-right" data-aos-delay="150" data-aos-duration="400">
       We believe that great food starts with great ingredients. Every pastry, bread, and cake we create is crafted with

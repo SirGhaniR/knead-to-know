@@ -1,4 +1,4 @@
-<x-layout.app title="{{ $news->title }} - KNEAD TO EAT">
+<x-layout.app title="{{ $news->title }} - KNEAD TO KNOW">
   <x-section.shared.hero newsTitle="{{ $news->title }}" />
 
   <div class="px-4 pt-6 sm:px-6 sm:pt-8 md:px-8 md:pt-10 lg:px-20 lg:pt-24" data-aos="fade-up" data-aos-offset="60"
