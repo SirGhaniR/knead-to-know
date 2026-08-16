@@ -12,7 +12,7 @@ class galleryController extends Controller
      */
     public function index()
     {
-        $galleries = Gallery::all();
+        $galleries = Gallery::latest()->get();
         $carousel = Gallery::latest()->take(8)->get();
 
         return view('gallery', compact('galleries', 'carousel'));
