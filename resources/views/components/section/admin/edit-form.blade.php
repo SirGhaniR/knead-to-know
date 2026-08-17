@@ -96,7 +96,7 @@
               @endif
               <input type="file" name="image" id="image" accept="image/*"
                 class="border-default bg-neutral-secondary-medium w-full border px-3 text-sm focus:outline-none sm:px-4">
-              <p class="mt-1 text-xs text-gray-500">Accepted formats: JPG, PNG, GIF, SVG (Max: 4MB). Leave empty to
+              <p class="mt-1 text-xs text-gray-500">Accepted formats: JPG, PNG, GIF, SVG (Max: 1MB). Leave empty to
                 keep
                 current image</p>
             </div>

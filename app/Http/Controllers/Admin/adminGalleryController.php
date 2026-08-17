@@ -24,7 +24,7 @@ class adminGalleryController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            "image" => "required|image|mimes:jpeg,png,jpg|max:4096",
+            "image" => "required|image|mimes:jpeg,png,jpg|max:1024",
             "title" => "required|string",
             "description" => "nullable|string",
         ]);
@@ -51,7 +51,7 @@ class adminGalleryController extends Controller
     public function update(Request $request, string $id)
     {
         $validated = $request->validate([
-            "image" => "nullable|image|mimes:jpeg,png,jpg|max:4096",
+            "image" => "nullable|image|mimes:jpeg,png,jpg|max:1024",
             "title" => "required|string",
             "description" => "nullable|string",
         ]);

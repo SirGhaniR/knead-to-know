@@ -25,7 +25,7 @@ class adminNewsController extends Controller
         $validated = $request->validate([
             'title' => 'required|string',
             'content' => 'required|string',
-            'image' => 'required|image|mimes:jpeg,png,jpg|max:4096',
+            'image' => 'required|image|mimes:jpeg,png,jpg|max:1024',
             'is_featured' => 'nullable|boolean'
         ]);
 
@@ -52,7 +52,7 @@ class adminNewsController extends Controller
         $validated = $request->validate([
             'title' => 'required|string',
             'content' => 'required|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:4096',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:1024',
             'is_featured' => 'nullable|boolean'
         ]);
 
