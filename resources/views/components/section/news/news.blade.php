@@ -18,7 +18,7 @@
       <p class="text-sm" data-aos="fade-up" data-aos-delay="150" data-aos-duration="400">
         {!! nl2br(e(Str::limit($featuredNews->content, 500))) !!}
       </p>
-      <x-ui.button :href="route('news.show', $featuredNews->id)" class="w-full sm:w-auto md:w-fit lg:w-fit" data-aos="fade-up" data-aos-delay="200"
+      <x-ui.button :href="route('news.show', $featuredNews->id)" class="text-center w-full sm:w-auto md:w-fit lg:w-fit" data-aos="fade-up" data-aos-delay="200"
         data-aos-duration="400">BACA SELENGKAPNYA</x-ui.button>
     </div>
   @else
