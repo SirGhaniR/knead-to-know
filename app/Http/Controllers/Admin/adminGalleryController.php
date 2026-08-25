@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Gallery;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class adminGalleryController extends Controller
 {
@@ -24,9 +24,9 @@ class adminGalleryController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            "image" => "required|image|mimes:jpeg,png,jpg|max:1024",
-            "title" => "required|string",
-            "description" => "nullable|string",
+            'image' => 'required|image|mimes:jpeg,png,jpg|max:1024',
+            'title' => 'required|string',
+            'description' => 'nullable|string',
         ]);
 
         $validated['image'] = $this->uploadImage($request->file('image'));
@@ -42,7 +42,7 @@ class adminGalleryController extends Controller
     {
         $gallery = Gallery::findOrFail($id);
 
-        return view('admins.gallery.edit', compact("gallery"));
+        return view('admins.gallery.edit', compact('gallery'));
     }
 
     /**
@@ -51,9 +51,9 @@ class adminGalleryController extends Controller
     public function update(Request $request, string $id)
     {
         $validated = $request->validate([
-            "image" => "nullable|image|mimes:jpeg,png,jpg|max:1024",
-            "title" => "required|string",
-            "description" => "nullable|string",
+            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:1024',
+            'title' => 'required|string',
+            'description' => 'nullable|string',
         ]);
 
         $gallery = Gallery::findOrFail($id);
@@ -80,11 +80,11 @@ class adminGalleryController extends Controller
         return redirect()->route('admin.gallery.index');
     }
 
-
     private function uploadImage($image)
     {
-        $filename = time() . '_' . $image->getClientOriginalName();
+        $filename = time().'_'.$image->getClientOriginalName();
         $image->move(public_path('uploaded_images/'), $filename);
+
         return $filename;
     }
 
@@ -94,7 +94,7 @@ class adminGalleryController extends Controller
             return;
         }
 
-        $fullPath = public_path('uploaded_images/' . $imagePath);
+        $fullPath = public_path('uploaded_images/'.$imagePath);
 
         if (file_exists($fullPath)) {
             unlink($fullPath);

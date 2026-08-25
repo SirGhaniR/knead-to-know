@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\News;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class adminNewsController extends Controller
 {
@@ -14,6 +14,7 @@ class adminNewsController extends Controller
     public function index()
     {
         $news = News::latest()->paginate(20);
+
         return view('admins.news.index', compact('news'));
     }
 
@@ -26,7 +27,7 @@ class adminNewsController extends Controller
             'title' => 'required|string',
             'content' => 'required|string',
             'image' => 'required|image|mimes:jpeg,png,jpg|max:1024',
-            'is_featured' => 'nullable|boolean'
+            'is_featured' => 'nullable|boolean',
         ]);
 
         $validated['image'] = $this->uploadImage($request->file('image'));
@@ -41,6 +42,7 @@ class adminNewsController extends Controller
     public function show(string $id)
     {
         $news = News::findOrFail($id);
+
         return view('admins.news.edit', compact('news'));
     }
 
@@ -53,7 +55,7 @@ class adminNewsController extends Controller
             'title' => 'required|string',
             'content' => 'required|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg|max:1024',
-            'is_featured' => 'nullable|boolean'
+            'is_featured' => 'nullable|boolean',
         ]);
 
         $news = News::findOrFail($id);
@@ -82,8 +84,9 @@ class adminNewsController extends Controller
 
     private function uploadImage($image)
     {
-        $filename = time() . '_' . $image->getClientOriginalName();
+        $filename = time().'_'.$image->getClientOriginalName();
         $image->move(public_path('uploaded_images/'), $filename);
+
         return $filename;
     }
 
@@ -93,7 +96,7 @@ class adminNewsController extends Controller
             return;
         }
 
-        $fullPath = public_path('uploaded_images/' . $imagePath);
+        $fullPath = public_path('uploaded_images/'.$imagePath);
 
         if (file_exists($fullPath)) {
             unlink($fullPath);

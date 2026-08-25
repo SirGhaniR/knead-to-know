@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Contact;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class adminContactController extends Controller
 {
@@ -13,9 +13,9 @@ class adminContactController extends Controller
      */
     public function index()
     {
-        $contacts = Contact::latest()->get();
+        $contacts = Contact::latest()->paginate(20);
 
-        return view('admins.contact.index', compact("contacts"));
+        return view('admins.contact.index', compact('contacts'));
     }
 
     /**
@@ -24,15 +24,15 @@ class adminContactController extends Controller
     public function update(Request $request, string $id)
     {
         $validated = $request->validate([
-            "is_read" => "required|boolean",
+            'is_read' => 'required|boolean',
         ]);
 
         $contact = Contact::findOrFail($id);
 
-        $contact->is_read = $validated["is_read"];
+        $contact->is_read = $validated['is_read'];
         $contact->save();
 
-        return redirect()->route("admin.contact.index")->with('success', 'Contact marked as read!');
+        return redirect()->route('admin.contact.index')->with('success', 'Contact marked as read!');
     }
 
     /**
@@ -44,6 +44,6 @@ class adminContactController extends Controller
 
         $contact->delete();
 
-        return redirect()->route("admin.contact.index")->with('success', 'Contact deleted successfully!');
+        return redirect()->route('admin.contact.index')->with('success', 'Contact deleted successfully!');
     }
 }

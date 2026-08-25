@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Gallery;
-use Illuminate\Http\Request;
 
 class galleryController extends Controller
 {
@@ -12,7 +11,7 @@ class galleryController extends Controller
      */
     public function index()
     {
-        $galleries = Gallery::latest()->get();
+        $galleries = Gallery::latest()->paginate(18);
         $carousel = Gallery::latest()->take(8)->get();
 
         return view('gallery', compact('galleries', 'carousel'));
@@ -25,6 +24,6 @@ class galleryController extends Controller
     {
         $gallery = Gallery::find($id);
 
-        return view('gallery', compact("gallery"));
+        return view('gallery', compact('gallery'));
     }
 }

@@ -11,10 +11,10 @@ class newsController extends Controller
      */
     public function index()
     {
-        $news = News::latest()->get();
+        $news = News::latest()->paginate(16);
         $featuredNews = News::where('is_featured', true)->latest()->first();
 
-        if (!$featuredNews && $news) {
+        if (! $featuredNews && $news) {
             $featuredNews = $news->first();
         }
 

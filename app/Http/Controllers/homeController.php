@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Gallery;
 use App\Models\News;
-use Illuminate\Http\Request;
 
 class homeController extends Controller
 {
@@ -17,7 +16,7 @@ class homeController extends Controller
             ->take(4)
             ->get();
 
-        if (!$featuredNews && $news) {
+        if (! $featuredNews && $news) {
             $featuredNews = $news->first();
         }
 
