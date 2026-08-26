@@ -242,8 +242,6 @@
                     </tbody>
                 </table>
             </div>
-
-            {{ $news->links() }}
         </div>
     </div>
 @else
