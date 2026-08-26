@@ -19,12 +19,12 @@
           data-aos-duration="400" />
       </div>
       <div class="flex-1">
-        <x-ui.textarea name="message" id="message" placeholder="Message" class="h-32 lg:h-full" data-aos="fade-left"
+        <x-ui.textarea name="message" id="message" placeholder="Message" data-aos="fade-right"
           data-aos-delay="150" data-aos-duration="400" />
       </div>
     </div>
     <button type="submit"
-      class="lg:px-18 w-full rounded-lg bg-gray-900 px-4 py-3 text-center font-bold text-gray-200 hover:opacity-90 sm:px-8 sm:py-4 lg:py-6"
+      class="lg:px-18 w-full rounded-lg bg-gray-900 px-4 py-6 text-center font-bold text-gray-200 hover:opacity-90"
       data-aos="fade-up" data-aos-delay="200" data-aos-duration="400">KIRIM</button>
   </form>
 </div>
