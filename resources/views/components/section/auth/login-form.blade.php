@@ -6,7 +6,7 @@
     <p class="sm:mb-18 mb-8 text-center text-sm sm:text-base" data-aos="fade-up" data-aos-delay="120"
       data-aos-duration="400">Welcome! Login di sini untuk membuktikan kamu admin.</p>
     <x-ui.error />
-    <form action="{{ url('/login') }}" method="post">
+    <form action="{{ url('/auth') }}" method="post">
       @csrf
       <div class="mb-4 flex flex-col gap-3">
         <x-ui.input name="email" id="email" placeholder="Email" value="{{ old('email') }}"
