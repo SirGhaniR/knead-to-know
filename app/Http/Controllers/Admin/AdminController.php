@@ -7,7 +7,7 @@ use App\Models\Contact;
 use App\Models\Gallery;
 use App\Models\News;
 
-class adminController extends Controller
+class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.

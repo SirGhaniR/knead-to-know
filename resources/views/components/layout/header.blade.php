@@ -37,17 +37,6 @@
                 data-aos-delay="190" data-aos-duration="300">GALERI</a>
               <a href="{{ url('/contact') }}" class="z-10 text-sm hover:font-semibold" data-aos="fade-down"
                 data-aos-delay="220" data-aos-duration="300">KONTAK</a>
-              @auth
-                <form action="{{ url('/logout') }}" method="post" class="z-10" data-aos="fade-down"
-                  data-aos-delay="250" data-aos-duration="300">
-                  @csrf
-                  <button type="submit"
-                    class="w-full cursor-pointer bg-gray-900 px-4 py-2 text-sm font-bold text-gray-200 hover:opacity-90 sm:px-5 lg:w-auto">LOGOUT</button>
-                </form>
-              @else
-                <x-ui.button :href="url('/auth')" class="px-4! py-2! sm:px-5! z-10 w-full lg:w-auto" data-aos="fade-down"
-                  data-aos-delay="250" data-aos-duration="300">LOGIN</x-ui.button>
-              @endauth
             </div>
           </div>
         </div>
@@ -91,17 +80,6 @@
                   data-aos-delay="190" data-aos-duration="300">GALERI</a>
                 <a href="{{ url('/contact') }}" class="z-10 text-sm hover:font-semibold" data-aos="fade-down"
                   data-aos-delay="220" data-aos-duration="300">KONTAK</a>
-                @auth
-                  <form action="{{ url('/logout') }}" method="post" class="z-10" data-aos="fade-down"
-                    data-aos-delay="250" data-aos-duration="300">
-                    @csrf
-                    <button type="submit"
-                      class="w-full cursor-pointer bg-gray-900 px-4 py-2 text-sm font-bold text-gray-200 hover:opacity-90 sm:px-5 lg:w-auto">LOGOUT</button>
-                  </form>
-                @else
-                  <x-ui.button :href="url('/auth')" :variant="'light'" class="px-4! py-2! sm:px-5! z-10 w-full lg:w-auto"
-                    data-aos="fade-down" data-aos-delay="250" data-aos-duration="300">LOGIN</x-ui.button>
-                @endauth
               </div>
             </div>
           </div>

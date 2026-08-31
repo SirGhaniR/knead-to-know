@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Gallery;
 use App\Models\News;
 
-class homeController extends Controller
+class HomeController extends Controller
 {
     public function index()
     {

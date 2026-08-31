@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\ContactInfo;
 use Illuminate\Http\Request;
 
-class adminContactInfoController extends Controller
+class AdminContactInfoController extends Controller
 {
     /**
      * Display a listing of the resource.

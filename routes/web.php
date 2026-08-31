@@ -1,54 +1,54 @@
 <?php
 
-use App\Http\Controllers\authController;
-use App\Http\Controllers\newsController;
-use App\Http\Controllers\Admin\adminNewsController;
-use App\Http\Controllers\galleryController;
-use App\Http\Controllers\Admin\adminGalleryController;
-use App\Http\Controllers\contactController;
-use App\Http\Controllers\Admin\adminContactController;
-use App\Http\Controllers\Admin\adminContactInfoController;
-use App\Http\Controllers\Admin\adminController;
-use App\Http\Controllers\homeController;
+use App\Http\Controllers\Admin\AdminContactController;
+use App\Http\Controllers\Admin\AdminContactInfoController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\AdminGalleryController;
+use App\Http\Controllers\Admin\AdminNewsController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\NewsController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/auth', [authController::class, 'index'])->name('login');
-Route::post('/login', [authController::class, 'login']);
-Route::post('/logout', [authController::class, 'logout'])->name('logout');
+Route::get('/auth', [AuthController::class, 'index'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::get('/', [homeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::view('/about', 'about')->name('about');
-Route::get('/news', [newsController::class, 'index'])->name('news.index');
-Route::get('/news/{id}', [newsController::class, 'show'])->name('news.show');
-Route::get('/gallery', [galleryController::class, 'index'])->name('gallery.index');
-Route::get('/contact', [contactController::class, 'index'])->name('contact.index');
-Route::post('/contact', [contactController::class, 'store'])->name('contact.store');
+Route::get('/news', [NewsController::class, 'index'])->name('news.index');
+Route::get('/news/{id}', [NewsController::class, 'show'])->name('news.show');
+Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery.index');
+Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
 Route::middleware('auth')->group(function () {
-  Route::prefix('admin')->group(function () {
-    Route::get('/dashboard', [adminController::class, 'index'])->name('admin.dashboard');
+    Route::prefix('admin')->group(function () {
+        Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
 
-    Route::get('/news', [adminNewsController::class, 'index'])->name('admin.news.index');
-    Route::get('/news/{id}', [adminNewsController::class, 'show'])->name('admin.news.edit');
-    Route::post('/news', [adminNewsController::class, 'store'])->name('admin.news.create');
-    Route::put('/news/{id}', [adminNewsController::class, 'update'])->name('admin.news.update');
-    Route::delete('/news/{id}', [adminNewsController::class, 'destroy'])->name('admin.news.delete');
+        Route::get('/news', [AdminNewsController::class, 'index'])->name('admin.news.index');
+        Route::get('/news/{id}', [AdminNewsController::class, 'show'])->name('admin.news.edit');
+        Route::post('/news', [AdminNewsController::class, 'store'])->name('admin.news.create');
+        Route::put('/news/{id}', [AdminNewsController::class, 'update'])->name('admin.news.update');
+        Route::delete('/news/{id}', [AdminNewsController::class, 'destroy'])->name('admin.news.delete');
 
-    Route::get('/gallery', [adminGalleryController::class, 'index'])->name('admin.gallery.index');
-    Route::get('/gallery/{id}', [adminGalleryController::class, 'show'])->name('admin.gallery.edit');
-    Route::post('/gallery', [adminGalleryController::class, 'store'])->name('admin.gallery.create');
-    Route::put('/gallery/{id}', [adminGalleryController::class, 'update'])->name('admin.gallery.update');
-    Route::delete('/gallery/{id}', [adminGalleryController::class, 'destroy'])->name('admin.gallery.delete');
+        Route::get('/gallery', [AdminGalleryController::class, 'index'])->name('admin.gallery.index');
+        Route::get('/gallery/{id}', [AdminGalleryController::class, 'show'])->name('admin.gallery.edit');
+        Route::post('/gallery', [AdminGalleryController::class, 'store'])->name('admin.gallery.create');
+        Route::put('/gallery/{id}', [AdminGalleryController::class, 'update'])->name('admin.gallery.update');
+        Route::delete('/gallery/{id}', [AdminGalleryController::class, 'destroy'])->name('admin.gallery.delete');
 
-    Route::get('/contact', [adminContactController::class, 'index'])->name('admin.contact.index');
-    Route::get('/contact/{id}', [adminContactController::class, 'show'])->name('admin.contact.edit');
-    Route::put('/contact/{id}', [adminContactController::class, 'update'])->name('admin.contact.update');
-    Route::delete('/contact/{id}', [adminContactController::class, 'destroy'])->name('admin.contact.delete');
+        Route::get('/contact', [AdminContactController::class, 'index'])->name('admin.contact.index');
+        Route::get('/contact/{id}', [AdminContactController::class, 'show'])->name('admin.contact.edit');
+        Route::put('/contact/{id}', [AdminContactController::class, 'update'])->name('admin.contact.update');
+        Route::delete('/contact/{id}', [AdminContactController::class, 'destroy'])->name('admin.contact.delete');
 
-    Route::get('/contact-info', [adminContactInfoController::class, 'index'])->name('admin.contact-info.index');
-    Route::get('/contact-info/{id}', [adminContactInfoController::class, 'show'])->name('admin.contact-info.edit');
-    Route::post('/contact-info', [adminContactInfoController::class, 'store'])->name('admin.contact-info.create');
-    Route::put('/contact-info/{id}', [adminContactInfoController::class, 'update'])->name('admin.contact-info.update');
-    Route::delete('/contact-info/{id}', [adminContactInfoController::class, 'destroy'])->name('admin.contact-info.delete');
-  });
+        Route::get('/contact-info', [AdminContactInfoController::class, 'index'])->name('admin.contact-info.index');
+        Route::get('/contact-info/{id}', [AdminContactInfoController::class, 'show'])->name('admin.contact-info.edit');
+        Route::post('/contact-info', [AdminContactInfoController::class, 'store'])->name('admin.contact-info.create');
+        Route::put('/contact-info/{id}', [AdminContactInfoController::class, 'update'])->name('admin.contact-info.update');
+        Route::delete('/contact-info/{id}', [AdminContactInfoController::class, 'destroy'])->name('admin.contact-info.delete');
+    });
 });

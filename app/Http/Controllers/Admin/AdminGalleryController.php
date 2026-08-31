@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Gallery;
 use Illuminate\Http\Request;
 
-class adminGalleryController extends Controller
+class AdminGalleryController extends Controller
 {
     /**
      * Display a listing of the resource.

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Gallery;
 
-class galleryController extends Controller
+class GalleryController extends Controller
 {
     /**
      * Display a listing of the resource.
