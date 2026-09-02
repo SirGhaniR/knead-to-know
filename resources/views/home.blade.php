@@ -47,31 +47,29 @@
 
     {{-- Carousel Home --}}
     @if ($galleries)
-        <div class="lg:px-22 md:px-22 overflow-hidden bg-gray-900 px-4 pb-24 pt-48 sm:px-6"
-            style="background-image: url({{ asset('images/foods/background.jpg') }}); background-size: cover; background-position: center;"
+        <div class="lg:px-22 md:px-22 overflow-hidden px-4 pb-24 pt-48 sm:px-6"
+            style="background-image: url({{ asset('images/foods/background.jpg') }}); background-size: cover; background-position: center; min-height: 550px;"
             x-data="carousel()" x-init="init()" @resize.window="handleResize()" data-aos="fade-up"
             data-aos-offset="40" data-aos-duration="500">
 
-            <div class="relative w-full" data-aos="zoom-in" data-aos-delay="100" data-aos-duration="400">
+            <div class="relative w-full" style="min-height: 300px" data-aos="zoom-in" data-aos-delay="100"
+                data-aos-duration="400">
                 <div class="relative">
-                    <!-- Render slides directly in HTML -->
                     <div class="flex justify-center gap-2 sm:gap-3">
                         <template x-for="(gallery, index) in visibleSlides" :key="index">
-                            <div
-                                class="flex flex-col gap-5 pt-30 relative max-w-70 rounded-2xl bg-gray-50 px-10 py-12 text-center transition duration-150 hover:scale-105 hover:shadow-2xl">
-                                <p class="flex-1 text-xl font-bold" x-text="gallery.title"></p>
-                                <p class="flex-1"
-                                    x-text="gallery.description ? gallery.description.substring(0, 100) : ''">
-                                </p>
+                            <div class="flex flex-col gap-5 pt-30 relative max-w-70 rounded-2xl bg-gray-50 px-10 py-12 text-center transition duration-150 hover:shadow-2xl"
+                                style="min-height: 300px">
+                                <p class="text-xl font-bold" x-text="gallery.title"></p>
+                                <p x-text="gallery.description ? gallery.description.substring(0, 100) : ''"></p>
                                 <img :src="getImageUrl(gallery.image)" :alt="gallery.title || 'food_png'"
-                                    class="size-50 absolute left-0 right-0 top-0 mx-auto aspect-square -translate-y-1/2 rounded-full object-cover transition duration-150 hover:scale-110">
+                                    class="size-50 absolute left-0 right-0 top-0 mx-auto aspect-square -translate-y-1/2 rounded-full object-cover transition duration-150 hover:scale-105">
                             </div>
                         </template>
                     </div>
                 </div>
 
                 <button type="button"
-                    class="absolute left-0 top-1/2 z-30 flex -translate-y-1/2 cursor-pointer items-center justify-center px-2 transition duration-150 hover:scale-110 sm:px-4"
+                    class="absolute left-0 top-1/2 z-30 flex -translate-y-1/2 cursor-pointer items-center justify-center px-2 transition duration-150 hover:scale-105 sm:px-4"
                     @click="changeSlide(-1)" data-aos="fade-right" data-aos-delay="200" data-aos-duration="300">
                     <span
                         class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-gray-50 shadow-lg outline-1 outline-gray-300 transition duration-150 hover:scale-110 hover:shadow-xl sm:h-10 sm:w-10">
@@ -86,7 +84,7 @@
                 </button>
 
                 <button type="button"
-                    class="absolute right-0 top-1/2 z-30 flex -translate-y-1/2 cursor-pointer items-center justify-center px-2 transition duration-150 hover:scale-110 sm:px-4"
+                    class="absolute right-0 top-1/2 z-30 flex -translate-y-1/2 cursor-pointer items-center justify-center px-2 transition duration-150 hover:scale-105 sm:px-4"
                     @click="changeSlide(1)" data-aos="fade-left" data-aos-delay="200" data-aos-duration="300">
                     <span
                         class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-gray-50 shadow-lg outline-1 outline-gray-300 transition duration-150 hover:scale-110 hover:shadow-xl sm:h-10 sm:w-10">
@@ -116,7 +114,6 @@
 
                     init() {
                         this.updateItemsPerSlide();
-                        // Force reactive update
                         this.$watch('itemsPerSlide', () => {});
                     },
 
@@ -140,7 +137,6 @@
                             this.itemsPerSlide = 1;
                         }
 
-                        // Reset current slide if out of bounds
                         if (this.currentSlide >= this.totalSlides) {
                             this.currentSlide = 0;
                         }

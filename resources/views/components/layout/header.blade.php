@@ -43,7 +43,7 @@
       </nav>
     </header>
     <img src="{{ asset('images/food_png/sourdough_loaf_2.png') }}" alt="bg-image"
-      class="lg:h-200 lg:translate-x-90 lg:-translate-y-30 md:h-100 translate-x-30 absolute right-0 top-0 z-0 h-60 w-auto -translate-y-10 object-contain opacity-100 transition duration-300 hover:scale-105 md:-translate-y-40 md:translate-x-40"
+      class="lg:h-200 lg:translate-x-90 lg:-translate-y-30 md:h-100 translate-x-30 absolute right-0 top-0 z-0 h-60 w-auto -translate-y-10 object-contain opacity-100 transition duration-300 md:-translate-y-40 md:translate-x-40"
       data-aos="fade-left" data-aos-delay="150" data-aos-duration="500">
   @else
     <div class="bg-gray-200 px-4 py-12 text-gray-50 sm:px-8 md:px-12 lg:px-20 lg:py-8"
