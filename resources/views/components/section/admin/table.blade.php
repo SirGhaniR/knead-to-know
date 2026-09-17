@@ -57,7 +57,7 @@
                                 <td class="px-4 py-3 sm:px-6 sm:py-4">
                                     <div class="flex flex-col items-start gap-2 sm:flex-row sm:items-center sm:gap-4">
                                         <a href="{{ route('admin.news.edit', $newsItem->id) }}"
-                                            class="font-semibold text-yellow-300 transition duration-150 hover:underline">Edit</a>
+                                            class="font-semibold text-yellow-600 transition duration-150 hover:underline">Edit</a>
                                         <form action="{{ route('admin.news.delete', $newsItem->id) }}" method="POST"
                                             class="inline"
                                             onsubmit="return confirm('Are you sure you want to delete this news?')">
@@ -101,7 +101,7 @@
                             @endif
                         </div>
                         <div class="p-3 sm:p-4">
-                            <h3 class="mb-2 text-sm font-medium text-gray-900 transition duration-150 sm:text-base">
+                            <h3 class="mb-2 text-sm font-medium text-gray-900 transition duration-150 ">
                                 {{ $gallery->title ?? 'Untitled' }}</h3>
                             <p class="mb-2 text-xs text-gray-500 sm:text-sm">
                                 {{ Str::limit($gallery->description, 100) }}</p>
@@ -110,14 +110,14 @@
                                 <span class="text-xs text-gray-500">{{ $gallery->created_at->format('d M Y') }}</span>
                                 <div class="flex items-center gap-3 sm:gap-4">
                                     <a href="{{ route('admin.gallery.edit', $gallery->id) }}"
-                                        class="text-sm font-semibold text-yellow-300 transition duration-150 hover:underline sm:text-base">Edit</a>
+                                        class="text-sm font-semibold text-yellow-600 transition duration-150 hover:underline">Edit</a>
                                     <form action="{{ route('admin.gallery.delete', $gallery->id) }}" method="POST"
                                         class="inline cursor-pointer"
                                         onsubmit="return confirm('Are you sure you want to delete this image?')">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit"
-                                            class="cursor-pointer text-sm font-semibold text-red-400 transition duration-150 hover:underline sm:text-base">Delete</button>
+                                            class="cursor-pointer text-sm font-semibold text-red-400 transition duration-150 hover:underline ">Delete</button>
                                     </form>
                                 </div>
                             </div>
@@ -167,31 +167,33 @@
                                     {{ Str::limit($contact->message, 50) }}
                                 </td>
                                 <td class="px-4 py-3 sm:px-6 sm:py-4">
-                                    <span
-                                        class="{{ $contact->is_read ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800' }} px-2 py-1 text-xs transition duration-150 sm:px-3 sm:text-sm">
-                                        {{ $contact->is_read ? 'Read' : 'Unread' }}
-                                    </span>
-                                </td>
-                                <td class="px-4 py-3 sm:px-6 sm:py-4">
                                     <div class="flex flex-col items-start gap-2 sm:flex-row sm:items-center sm:gap-3">
+                                        <a href="{{ route('admin.contact.reply', $contact->id) }}"
+                                            onclick="event.stopPropagation()"
+                                            class="text-sm font-semibold text-blue-500 transition duration-150 hover:underline">
+                                            Reply
+                                        </a>
                                         @if (!$contact->is_read)
                                             <form action="{{ route('admin.contact.update', $contact->id) }}"
-                                                method="POST" class="inline">
+                                                method="POST" class="inline" onclick="event.stopPropagation()">
                                                 @csrf
                                                 @method('PUT')
-                                                <input type="hidden" name="is_read" id="is_read" value="1">
+                                                <input type="hidden" name="is_read" value="1">
                                                 <button type="submit"
-                                                    class="text-sm font-semibold text-green-500 transition duration-150 hover:underline sm:text-base">Mark
-                                                    Read</button>
+                                                    class="text-sm font-semibold text-green-500 transition duration-150 cursor-pointer hover:underline">
+                                                    Mark Read
+                                                </button>
                                             </form>
                                         @endif
                                         <form action="{{ route('admin.contact.delete', $contact->id) }}"
-                                            method="POST" class="inline"
+                                            method="POST" class="inline" onclick="event.stopPropagation()"
                                             onsubmit="return confirm('Are you sure you want to delete this contact message?')">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit"
-                                                class="text-sm font-semibold text-red-400 transition duration-150 hover:underline sm:text-base">Delete</button>
+                                                class="text-sm font-semibold text-red-400 transition duration-150 cursor-pointer hover:underline">
+                                                Delete
+                                            </button>
                                         </form>
                                     </div>
                                 </td>

@@ -44,6 +44,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/contact/{id}', [AdminContactController::class, 'show'])->name('admin.contact.edit');
         Route::put('/contact/{id}', [AdminContactController::class, 'update'])->name('admin.contact.update');
         Route::delete('/contact/{id}', [AdminContactController::class, 'destroy'])->name('admin.contact.delete');
+        Route::get('/admin/contact/{id}/reply', [AdminContactController::class, 'replyForm'])->name('admin.contact.reply');
 
         Route::get('/contact-info', [AdminContactInfoController::class, 'index'])->name('admin.contact-info.index');
         Route::get('/contact-info/{id}', [AdminContactInfoController::class, 'show'])->name('admin.contact-info.edit');

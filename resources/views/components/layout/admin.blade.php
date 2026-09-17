@@ -4,29 +4,49 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{{ $title }}</title>
-  @vite('resources/css/app.css')
-  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ $title }}</title>
+    @vite('resources/css/app.css')
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css"
+        integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
 </head>
 
 <body class="font-montserrat bg-gray-50 text-sm text-gray-900">
-  <x-layout.sidebar />
+    <x-layout.sidebar />
 
-  <main>
-    {{ $slot }}
-  </main>
+    <main>
+        {{ $slot }}
+    </main>
 
-  <script src="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.js"></script>
-  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-  <script>
-    AOS.init({
-      offset: 120,
-      once: true,
-      easing: 'ease-out-cubic'
-    });
-  </script>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            offset: 120,
+            once: true,
+            easing: 'ease-out-cubic'
+        });
+    </script>
+    <script>
+        function openGmailReply(event, to, form) {
+            event.preventDefault();
+
+            const subject = form.querySelector('[name="reply_subject"]').value;
+            const body = form.querySelector('[name="reply_body"]').value;
+
+            const gmailUrl =
+                "https://mail.google.com/mail/?view=cm&fs=1" +
+                "&to=" + encodeURIComponent(to) +
+                "&su=" + encodeURIComponent(subject) +
+                "&body=" + encodeURIComponent(body);
+
+            window.open(gmailUrl, "_blank");
+            return false;
+        }
+    </script>
 </body>
 
 </html>

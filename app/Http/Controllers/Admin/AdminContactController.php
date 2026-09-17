@@ -18,6 +18,13 @@ class AdminContactController extends Controller
         return view('admins.contact.index', compact('contacts'));
     }
 
+    public function replyForm(string $id)
+    {
+        $contact = Contact::findOrFail($id);
+
+        return view('admins.contact.edit', compact('contact'));
+    }
+
     /**
      * Update the specified resource in storage.
      */

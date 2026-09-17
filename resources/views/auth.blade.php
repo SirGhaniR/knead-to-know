@@ -4,7 +4,7 @@
             data-aos="zoom-in" data-aos-delay="100" data-aos-duration="500">
             <p class="mb-4 text-center text-2xl font-bold sm:text-3xl" data-aos="fade-down" data-aos-delay="80"
                 data-aos-duration="300">LOGIN</p>
-            <p class="sm:mb-18 mb-8 text-center text-sm sm:text-base" data-aos="fade-up" data-aos-delay="120"
+            <p class="sm:mb-18 mb-8 text-center text-sm " data-aos="fade-up" data-aos-delay="120"
                 data-aos-duration="400">Welcome! Login di sini untuk membuktikan kamu admin.</p>
             <x-ui.error />
             <form action="{{ url('/auth') }}" method="post">
@@ -18,7 +18,7 @@
                         data-aos-delay="200" data-aos-duration="400" />
                 </div>
                 <button type="submit"
-                    class="w-full bg-gray-900 p-3 text-center font-bold text-gray-200 hover:opacity-90 sm:p-4"
+                    class="w-full bg-gray-900 p-3 cursor-pointer text-center font-bold text-gray-200 hover:opacity-90 sm:p-4"
                     data-aos="fade-up" data-aos-delay="250" data-aos-duration="400">
                     KIRIM
                 </button>
