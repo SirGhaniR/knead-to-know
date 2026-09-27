@@ -12,44 +12,46 @@ use Illuminate\Support\Facades\DB;
 
 class DashboardApiController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function stats(Request $request)
     {
         $days = (int) $request->query('days', 30);
 
-        $newsCount = News::count();
+        $newsCount      = News::count();
         $galleriesCount = Gallery::count();
-        $contactsCount = Contact::count();
+        $contactsCount  = Contact::count();
         $unreadContacts = Contact::where('is_read', false)->count();
 
-        $recentNews = News::latest()->take(5)->get();
+        $recentNews     = News::latest()->take(5)->get();
         $recentContacts = Contact::latest()->take(5)->get();
-        $featuredNews = News::where('is_featured', true)->latest()->take(3)->get();
-
-        $activity = $this->buildActivity($days);
+        $featuredNews   = News::where('is_featured', true)->latest()->take(3)->get();
 
         return response()->json([
             'success' => true,
-            'data' => [
-                'total_news' => $newsCount,
-                'total_gallery' => $galleriesCount,
-                'total_contacts' => $contactsCount,
+            'data'    => [
+                'total_news'      => $newsCount,
+                'total_gallery'   => $galleriesCount,
+                'total_contacts'  => $contactsCount,
                 'unread_contacts' => $unreadContacts,
-                'recent_news' => $recentNews,
+                'recent_news'     => $recentNews,
                 'recent_contacts' => $recentContacts,
-                'featured_news' => $featuredNews,
-                'activity' => $activity,
+                'featured_news'   => $featuredNews,
+                'activity'        => [
+                    'news'    => $this->buildActivity(News::class, $days),
+                    'gallery' => $this->buildActivity(Gallery::class, $days),
+                    'contact' => $this->buildActivity(Contact::class, $days),
+                ],
             ],
         ]);
     }
 
-    private function buildActivity(int $days): array
+    private function buildActivity(string $model, int $days): array
     {
         $start = Carbon::today()->subDays($days - 1);
 
-        $rows = News::select(DB::raw('DATE(created_at) as date'), DB::raw('COUNT(*) as count'))
+        $rows = $model::select(
+                DB::raw('DATE(created_at) as date'),
+                DB::raw('COUNT(*) as count')
+            )
             ->where('created_at', '>=', $start)
             ->groupBy('date')
             ->pluck('count', 'date');
@@ -58,7 +60,7 @@ class DashboardApiController extends Controller
         for ($i = 0; $i < $days; $i++) {
             $date = $start->copy()->addDays($i)->toDateString();
             $result[] = [
-                'date' => $date,
+                'date'  => $date,
                 'count' => (int) ($rows[$date] ?? 0),
             ];
         }

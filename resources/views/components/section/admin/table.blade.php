@@ -10,74 +10,71 @@
 @if ($news)
     <div class="p-4 sm:p-6 lg:ml-auto lg:w-4/5 lg:p-8" data-aos="fade-up" data-aos-offset="50" data-aos-duration="400">
         <div class="w-full">
-            <p class="mb-6 text-2xl font-bold transition duration-150 sm:text-3xl lg:text-4xl" data-aos="fade-down"
+            <p class="mb-4 text-2xl font-bold transition duration-150 sm:text-3xl lg:text-4xl" data-aos="fade-down"
                 data-aos-delay="80" data-aos-duration="300">Berita - Management</p>
             {{ $slot }}
-            <div class="bg-neutral-primary-soft border-default mb-8 relative overflow-x-auto border" data-aos="fade-up"
-                data-aos-delay="100" data-aos-duration="400">
-                <table class="w-full table-auto text-left text-sm rtl:text-right">
-                    <thead class="bg-neutral-secondary-medium border-default-medium border-b text-sm">
-                        <tr>
-                            <th scope="col" class="px-4 py-3 sm:px-6">Title</th>
-                            <th scope="col" class="hidden px-4 py-3 sm:table-cell sm:px-6">Content</th>
-                            <th scope="col" class="hidden px-4 py-3 sm:px-6 md:table-cell">Image</th>
-                            <th scope="col" class="hidden px-4 py-3 sm:px-6 lg:table-cell">Featured</th>
-                            <th scope="col" class="px-4 py-3 sm:px-6">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($news as $index => $newsItem)
-                            <tr class="border-default bg-neutral-primary-soft hover:bg-neutral-secondary-medium cursor-pointer border-b transition duration-150"
-                                data-aos="fade-up" data-aos-delay="{{ 100 + ($index + 1) * 50 }}"
-                                data-aos-duration="300">
-                                <td class="px-4 py-3 sm:px-6 sm:py-4" data-modal-target="modal-{{ $newsItem->id }}"
-                                    data-modal-toggle="modal-{{ $newsItem->id }}">
-                                    {{ $newsItem->title }}
-                                </td>
-                                <td class="hidden px-4 py-3 sm:table-cell sm:px-6 sm:py-4"
-                                    data-modal-target="modal-{{ $newsItem->id }}"
-                                    data-modal-toggle="modal-{{ $newsItem->id }}">
-                                    {{ Str::limit($newsItem->content, 50) }}
-                                </td>
-                                <td class="hidden px-4 py-3 sm:px-6 sm:py-4 md:table-cell"
-                                    data-modal-target="modal-{{ $newsItem->id }}"
-                                    data-modal-toggle="modal-{{ $newsItem->id }}">
-                                    @if ($newsItem->image)
-                                        <img src="{{ asset('uploaded_images/' . $newsItem->image) }}"
-                                            class="lg:h-30 lg:w-30 h-16 w-16 object-cover outline-1 outline-gray-300 transition duration-150 sm:h-20 sm:w-20 md:h-24 md:w-24">
-                                    @else
-                                        <span class="text-gray-400">No image</span>
+            <div class="mt-6 flex flex-col gap-3">
+                @forelse ($news as $index => $newsItem)
+                    <div class="cursor-pointer border border-gray-300 bg-white transition duration-150 hover:bg-gray-50"
+                        data-modal-target="modal-{{ $newsItem->id }}" data-modal-toggle="modal-{{ $newsItem->id }}"
+                        data-aos="fade-up" data-aos-delay="{{ 80 + ($index + 1) * 50 }}" data-aos-duration="300">
+                        <div class="flex h-32 md:h-42">
+                            @if ($newsItem->image)
+                                <img src="{{ asset('uploaded_images/' . $newsItem->image) }}"
+                                    alt="{{ $newsItem->title }}" class="h-full aspect-square shrink-0 object-cover">
+                            @else
+                                <div
+                                    class="flex h-full aspect-square shrink-0 items-center justify-center bg-gray-100 text-gray-500">
+                                    <i class="fa-solid fa-image text-3xl"></i>
+                                </div>
+                            @endif
+                            <div class="flex flex-col justify-between gap-2 p-3">
+                                <div class="flex items-start gap-2">
+                                    <p class="line-clamp-2 flex-1 text-sm font-semibold">{{ $newsItem->title }}</p>
+                                    @if ($newsItem->is_featured)
+                                        <span
+                                            class="shrink-0 bg-yellow-100 px-2 py-0.5 text-sm font-semibold text-yellow-800">Featured</span>
                                     @endif
-                                </td>
-                                <td class="hidden px-4 py-3 sm:px-6 sm:py-4 lg:table-cell"
-                                    data-modal-target="modal-{{ $newsItem->id }}"
-                                    data-modal-toggle="modal-{{ $newsItem->id }}">
-                                    {{ $newsItem->is_featured ? 'Yes' : 'No' }}
-                                </td>
-                                <td class="px-4 py-3 sm:px-6 sm:py-4">
-                                    <div class="flex flex-col items-start gap-2 sm:flex-row sm:items-center sm:gap-4">
+                                </div>
+                                <p class="line-clamp-2 md:line-clamp-3 lg:line-clamp-3 text-sm text-gray-600">
+                                    {{ $newsItem->content }}</p>
+                                <div class="flex items-center gap-3">
+                                    <span
+                                        class="text-sm text-gray-500">{{ $newsItem->created_at->diffForHumans() }}</span>
+                                    <div class="ml-auto flex items-center gap-3">
                                         <a href="{{ route('admin.news.edit', $newsItem->id) }}"
-                                            class="font-semibold text-yellow-600 transition duration-150 hover:underline">Edit</a>
+                                            onclick="event.stopPropagation()"
+                                            class="text-yellow-600 transition duration-150 hover:text-yellow-700"
+                                            title="Edit">
+                                            <i class="fa-regular fa-pen-to-square text-lg"></i>
+                                        </a>
                                         <form action="{{ route('admin.news.delete', $newsItem->id) }}" method="POST"
-                                            class="inline"
+                                            class="inline" onclick="event.stopPropagation()"
                                             onsubmit="return confirm('Are you sure you want to delete this news?')">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit"
-                                                class="font-semibold text-red-400 transition duration-150 hover:underline">Delete</button>
+                                                class="cursor-pointer text-red-400 transition duration-150 hover:text-red-500"
+                                                title="Hapus">
+                                                <i class="fa-regular fa-trash-can text-lg"></i>
+                                            </button>
                                         </form>
                                     </div>
-                                </td>
-                            </tr>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                            <x-ui.modal id="{{ $newsItem->id }}" title="Detail Berita" :item="$newsItem" type="news"
-                                editRoute="admin.news.edit" />
-                        @endforeach
-                    </tbody>
-                </table>
+                    <x-ui.modal id="{{ $newsItem->id }}" title="Detail Berita" :item="$newsItem" type="news"
+                        editRoute="admin.news.edit" />
+                @empty
+                    <div class="py-10 text-center text-gray-500">Belum ada berita</div>
+                @endforelse
             </div>
 
-            {{ $news->links() }}
+            <div class="mt-4">
+                {{ $news->links() }}
+            </div>
         </div>
     </div>
 @elseif($galleries)
@@ -86,47 +83,56 @@
             <p class="mb-6 text-2xl font-bold transition duration-150 sm:text-3xl lg:text-4xl" data-aos="fade-down"
                 data-aos-delay="80" data-aos-duration="300">Galeri - Management</p>
             {{ $slot }}
-            <div class="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 xl:grid-cols-4">
-                @foreach ($galleries as $index => $gallery)
-                    <div class="bg-neutral-primary-soft cursor-pointer overflow-hidden outline-1 outline-gray-300 transition duration-150 hover:shadow-xl"
+            <div class="mb-8 grid grid-cols-2 gap-3 sm:grid-cols-2 sm:gap-3 md:grid-cols-4">
+                @forelse ($galleries as $index => $gallery)
+                    <div class="cursor-pointer border border-gray-300 bg-white transition duration-150"
                         data-modal-target="modal-{{ $gallery->id }}" data-modal-toggle="modal-{{ $gallery->id }}"
                         data-aos="zoom-in" data-aos-delay="{{ 80 + ($index + 1) * 50 }}" data-aos-duration="400">
-                        <div class="aspect-square overflow-hidden bg-gray-200">
+                        <div class="relative aspect-square overflow-hidden bg-gray-100">
                             @if ($gallery->image)
                                 <img src="{{ asset('uploaded_images/' . $gallery->image) }}"
-                                    alt="{{ $gallery->title ?? 'Gallery image' }}"
-                                    class="h-full w-full object-cover transition duration-150">
+                                    alt="{{ $gallery->title ?? 'Gallery image' }}" class="h-full w-full object-cover">
                             @else
-                                <div class="flex h-full items-center justify-center text-gray-400">No Image</div>
-                            @endif
-                        </div>
-                        <div class="p-3 sm:p-4">
-                            <h3 class="mb-2 text-sm font-medium text-gray-900 transition duration-150 ">
-                                {{ $gallery->title ?? 'Untitled' }}</h3>
-                            <p class="mb-2 text-xs text-gray-500 sm:text-sm">
-                                {{ Str::limit($gallery->description, 100) }}</p>
-                            <div
-                                class="mt-3 flex flex-col items-start justify-between gap-2 border-t pt-3 sm:mt-4 sm:flex-row sm:items-center sm:gap-4">
-                                <span class="text-xs text-gray-500">{{ $gallery->created_at->format('d M Y') }}</span>
-                                <div class="flex items-center gap-3 sm:gap-4">
-                                    <a href="{{ route('admin.gallery.edit', $gallery->id) }}"
-                                        class="text-sm font-semibold text-yellow-600 transition duration-150 hover:underline">Edit</a>
-                                    <form action="{{ route('admin.gallery.delete', $gallery->id) }}" method="POST"
-                                        class="inline cursor-pointer"
-                                        onsubmit="return confirm('Are you sure you want to delete this image?')">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit"
-                                            class="cursor-pointer text-sm font-semibold text-red-400 transition duration-150 hover:underline ">Delete</button>
-                                    </form>
+                                <div class="flex h-full items-center justify-center text-sm text-gray-500">No Image
                                 </div>
+                            @endif
+                            <div class="absolute top-1.5 right-1.5 flex items-center gap-1">
+                                <a href="{{ route('admin.gallery.edit', $gallery->id) }}"
+                                    onclick="event.stopPropagation()"
+                                    class="bg-white p-1.5 text-yellow-600 transition duration-150 hover:text-yellow-700"
+                                    title="Edit">
+                                    <i class="fa-regular fa-pen-to-square text-base"></i>
+                                </a>
+                                <form action="{{ route('admin.gallery.delete', $gallery->id) }}" method="POST"
+                                    class="inline" onclick="event.stopPropagation()"
+                                    onsubmit="return confirm('Are you sure you want to delete this image?')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit"
+                                        class="cursor-pointer bg-white p-1.5 text-red-400 transition duration-150 hover:text-red-500"
+                                        title="Hapus">
+                                        <i class="fa-regular fa-trash-can text-base"></i>
+                                    </button>
+                                </form>
                             </div>
+                        </div>
+                        <div class="flex flex-col gap-2 md:gap-3 p-3">
+                            <h3 class="text-sm font-semibold text-gray-900">
+                                {{ $gallery->title ?: 'Untitled' }}</h3>
+                            @if ($gallery->description)
+                                <p class="line-clamp-1 md:line-clamp-2 text-sm text-gray-600">
+                                    {{ $gallery->description }}</p>
+                            @endif
+                            <hr class="border-gray-200 border">
+                            <span class="text-sm text-gray-500">{{ $gallery->created_at->format('d M Y') }}</span>
                         </div>
                     </div>
 
                     <x-ui.modal id="{{ $gallery->id }}" title="Detail Foto" :item="$gallery" type="gallery"
                         editRoute="admin.gallery.edit" />
-                @endforeach
+                @empty
+                    <div class="col-span-full py-10 text-center text-gray-500">Belum ada foto</div>
+                @endforelse
             </div>
 
             {{ $galleries->links() }}
@@ -136,113 +142,124 @@
     <div class="p-4 sm:p-6 lg:ml-auto lg:w-4/5 lg:p-8 mb-8" data-aos="fade-up" data-aos-offset="50"
         data-aos-duration="400">
         <div class="w-full">
-            <p class="mb-6 text-2xl font-bold transition duration-150 sm:text-3xl lg:text-4xl" data-aos="fade-down"
+            <p class="mb-4 text-2xl font-bold transition duration-150 sm:text-3xl lg:text-4xl" data-aos="fade-down"
                 data-aos-delay="80" data-aos-duration="300">Kontak - Management</p>
             {{ $slot }}
-            <div class="bg-neutral-primary-soft border-default mb-8 relative overflow-x-auto border"
-                data-aos="fade-up" data-aos-delay="100" data-aos-duration="400">
-                <table class="w-full table-auto text-left text-sm rtl:text-right">
-                    <thead class="bg-neutral-secondary-medium border-default-medium border-b text-sm">
-                        <tr>
-                            <th scope="col" class="px-4 py-3 sm:px-6">Name</th>
-                            <th scope="col" class="hidden px-4 py-3 sm:table-cell sm:px-6">Email</th>
-                            <th scope="col" class="hidden px-4 py-3 sm:px-6 md:table-cell">Subject</th>
-                            <th scope="col" class="hidden px-4 py-3 sm:px-6 lg:table-cell">Message</th>
-                            <th scope="col" class="px-4 py-3 sm:px-6">Status</th>
-                            <th scope="col" class="px-4 py-3 sm:px-6">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($contacts as $index => $contact)
-                            <tr class="bg-neutral-primary-soft border-default hover:bg-neutral-secondary-medium {{ !$contact->is_read ? 'bg-yellow-50' : '' }} cursor-pointer border-b transition duration-150"
-                                data-modal-target="modal-{{ $contact->id }}"
-                                data-modal-toggle="modal-{{ $contact->id }}" data-aos="fade-up"
-                                data-aos-delay="{{ 100 + ($index + 1) * 50 }}" data-aos-duration="300">
-                                <th scope="row" class="text-heading whitespace-nowrap px-4 py-3 sm:px-6 sm:py-4">
-                                    {{ $contact->name }}</th>
-                                <td class="hidden px-4 py-3 sm:table-cell sm:px-6 sm:py-4">{{ $contact->email }}</td>
-                                <td class="hidden px-4 py-3 sm:px-6 sm:py-4 md:table-cell">{{ $contact->subject }}
-                                </td>
-                                <td class="hidden px-4 py-3 sm:px-6 sm:py-4 lg:table-cell">
-                                    {{ Str::limit($contact->message, 50) }}
-                                </td>
-                                <td class="px-4 py-3 sm:px-6 sm:py-4">
-                                    <div class="flex flex-col items-start gap-2 sm:flex-row sm:items-center sm:gap-3">
-                                        <a href="{{ route('admin.contact.reply', $contact->id) }}"
-                                            onclick="event.stopPropagation()"
-                                            class="text-sm font-semibold text-blue-500 transition duration-150 hover:underline">
-                                            Reply
-                                        </a>
-                                        @if (!$contact->is_read)
-                                            <form action="{{ route('admin.contact.update', $contact->id) }}"
-                                                method="POST" class="inline" onclick="event.stopPropagation()">
-                                                @csrf
-                                                @method('PUT')
-                                                <input type="hidden" name="is_read" value="1">
-                                                <button type="submit"
-                                                    class="text-sm font-semibold text-green-500 transition duration-150 cursor-pointer hover:underline">
-                                                    Mark Read
-                                                </button>
-                                            </form>
-                                        @endif
-                                        <form action="{{ route('admin.contact.delete', $contact->id) }}"
-                                            method="POST" class="inline" onclick="event.stopPropagation()"
-                                            onsubmit="return confirm('Are you sure you want to delete this contact message?')">
+
+            <div class="flex flex-col gap-3">
+                @forelse ($contacts as $index => $contact)
+                    <div class="cursor-pointer border bg-white p-3 transition duration-150 {{ $contact->is_read ? 'border-gray-300' : 'border-yellow-600' }}"
+                        data-modal-target="modal-{{ $contact->id }}" data-modal-toggle="modal-{{ $contact->id }}"
+                        data-aos="fade-up" data-aos-delay="{{ 80 + ($index + 1) * 50 }}" data-aos-duration="300">
+                        <div class="flex flex-col gap-1.5">
+                            <div class="flex items-start gap-2">
+                                <p class="truncate flex-1 text-sm font-semibold">{{ $contact->name }}</p>
+                                @if (!$contact->is_read)
+                                    <span
+                                        class="shrink-0 bg-yellow-100 px-2 py-0.5 text-sm font-semibold text-yellow-800">Baru</span>
+                                @endif
+                            </div>
+                            <p class="truncate text-sm text-gray-600">{{ $contact->email }}</p>
+                            <p class="truncate text-sm font-medium">
+                                {{ $contact->subject ?: '(tanpa subjek)' }}</p>
+                            <p class="line-clamp-2 text-sm text-gray-600">{{ $contact->message }}</p>
+                            <div class="flex items-center gap-3">
+                                <span class="text-sm text-gray-500">{{ $contact->created_at->diffForHumans() }}</span>
+                                <div class="ml-auto flex items-center gap-3">
+                                    <a href="{{ route('admin.contact.reply', $contact->id) }}"
+                                        onclick="event.stopPropagation()"
+                                        class="text-blue-500 transition duration-150 hover:text-blue-600"
+                                        title="Reply">
+                                        <i class="fa-solid fa-reply text-lg"></i>
+                                    </a>
+                                    @if (!$contact->is_read)
+                                        <form action="{{ route('admin.contact.update', $contact->id) }}"
+                                            method="POST" class="inline" onclick="event.stopPropagation()">
                                             @csrf
-                                            @method('DELETE')
+                                            @method('PUT')
+                                            <input type="hidden" name="is_read" value="1">
                                             <button type="submit"
-                                                class="text-sm font-semibold text-red-400 transition duration-150 cursor-pointer hover:underline">
-                                                Delete
+                                                class="cursor-pointer text-green-500 transition duration-150 hover:text-green-600"
+                                                title="Mark as Read">
+                                                <i class="fa-solid fa-envelope-open-text text-lg"></i>
                                             </button>
                                         </form>
-                                    </div>
-                                </td>
-                            </tr>
+                                    @endif
+                                    <form action="{{ route('admin.contact.delete', $contact->id) }}" method="POST"
+                                        class="inline" onclick="event.stopPropagation()"
+                                        onsubmit="return confirm('Are you sure you want to delete this contact message?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"
+                                            class="cursor-pointer text-red-400 transition duration-150 hover:text-red-500"
+                                            title="Hapus">
+                                            <i class="fa-regular fa-trash-can text-lg"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                            <x-ui.modal id="{{ $contact->id }}" title="Detail Pesan" :item="$contact"
-                                type="contact" showStatus="true" statusField="is_read"
-                                statusLabels="['Read', 'Unread']"
-                                statusColors="['bg-green-100 text-green-800', 'bg-yellow-100 text-yellow-800']" />
-                        @endforeach
-                    </tbody>
-                </table>
+                    <x-ui.modal id="{{ $contact->id }}" title="Detail Pesan" :item="$contact" type="contact"
+                        showStatus="true" statusField="is_read" statusLabels="['Read', 'Unread']"
+                        statusColors="['bg-green-100 text-green-800', 'bg-yellow-100 text-yellow-800']" />
+                @empty
+                    <div class="py-10 text-center text-gray-500">Belum ada pesan</div>
+                @endforelse
             </div>
 
-            {{ $contacts->links() }}
+            <div class="mt-4">
+                {{ $contacts->links() }}
+            </div>
         </div>
     </div>
 @elseif($contactInfo)
     <div class="p-4 sm:p-6 lg:ml-auto lg:w-4/5 lg:p-8 mb-8" data-aos="fade-up" data-aos-offset="50"
         data-aos-duration="400">
         <div class="w-full">
-            <p class="mb-6 text-2xl font-bold transition duration-150 sm:text-3xl lg:text-4xl" data-aos="fade-down"
+            <p class="mb-4 text-2xl font-bold transition duration-150 sm:text-3xl lg:text-4xl" data-aos="fade-down"
                 data-aos-delay="80" data-aos-duration="300">Info Kontak - Management</p>
             {{ $slot }}
-            <div class="bg-neutral-primary-soft border-default mb-8 relative overflow-x-auto border"
-                data-aos="fade-up" data-aos-delay="100" data-aos-duration="400">
-                <table class="w-full table-auto text-left text-sm rtl:text-right">
-                    <thead class="bg-neutral-secondary-medium border-default-medium border-b text-sm">
-                        <tr>
-                            <th scope="col" class="px-4 py-3 sm:px-6">Email</th>
-                            <th scope="col" class="hidden px-4 py-3 sm:table-cell sm:px-6">Phone</th>
-                            <th scope="col" class="px-4 py-3 sm:px-6">Address</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="bg-neutral-primary-soft border-default hover:bg-neutral-secondary-medium cursor-pointer border-b transition duration-150"
-                            data-modal-target="modal-{{ $contactInfo->id }}"
-                            data-modal-toggle="modal-{{ $contactInfo->id }}" data-aos="fade-up" data-aos-delay="100"
-                            data-aos-duration="300">
-                            <td class="break-all px-4 py-3 sm:px-6 sm:py-4">{{ $contactInfo->email }}</td>
-                            <td class="hidden px-4 py-3 sm:table-cell sm:px-6 sm:py-4">{{ $contactInfo->phone }}</td>
-                            <td class="break-all px-4 py-3 sm:px-6 sm:py-4">
-                                {{ Str::limit($contactInfo->address, 50) }}</td>
-                        </tr>
+            <div class="flex flex-col gap-3">
+                <div class="cursor-pointer border border-gray-300 bg-white p-4 transition duration-150 hover:bg-gray-50"
+                    data-modal-target="modal-{{ $contactInfo->id }}"
+                    data-modal-toggle="modal-{{ $contactInfo->id }}" data-aos="fade-up" data-aos-delay="100"
+                    data-aos-duration="300">
+                    <div class="flex flex-col gap-4 md:gap-6">
+                        <div class="flex items-start gap-3 sm:flex-1">
+                            <div class="flex h-10 w-10 shrink-0 items-center justify-center text-gray-500">
+                                <i class="fa-solid fa-envelope text-lg"></i>
+                            </div>
+                            <div class="min-w-0">
+                                <p class=" ">Email</p>
+                                <p class="break-all text-sm font-semibold">{{ $contactInfo->email }}</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3 sm:flex-1">
+                            <div class="flex h-10 w-10 shrink-0 items-center justify-center text-gray-500">
+                                <i class="fa-solid fa-phone text-lg"></i>
+                            </div>
+                            <div class="min-w-0">
+                                <p class=" ">Phone</p>
+                                <p class="break-all text-sm font-semibold">{{ $contactInfo->phone }}</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3 sm:flex-1">
+                            <div class="flex h-10 w-10 shrink-0 items-center justify-center text-gray-500">
+                                <i class="fa-solid fa-location-dot text-lg"></i>
+                            </div>
+                            <div class="min-w-0">
+                                <p class=" ">Address</p>
+                                <p class="line-clamp-2 break-all text-sm font-semibold">
+                                    {{ $contactInfo->address }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                        <x-ui.modal id="{{ $contactInfo->id }}" title="Detail Alamat" :item="$contactInfo"
-                            type="contact-info" />
-                    </tbody>
-                </table>
+                <x-ui.modal id="{{ $contactInfo->id }}" title="Detail Alamat" :item="$contactInfo"
+                    type="contact-info" />
             </div>
         </div>
     </div>
