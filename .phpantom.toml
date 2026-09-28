@@ -4,3 +4,51 @@
 # Editors with TOML schema support (Zed, VS Code + Even Better TOML, Neovim)
 # provide autocomplete and hover documentation for all available options.
 # Full reference: https://phpantom-dev.github.io/phpantom_lsp/configuration/
+[php]
+# Override the detected PHP version (e.g., "8.3").
+# When unset, PHPantom infers from composer.json's platform or require.php.
+# Pattern: ^\d+\.\d+(\.\d+)?
+# version = "8.3"
+
+[diagnostics]
+# Report member access (->, ?->, ::) on subjects whose type could not be resolved.
+# Off by default because it can flood editors on codebases without full type annotations.
+# Useful for discovering gaps in type coverage.
+unresolved-member-access = true
+
+# Report calls that pass more arguments than the function accepts.
+# On by default. PHP silently ignores extra arguments to user-defined functions.
+# extra-arguments = false
+
+[indexing]
+# Controls how PHPantom discovers classes across the workspace.
+# Options: "composer" (default), "self", "full" (not yet implemented), "none"
+# - "composer": use Composer's classmap, fall back to self-scan
+# - "self": scan all PHP files, ignore classmap
+# - "none": no proactive scanning, classmap only
+strategy = "composer"
+
+[formatting]
+# PHPantom ships a built-in formatter (PER-CS 2.0 style).
+# Projects with php-cs-fixer or PHP_CodeSniffer in composer.json require-dev
+# automatically use those tools instead. Explicit configuration always takes priority.
+#
+# To explicitly disable php-cs-fixer:  php-cs-fixer = ""
+# To explicitly disable phpcbf:        phpcbf = ""
+# To use a specific command:           php-cs-fixer = "/usr/local/bin/php-cs-fixer"
+
+# Maximum runtime in milliseconds before each formatter is killed.
+# Defaults to 10,000 ms (10 seconds). Applied per tool.
+# timeout = 10000
+blade = true
+blade-php = true
+
+[phpstan]
+# Command (path or name) to run PHPStan.
+# When unset (default), PHPantom auto-detects via vendor/bin/phpstan then $PATH.
+# Set to "" (empty string) to explicitly disable PHPStan integration.
+command = ""
+# memory-limit = "1G"
+# Maximum runtime in milliseconds before PHPStan is killed.
+# Defaults to 60,000 ms (60 seconds).
+# timeout = 60000
