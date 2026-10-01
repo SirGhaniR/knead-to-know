@@ -16,8 +16,12 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/dashboard/stats', [DashboardApiController::class, 'stats']);
 
-    Route::apiResource('news', NewsApiController::class);
-    Route::apiResource('gallery', GalleryApiController::class);
-    Route::apiResource('contacts', ContactApiController::class)->only(['index', 'show', 'update', 'destroy']);
-    Route::apiResource('contact-info', ContactInfoApiController::class)->only(['index', 'store']);
+    Route::apiResource('news', NewsApiController::class)->names('api.news');
+    Route::apiResource('gallery', GalleryApiController::class)->names('api.gallery');
+    Route::apiResource('contacts', ContactApiController::class)
+        ->only(['index', 'show', 'update', 'destroy'])
+        ->names('api.contacts');
+    Route::apiResource('contact-info', ContactInfoApiController::class)
+        ->only(['index', 'store'])
+        ->names('api.contact-info');
 });

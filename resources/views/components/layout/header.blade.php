@@ -1,88 +1,40 @@
+@props(['variant' => 'default'])
+
 @php
-  $currentPath = request()->path();
-  $isHome = $currentPath === '/';
+  $isHome = request()->path() === '/';
+  $isDark = !$isHome;
 @endphp
 
-@if ($isHome)
-  <div class="lg:px-22 relative overflow-hidden bg-gray-200 px-4 py-12 md:px-12 lg:py-8" data-aos="fade-down"
-    data-aos-duration="400">
-    <header>
-      <nav>
-        <div class="flex flex-wrap items-center gap-4 md:gap-6 lg:gap-12">
-          <a href="#" class="z-10 text-3xl font-bold" data-aos="fade-right" data-aos-delay="50"
-            data-aos-duration="300">KTK</a>
+<div class="{{ $isHome ? 'pt-12 lg:pt-8' : 'pt-12 lg:pt-8' }}">
+  <header>
+    <nav>
+      <div class="flex flex-wrap items-center {{ $isHome ? 'gap-4 md:gap-6 lg:gap-12' : 'justify-between' }}">
+        <a class="z-10 text-3xl font-bold {{ $isDark ? 'text-white' : '' }}" href="{{ $isHome ? '#' : url('/') }}">KTK</a>
 
-          <button data-collapse-toggle="navbar-home" type="button"
-            class="inline-flex cursor-pointer items-center rounded-lg p-2 text-sm text-gray-500 transition duration-150 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 lg:hidden"
-            aria-controls="navbar-home" aria-expanded="false" data-aos="fade-left" data-aos-delay="50"
-            data-aos-duration="300">
-            <span class="sr-only">Open main menu</span>
-            <svg class="h-6 w-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd"
-                d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                clip-rule="evenodd"></path>
-            </svg>
-          </button>
+        <button
+          class="inline-flex cursor-pointer items-center p-2 text-sm transition duration-150 focus:outline-none focus:ring-2 focus:ring-gray-200 lg:hidden {{ $isDark ? 'text-white hover:bg-gray-700' : 'text-gray-500 hover:bg-gray-100' }}"
+          data-collapse-toggle="{{ $isHome ? 'navbar-home' : 'navbar-other' }}" type="button"
+          aria-controls="{{ $isHome ? 'navbar-home' : 'navbar-other' }}" aria-expanded="false">
+          <span class="sr-only">Open main menu</span>
+          <i class="fa-solid fa-bars h-6 w-6 text-xl" aria-hidden="true"></i>
+        </button>
 
-          <div class="my-8 hidden w-full lg:flex lg:w-auto lg:items-center" id="navbar-home">
-            <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:gap-6 xl:gap-12">
-              <a href="#" class="z-10 text-sm hover:font-semibold" data-aos="fade-down" data-aos-delay="100"
-                data-aos-duration="300">HOME</a>
-              <a href="{{ url('/about') }}" class="z-10 text-sm hover:font-semibold" data-aos="fade-down"
-                data-aos-delay="130" data-aos-duration="300">TENTANG</a>
-              <a href="{{ url('/news') }}" class="z-10 text-sm hover:font-semibold" data-aos="fade-down"
-                data-aos-delay="160" data-aos-duration="300">BERITA</a>
-              <a href="{{ url('/gallery') }}" class="z-10 text-sm hover:font-semibold" data-aos="fade-down"
-                data-aos-delay="190" data-aos-duration="300">GALERI</a>
-              <a href="{{ url('/contact') }}" class="z-10 text-sm hover:font-semibold" data-aos="fade-down"
-                data-aos-delay="220" data-aos-duration="300">KONTAK</a>
-            </div>
+        <div class="menu my-8 w-full lg:flex lg:w-auto lg:items-center"
+          id="{{ $isHome ? 'navbar-home' : 'navbar-other' }}">
+          <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:gap-6 xl:gap-12">
+            <a class="z-10 text-sm hover:font-semibold {{ $isDark ? 'text-white' : '' }}"
+              href="{{ url('/') }}">HOME</a>
+            <a class="z-10 text-sm hover:font-semibold {{ $isDark ? 'text-white' : '' }}"
+              href="{{ url('/about') }}">TENTANG</a>
+            <a class="z-10 text-sm hover:font-semibold {{ $isDark ? 'text-white' : '' }}"
+              href="{{ url('/news') }}">BERITA</a>
+            <a class="z-10 text-sm hover:font-semibold {{ $isDark ? 'text-white' : '' }}"
+              href="{{ url('/gallery') }}">GALERI</a>
+            <a class="z-10 text-sm hover:font-semibold {{ $isDark ? 'text-white' : '' }}"
+              href="{{ url('/contact') }}">KONTAK</a>
           </div>
         </div>
-      </nav>
-    </header>
-    <img src="{{ asset('images/food_png/sourdough_loaf_2.png') }}" alt="bg-image"
-      class="lg:h-200 lg:translate-x-90 lg:-translate-y-30 md:h-100 translate-x-30 absolute right-0 top-0 z-0 h-60 w-auto -translate-y-10 object-contain opacity-100 transition duration-300 md:-translate-y-40 md:translate-x-40"
-      data-aos="fade-left" data-aos-delay="150" data-aos-duration="500">
-  @else
-    <div class="bg-gray-200 px-4 py-12 text-gray-50 sm:px-8 md:px-12 lg:px-20 lg:py-8"
-      style="background-image: url({{ asset('images/foods/background.jpg') }}); background-size: cover; background-position: center;"
-      data-aos="fade-down" data-aos-duration="400">
-      <header>
-        <nav>
-          <div class="flex flex-wrap items-center justify-between">
-            <a href="{{ url('/') }}" class="z-10 text-3xl font-bold" data-aos="fade-right" data-aos-delay="50"
-              data-aos-duration="300">KTK</a>
-
-            <button data-collapse-toggle="navbar-other" type="button"
-              class="inline-flex cursor-pointer items-center rounded-lg p-2 text-sm text-white transition duration-150 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-200 lg:hidden"
-              aria-controls="navbar-other" aria-expanded="false" data-aos="fade-left" data-aos-delay="50"
-              data-aos-duration="300">
-              <span class="sr-only">Open main menu</span>
-              <svg class="h-6 w-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd"
-                  d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                  clip-rule="evenodd"></path>
-              </svg>
-            </button>
-
-            <div class="my-8 hidden w-full lg:flex lg:w-auto lg:items-center" id="navbar-other">
-              <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:gap-6 xl:gap-12">
-                <a href="{{ url('/') }}" class="z-10 text-sm hover:font-semibold" data-aos="fade-down"
-                  data-aos-delay="100" data-aos-duration="300">HOME</a>
-                <a href="{{ url('/about') }}" class="z-10 text-sm hover:font-semibold" data-aos="fade-down"
-                  data-aos-delay="130" data-aos-duration="300">TENTANG</a>
-                <a href="{{ url('/news') }}" class="z-10 text-sm hover:font-semibold" data-aos="fade-down"
-                  data-aos-delay="160" data-aos-duration="300">BERITA</a>
-                <a href="{{ url('/gallery') }}" class="z-10 text-sm hover:font-semibold" data-aos="fade-down"
-                  data-aos-delay="190" data-aos-duration="300">GALERI</a>
-                <a href="{{ url('/contact') }}" class="z-10 text-sm hover:font-semibold" data-aos="fade-down"
-                  data-aos-delay="220" data-aos-duration="300">KONTAK</a>
-              </div>
-            </div>
-          </div>
-        </nav>
-      </header>
-@endif
+      </div>
+    </nav>
+  </header>
+</div>

@@ -1,67 +1,62 @@
 <x-layout.app title="Galeri - KNEAD TO KNOW">
-    <x-section.shared.hero />
-    {{-- Carousel --}}
-    <div class="relative w-full bg-gray-200 px-4 py-12 sm:px-6 md:px-8 lg:px-24 lg:py-20" data-carousel="static"
-        data-aos="fade-up" data-aos-offset="60" data-aos-duration="400">
-        @if ($galleries)
-            <div class="lg:h-150 relative h-64 overflow-hidden rounded-3xl shadow-md sm:h-80 md:h-96" data-aos="zoom-in"
-                data-aos-delay="100" data-aos-duration="400">
-                @foreach ($galleries as $gallery)
-                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                        <img src="{{ asset('uploaded_images/' . $gallery->image) }}"
-                            class="absolute left-1/2 top-1/2 block h-full w-full -translate-x-1/2 -translate-y-1/2 object-cover transition duration-150 hover:scale-105"
-                            alt="{{ $gallery->title }}">
-                    </div>
-                @endforeach
-            </div>
-            <button type="button"
-                class="lg:left-15 group absolute left-2 top-0 z-30 flex h-full cursor-pointer items-center justify-center px-2 transition duration-150 hover:scale-110 sm:left-4 md:left-8 lg:px-4"
-                data-carousel-prev data-aos="fade-right" data-aos-delay="150" data-aos-duration="300">
-                <span
-                    class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-gray-50 shadow-lg transition duration-150 hover:shadow-xl sm:h-10 sm:w-10">
-                    <svg class="h-4 w-4 text-gray-800 sm:h-5 sm:w-5 rtl:rotate-180" aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                        viewBox="0 0 24 24">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
-                            d="m15 19-7-7 7-7" />
-                    </svg>
-                    <span class="sr-only">Previous</span>
-                </span>
-            </button>
-            <button type="button"
-                class="lg:right-15 group absolute right-2 top-0 z-30 flex h-full cursor-pointer items-center justify-center px-2 transition duration-150 hover:scale-110 sm:right-4 md:right-8 lg:px-4"
-                data-carousel-next data-aos="fade-left" data-aos-delay="150" data-aos-duration="300">
-                <span
-                    class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-gray-50 shadow-lg transition duration-150 hover:shadow-xl sm:h-10 sm:w-10">
-                    <svg class="h-4 w-4 text-gray-800 sm:h-5 sm:w-5 rtl:rotate-180" aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                        viewBox="0 0 24 24">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
-                            d="m9 5 7 7-7 7" />
-                    </svg>
-                    <span class="sr-only">Next</span>
-                </span>
-            </button>
-        @endif
-    </div>
+  <x-section.shared.hero />
+  {{-- Carousel --}}
+  <div class="relative w-full bg-gray-200 px-4 py-12 sm:px-6 md:px-8 lg:px-24 lg:py-20" data-carousel="static">
+    @if ($galleries)
+      <div class="lg:h-150 relative h-64 overflow-hidden rounded-3xl shadow-md sm:h-80 md:h-96" data-aos="zoom-in"
+        data-aos-delay="100" data-aos-duration="400">
+        @foreach ($galleries as $gallery)
+          <div class="hidden duration-700 ease-in-out" data-carousel-item>
+            <img
+              class="absolute left-1/2 top-1/2 block h-full w-full -translate-x-1/2 -translate-y-1/2 object-cover transition duration-150 hover:scale-105"
+              src="{{ asset('uploaded_images/' . $gallery->image) }}" alt="{{ $gallery->title }}">
+          </div>
+        @endforeach
+      </div>
+      <button
+        class="lg:left-15 group absolute left-2 top-0 z-30 flex h-full cursor-pointer items-center justify-center px-2 transition duration-150 hover:scale-110 sm:left-4 md:left-8 lg:px-4"
+        data-carousel-prev data-aos="fade-right" data-aos-delay="150" data-aos-duration="300" type="button">
+        <span
+          class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-gray-50 shadow-lg transition duration-150 hover:shadow-xl sm:h-10 sm:w-10">
+          <svg class="h-4 w-4 text-gray-800 sm:h-5 sm:w-5 rtl:rotate-180" aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
+              d="m15 19-7-7 7-7" />
+          </svg>
+          <span class="sr-only">Previous</span>
+        </span>
+      </button>
+      <button
+        class="lg:right-15 group absolute right-2 top-0 z-30 flex h-full cursor-pointer items-center justify-center px-2 transition duration-150 hover:scale-110 sm:right-4 md:right-8 lg:px-4"
+        data-carousel-next data-aos="fade-left" data-aos-delay="150" data-aos-duration="300" type="button">
+        <span
+          class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-gray-50 shadow-lg transition duration-150 hover:shadow-xl sm:h-10 sm:w-10">
+          <svg class="h-4 w-4 text-gray-800 sm:h-5 sm:w-5 rtl:rotate-180" aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
+              d="m9 5 7 7-7 7" />
+          </svg>
+          <span class="sr-only">Next</span>
+        </span>
+      </button>
+    @endif
+  </div>
 
-    {{-- Gallery Gallery --}}
-    <div class="lg:py-22 flex flex-col gap-12 px-4 py-12 sm:gap-16 sm:px-6 md:gap-20 md:px-8 lg:px-20"
-        data-aos="fade-up" data-aos-offset="50" data-aos-duration="400">
-        @if ($galleries)
-            <div class="grid mb-8 grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-4">
-                @foreach ($galleries as $index => $gallery)
-                    <x-ui.image-card :image="$gallery->image" :alt="$gallery->title" data-aos="zoom-in"
-                        data-aos-delay="{{ 80 + $index * 50 }}" data-aos-duration="400" />
-                @endforeach
-            </div>
+  {{-- Gallery Gallery --}}
+  <div class="lg:py-22 flex flex-col gap-12 px-4 py-12 sm:gap-16 sm:px-6 md:gap-20 md:px-8 lg:px-20">
+    @if ($galleries)
+      <div class="grid mb-8 grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-4">
+        @foreach ($galleries as $index => $gallery)
+          <x-ui.image-card data-aos="zoom-in" data-aos-delay="{{ 80 + $index * 50 }}" data-aos-duration="400"
+            :image="$gallery->image" :alt="$gallery->title" />
+        @endforeach
+      </div>
 
-            {{ $galleries->links() }}
-        @else
-            <div class="md:my-45 my-24 flex items-center justify-center sm:my-32" data-aos="fade-up"
-                data-aos-duration="400">
-                <p class="text-3xl font-extrabold uppercase sm:text-4xl md:text-5xl">404 Not Found</p>
-            </div>
-        @endif
-    </div>
+      {{ $galleries->links() }}
+    @else
+      <div class="md:my-45 my-24 flex items-center justify-center sm:my-32" data-aos="fade-up" data-aos-duration="400">
+        <p class="text-3xl font-extrabold uppercase sm:text-4xl md:text-5xl">404 Not Found</p>
+      </div>
+    @endif
+  </div>
 </x-layout.app>

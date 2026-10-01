@@ -17,7 +17,7 @@
 
 <div {{ $attributes->merge(['class' => $cardClasses]) }}>
   @if ($image)
-    <img src="{{ asset('uploaded_images/' . $image) }}" alt="{{ $imageAlt }}" class="aspect-4/3 h-1/2 object-cover">
+    <img class="aspect-4/3 h-1/2 object-cover" src="{{ asset('uploaded_images/' . $image) }}" alt="{{ $imageAlt }}">
   @endif
   <div class="flex flex-1 flex-col justify-between p-4">
     @if ($title)
@@ -28,7 +28,7 @@
     @endif
     @if ($link)
       <div class="mt-auto flex justify-between">
-        <a href="{{ $link }}" class="font-semibold text-yellow-500 hover:underline">{{ $linkText }}</a>
+        <a class="font-semibold text-yellow-500 hover:underline" href="{{ $link }}">{{ $linkText }}</a>
       </div>
     @endif
   </div>

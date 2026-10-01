@@ -1,12 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 @import "tailwindcss";
-@import "flowbite/src/themes/default";
 
 @plugin "flowbite/plugin";
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 @source "../**/*.blade.php";
+@source "../views";
 @source "../**/*.js";
 @source "../../node_modules/flowbite";
 
@@ -16,4 +16,18 @@
         "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
         "Noto Color Emoji";
     --font-montserrat: "Montserrat", sans-serif;
+}
+
+@media (max-width: 1023px) {
+    .menu {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height 0.25s ease, opacity 0.2s ease;
+    }
+
+    .menu.open {
+        max-height: 500px;
+        opacity: 1;
+    }
 }
