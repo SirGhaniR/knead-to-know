@@ -1,4 +1,4 @@
-@props(['title' => 'KNEAD TO KNOW'])
+@props(['title' => 'KNEAD TO KNOW', 'footer' => true])
 
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
@@ -19,7 +19,9 @@
       {{ $slot }}
     </main>
 
-    <x-layout.footer />
+    @if ($footer)
+      <x-layout.footer />
+    @endif
 
     <script src="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>

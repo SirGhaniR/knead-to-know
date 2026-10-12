@@ -1,4 +1,4 @@
 <x-layout.admin title="Dashboard - KNEAD TO KNOW">
   <x-section.admin.analytics :news="$news" :galleries="$galleries" :contacts="$contacts" :unreadContacts="$unreadContacts" :recentNews="$recentNews"
-    :recentContacts="$recentContacts" :featuredNews="$featuredNews" />
+    :recentContacts="$recentContacts" :featuredNews="$featuredNews" :activity="$activity" :days="$days" />
 </x-layout.admin>
