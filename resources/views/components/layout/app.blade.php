@@ -15,7 +15,7 @@
   </head>
 
   <body class="font-montserrat bg-gray-50 text-sm text-gray-900">
-    <main class="max-w-full overflow-x-hidden">
+    <main class="max-w-full overflow-x-clip">
       {{ $slot }}
     </main>
 
