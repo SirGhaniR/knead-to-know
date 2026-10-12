@@ -57,11 +57,11 @@
       style="background-image: url({{ asset('images/foods/background.jpg') }}); background-size: cover; background-position: center; min-height: 550px;"
       x-data="carousel()" x-init="init()" @resize.window="handleResize()">
 
-      <div class="relative w-full" data-aos="zoom-in" data-aos-delay="100" data-aos-duration="400"
-        style="min-height: 300px">
-        <div class="relative">
-          <div class="flex justify-center gap-2 sm:gap-3">
-            <template x-for="(gallery, index) in visibleSlides" :key="index">
+      <div class="relative w-full" style="min-height: 300px">
+        <template x-for="key in [animKey]" :key="key">
+          <div class="carousel-anim flex justify-center gap-2 sm:gap-3"
+            :class="direction === 1 ? 'from-right' : 'from-left'">
+            <template x-for="(gallery, index) in visibleSlides" :key="`${key}-${index}`">
               <div
                 class="flex flex-col gap-5 pt-30 relative max-w-70 rounded-2xl bg-gray-50 px-10 py-12 text-center transition duration-150 hover:shadow-2xl"
                 style="min-height: 300px">
@@ -73,7 +73,7 @@
               </div>
             </template>
           </div>
-        </div>
+        </template>
 
         <button
           class="absolute left-0 top-1/2 z-30 flex -translate-y-1/2 cursor-pointer items-center justify-center px-2 transition duration-150 hover:scale-105 sm:px-4"
@@ -114,6 +114,8 @@
         return {
           galleries: @json($galleries),
           currentSlide: 0,
+          animKey: 0,
+          direction: 1, // 1 = forward (from-right), -1 = backward (from-left)
           itemsPerSlide: 1,
           baseUrl: '{{ $baseUrl }}',
 
@@ -144,6 +146,7 @@
 
             if (this.currentSlide >= this.totalSlides) {
               this.currentSlide = 0;
+              this.animKey++;
             }
           },
 
@@ -152,7 +155,9 @@
           },
 
           changeSlide(direction) {
+            this.direction = direction;
             this.currentSlide = (this.currentSlide + direction + this.totalSlides) % this.totalSlides;
+            this.animKey++;
           },
 
           getImageUrl(image) {
