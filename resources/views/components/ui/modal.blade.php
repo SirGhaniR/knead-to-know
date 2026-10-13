@@ -13,10 +13,10 @@
 ])
 
 <div
-  class="fixed left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full w-full items-center justify-center overflow-y-auto overflow-x-hidden md:inset-0"
+  class="fixed inset-0 z-50 hidden w-full items-center justify-center overflow-y-auto overflow-x-hidden bg-gray-900/60 md:inset-0"
   id="modal-{{ $id }}" data-modal-backdrop="static" aria-hidden="true" tabindex="-1">
   <div class="relative max-h-full w-full max-w-4xl p-4">
-    <div class="bg-white border-default relative border p-4 shadow-sm md:p-6">
+    <div class="bg-white border-gray-300 relative border p-4 shadow-sm md:p-6">
       <div class="border-gray-300 flex items-center justify-between border-b pb-4 md:pb-5">
         <h3 class="text-lg font-medium">{{ $title }}</h3>
         <button

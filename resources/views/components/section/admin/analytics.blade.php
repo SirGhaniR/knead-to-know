@@ -95,7 +95,7 @@
       <p class="mb-4 text-lg font-semibold sm:text-xl" data-aos="fade-down" data-aos-delay="80" data-aos-duration="300">
         Aksi Cepat</p>
       <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
-        <div class="bg-neutral-primary-soft border-gray-300 shadow-xs border p-4 sm:p-6" data-aos="fade-up"
+        <div class="bg-white border-gray-300 shadow-xs border p-4 sm:p-6" data-aos="fade-up"
           data-aos-delay="100" data-aos-duration="400">
           <p class="mb-2 font-semibold">Kelola Berita</p>
           <p class="mb-4 text-sm text-gray-600">Tambah, edit, atau hapus berita</p>
@@ -104,7 +104,7 @@
             Buka Manajemen
           </a>
         </div>
-        <div class="bg-neutral-primary-soft border-gray-300 shadow-xs border p-4 sm:p-6" data-aos="fade-up"
+        <div class="bg-white border-gray-300 shadow-xs border p-4 sm:p-6" data-aos="fade-up"
           data-aos-delay="140" data-aos-duration="400">
           <p class="mb-2 font-semibold">Kelola Galeri</p>
           <p class="mb-4 text-sm text-gray-600">Upload dan kelola foto galeri</p>
@@ -113,7 +113,7 @@
             Buka Manajemen
           </a>
         </div>
-        <div class="bg-neutral-primary-soft border-gray-300 shadow-xs border p-4 sm:p-6" data-aos="fade-up"
+        <div class="bg-white border-gray-300 shadow-xs border p-4 sm:p-6" data-aos="fade-up"
           data-aos-delay="180" data-aos-duration="400">
           <p class="mb-2 font-semibold">Kelola Kontak</p>
           <p class="mb-4 text-sm text-gray-600">{{ $unreadContacts }} pesan belum dibaca</p>
@@ -133,9 +133,9 @@
         <a class="mb-2 text-sm text-gray-600 hover:underline sm:mb-4" href="{{ route('admin.news.index') }}">Lihat
           semua</a>
       </div>
-      <div class="bg-neutral-primary-soft border-gray-300 shadow-xs border">
+      <div class="bg-white border-gray-300 shadow-xs border">
         @forelse($recentNews as $newsItem)
-          <div class="border-gray-300 hover:bg-neutral-secondary-medium border-b p-3 last:border-b-0 sm:p-4"
+          <div class="border-gray-300 hover:bg-gray-100 border-b p-3 last:border-b-0 sm:p-4"
             data-aos="fade-up" data-aos-delay="{{ 100 + $loop->index * 50 }}" data-aos-duration="300">
             <div class="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
               <div>
@@ -166,9 +166,9 @@
         <a class="mb-2 text-sm text-gray-600 hover:underline sm:mb-4" href="{{ route('admin.contact.index') }}">Lihat
           semua</a>
       </div>
-      <div class="bg-neutral-primary-soft border-gray-300 shadow-xs border">
+      <div class="bg-white border-gray-300 shadow-xs border">
         @forelse($recentContacts as $contact)
-          <div class="border-gray-300 hover:bg-neutral-secondary-medium border-b p-3 last:border-b-0 sm:p-4"
+          <div class="border-gray-300 hover:bg-gray-100 border-b p-3 last:border-b-0 sm:p-4"
             data-aos="fade-up" data-aos-delay="{{ 100 + $loop->index * 50 }}" data-aos-duration="300">
             <div class="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
               <div>
@@ -201,7 +201,7 @@
         </div>
         <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
           @foreach ($featuredNews as $newsItem)
-            <div class="bg-neutral-primary-soft border-gray-300 shadow-xs overflow-hidden border" data-aos="zoom-in"
+            <div class="bg-white border-gray-300 shadow-xs overflow-hidden border" data-aos="zoom-in"
               data-aos-delay="{{ 100 + $loop->index * 80 }}" data-aos-duration="400">
               @if ($newsItem->image)
                 <img class="h-40 w-full object-cover sm:h-48"
