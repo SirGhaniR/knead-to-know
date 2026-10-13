@@ -52,7 +52,7 @@
   </div>
 
   {{-- Carousel Home --}}
-  @if ($galleries)
+  @if ($carousel)
     <div class="lg:px-22 md:px-22 overflow-hidden px-4 pb-24 pt-48 sm:px-6"
       style="background-image: url({{ asset('images/foods/background.jpg') }}); background-size: cover; background-position: center; min-height: 550px;"
       x-data="carousel()" x-init="init()" @resize.window="handleResize()">
@@ -61,15 +61,15 @@
         <template x-for="key in [animKey]" :key="key">
           <div class="carousel-anim flex justify-center gap-2 sm:gap-3"
             :class="direction === 1 ? 'from-right' : 'from-left'">
-            <template x-for="(gallery, index) in visibleSlides" :key="`${key}-${index}`">
+            <template x-for="(image, index) in visibleSlides" :key="`${key}-${index}`">
               <div
                 class="flex flex-col gap-5 pt-30 relative max-w-70 rounded-2xl bg-gray-50 px-10 py-12 text-center transition duration-150 hover:shadow-2xl"
                 style="min-height: 300px">
-                <p class="text-xl font-bold" x-text="gallery.title"></p>
-                <p x-text="gallery.description ? gallery.description.substring(0, 100) : ''"></p>
+                <p class="text-xl font-bold" x-text="image.title"></p>
+                <p x-text="image.description ? image.description.substring(0, 100) : ''"></p>
                 <img
                   class="size-50 absolute left-0 right-0 top-0 mx-auto aspect-square -translate-y-1/2 rounded-full object-cover transition duration-150 hover:scale-105"
-                  :src="getImageUrl(gallery.image)" :alt="gallery.title || 'food_png'">
+                  :src="getImageUrl(image.image)" :alt="image.title || 'food_png'">
               </div>
             </template>
           </div>
@@ -112,7 +112,7 @@
     <script>
       function carousel() {
         return {
-          galleries: @json($galleries),
+          carousel: @json($carousel),
           currentSlide: 0,
           animKey: 0,
           direction: 1, // 1 = forward (from-right), -1 = backward (from-left)
@@ -125,13 +125,13 @@
           },
 
           get visibleSlides() {
-            if (!this.galleries || this.galleries.length === 0) return [];
+            if (!this.carousel || this.carousel.length === 0) return [];
             const start = this.currentSlide * this.itemsPerSlide;
-            return this.galleries.slice(start, start + this.itemsPerSlide);
+            return this.carousel.slice(start, start + this.itemsPerSlide);
           },
 
           get totalSlides() {
-            return Math.ceil(this.galleries.length / this.itemsPerSlide);
+            return Math.ceil(this.carousel.length / this.itemsPerSlide);
           },
 
           updateItemsPerSlide() {

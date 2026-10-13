@@ -20,8 +20,9 @@ class HomeController extends Controller
             $featuredNews = $news->first();
         }
 
+        $carousel = Gallery::whereNotNull('description')->latest()->take(9)->get();
         $galleries = Gallery::latest()->take(9)->get();
 
-        return view('home', compact('news', 'featuredNews', 'galleries'));
+        return view('home', compact('news', 'featuredNews', 'galleries', 'carousel'));
     }
 }

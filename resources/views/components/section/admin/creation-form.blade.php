@@ -73,7 +73,7 @@
             <label for="description" class="mb-2 block text-sm font-medium">Description</label>
             <textarea name="description" id="description" rows="4"
               class="border-gray-300 bg-gray-100 w-full border px-3 py-2 text-sm transition duration-150 focus:outline-none sm:px-4 sm:py-2.5"
-              placeholder="Enter image description (optional)" required>{{ old('description') }}</textarea>
+              placeholder="Enter image description (optional)">{{ old('description') }}</textarea>
           </div>
           <div class="lg:col-span-2" data-aos="fade-up" data-aos-delay="180" data-aos-duration="400">
             <label for="image" class="mb-2 block text-sm font-medium">Image File</label>

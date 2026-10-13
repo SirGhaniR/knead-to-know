@@ -25,7 +25,7 @@
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
         AOS.init({
-            offset: 120,
+            offset: 0,
             once: true,
             easing: 'ease-out-cubic'
         });
