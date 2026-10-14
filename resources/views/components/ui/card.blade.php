@@ -21,7 +21,7 @@
   @endif
   <div class="flex flex-1 flex-col justify-between p-4">
     @if ($title)
-      <p class="mb-6 text-xl font-bold uppercase">{{ $title }}</p>
+      <p class="mb-6 text-xl font-bold uppercase">{!! nl2br(e($title)) !!}}</p>
     @endif
     @if ($content)
       <p class="mb-6">{!! nl2br(e($content)) !!}</p>
