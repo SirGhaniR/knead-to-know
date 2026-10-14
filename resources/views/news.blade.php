@@ -5,7 +5,7 @@
     class="lg:p-22 flex flex-col gap-6 bg-gray-200 p-4 sm:p-6 md:gap-10 md:p-8 md:py-10 lg:h-screen lg:flex-row lg:gap-10">
     @if ($featuredNews)
       <x-ui.image-card
-        class="rounded-2xl! aspect-square w-full shrink-0 transition duration-150 hover:scale-105 lg:w-1/2"
+        class="rounded-2xl! aspect-square w-full shrink-0 transition duration-150 lg:w-1/2"
         data-aos="fade-right" data-aos-delay="100" data-aos-duration="400" image="{{ $featuredNews->image }}"
         aspect="square" />
       <div class="flex flex-1 flex-col justify-center gap-4 sm:gap-6 lg:gap-10" data-aos="fade-left" data-aos-delay="150"

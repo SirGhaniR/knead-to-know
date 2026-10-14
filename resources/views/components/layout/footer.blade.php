@@ -13,12 +13,12 @@
             </p>
             <div class="flex gap-2">
                 <a href="https://facebook.com/" target="_blank"
-                    class="transition duration-150 hover:scale-110 hover:opacity-80">
+                    class="transition duration-150 -110 hover:opacity-80">
                     <img src="{{ asset('images/icons/001-facebook@2x.png') }}" alt="facebook"
                         class="h-8 w-8 sm:h-10 sm:w-10">
                 </a>
                 <a href="https://x.com/" target="_blank"
-                    class="transition duration-150 hover:scale-110 hover:opacity-80">
+                    class="transition duration-150 -110 hover:opacity-80">
                     <img src="{{ asset('images/icons/002-twitter@2x.png') }}" alt="twitter"
                         class="h-8 w-8 sm:h-10 sm:w-10">
                 </a>
